@@ -11,9 +11,7 @@
 |
 */
 
-use App\Http\Middleware\FindingCondition;
 use App\Http\Middleware\UploadingFile;
-use Illuminate\Session\Store;
 use VMN\Contracts\Auth\Authenticator;
 use VMN\UploadService\Uploader;
 
