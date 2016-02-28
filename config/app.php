@@ -159,6 +159,7 @@ return [
         /*
          * VMN Services
          */
+        VMN\UploadService\UploadServiceServiceProvider::class,
         VMN\Auth\AuthServiceProvider::class,
         /*
          * Image Service

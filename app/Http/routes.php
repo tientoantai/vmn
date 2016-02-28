@@ -12,7 +12,10 @@
 */
 
 use App\Http\Middleware\FindingCondition;
+use App\Http\Middleware\UploadingFile;
 use Illuminate\Session\Store;
+use VMN\Contracts\Auth\Authenticator;
+use VMN\UploadService\Uploader;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,8 +61,19 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::post('/login', ['uses'=>'Auth\LoginController@doLogin'])->name('auth.login');
 
-    Route::get('/me', function(\VMN\Contracts\Auth\Authenticator $auth){
+    Route::get('/me', function(Authenticator $auth){
         return $auth->byToken(Request::input('token'));
     });
+
+    Route::get('/test-upload', function () {
+        return view('test-upload');
+    });
+
+    Route::post('/upload', ['middleware' => [UploadingFile::class], function (Uploader $uploader)
+    {
+        return response()->json([
+            'file' => $uploader->upload(request()->file('file'))
+        ], 200, [], JSON_UNESCAPED_SLASHES);
+    }]);
 });
 
