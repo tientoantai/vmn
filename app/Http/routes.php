@@ -61,5 +61,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/me', function(\VMN\Contracts\Auth\Authenticator $auth){
         return $auth->byToken(Request::input('token'));
     });
+    
+    Route::get('/test-build', function () {
+        return 'Hello World! It works'
+    });
 });
 
