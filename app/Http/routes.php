@@ -65,6 +65,10 @@ Route::group(['middleware' => ['web']], function () {
         return $auth->byToken(Request::input('token'));
     });
 
+    Route::get('/test-build', function () {
+        return 'Hello World! It works';
+    });
+
     Route::get('/test-upload', function () {
         return view('test-upload');
     });
