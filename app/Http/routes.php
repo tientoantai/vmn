@@ -63,7 +63,7 @@ Route::group(['middleware' => ['web']], function () {
     });
     
     Route::get('/test-build', function () {
-        return 'Hello World! It works'
+        return 'Hello World! It works';
     });
 });
 
