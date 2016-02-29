@@ -28,28 +28,16 @@ class FindingCondition
     {
         switch ($request->path()):
             case 'medicinalPlants':
-                if ($request->has('keyword'))
-                {
-                    return with(new MedicinalPlantNameCondition())->setKeyword($request->get('keyword'));
-                }
-                elseif($request->has('id'))
+                return with(new MedicinalPlantNameCondition())->setKeyword($request->get('keyword'));
+                break;
+            case 'plantDetail':
+                if($request->has('id'))
                 {
                     return with(new MedicinalPlantsIdCondition())->setId($request->get('id'));
                 }
-                else
-                {
-                    return with(new MedicinalPlantNameCondition())->setKeyword($request->get('keyword'));
-                }
                 break;
             case 'remedies':
-//                if ($request->has('keyword'))
-//                {
-                    return with(new RemediesKeywordCondition())->setKeyword($request->get('keyword'));
-//                }
-//                else
-//                {
-//
-//                }
+                return with(new RemediesKeywordCondition())->setKeyword($request->get('keyword'));
                 break;
         endswitch;
     }
