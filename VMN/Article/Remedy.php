@@ -2,9 +2,10 @@
 
 namespace VMN\Article;
 
+use Illuminate\Database\Eloquent\Model;
 use VMN\Contracts\Article\Article;
 
-class Remedy implements Article
+class Remedy extends Model implements Article
 {
     public function id()
     {
