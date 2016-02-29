@@ -26,12 +26,18 @@ use VMN\UploadService\Uploader;
 |
 */
 
+
+Route::group(['domain' => 'admin.vmn.local'], function () {
+    Route::get('/', function () {
+        return 'admin page';
+    });
+});
+
 Route::group(['middleware' => ['web']], function () {
     //
-
     Route::get('/', ['uses'=>'Article\HomeController@home'])->name('home');
     Route::get('/medicinalPlants', [
-        'uses'=>'Article\ArticleFindingController@find',
+        'uses' => 'Article\ArticleFindingController@findPlants',
     ])->name('medicinal-plant');
     Route::get('/advanceSearchPlant', [
         'uses'=>'Article\ArticleFindingController@showAdvanceSearchPlant'
@@ -40,6 +46,10 @@ Route::group(['middleware' => ['web']], function () {
         'uses' => 'Article\ArticleFindingController@medicinalPlantsDetail'
     ])->name('plant-detail');
     Route::get('/addPlant', ['uses'=>'Article\ArticleEditingController@showAddPlant'])->name('add-plant');
+
+    Route::get('/remedies',[
+        'uses' => 'Article\ArticleFindingController@findRemedies',
+    ])->name('remedies');
 
     Route::get('/login', ['uses'=>'Auth\LoginController@showLogin'])->name('login');
 
@@ -63,6 +73,10 @@ Route::group(['middleware' => ['web']], function () {
         return $auth->byToken(Request::input('token'));
     });
 
+    Route::post('/contributePlants', function(){
+
+    });
+
     Route::get('/test-build', function () {
         return 'Hello World! It works';
     });
@@ -77,5 +91,9 @@ Route::group(['middleware' => ['web']], function () {
             'file' => $uploader->upload(request()->file('file'))
         ], 200, [], JSON_UNESCAPED_SLASHES);
     }]);
+
+
 });
+
+
 

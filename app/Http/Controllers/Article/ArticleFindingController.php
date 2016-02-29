@@ -8,6 +8,7 @@ use VMN\ArticleFindingService\AllMedicinalPlantsCondition;
 use VMN\ArticleFindingService\ArticleFinder;
 use VMN\ArticleFindingService\MedicinalPlantNameCondition;
 use VMN\ArticleFindingService\MedicinalPlantsIdCondition;
+use VMN\ArticleFindingService\RemediesKeywordCondition;
 
 /**
  * Class ArticleFindingController
@@ -35,7 +36,7 @@ class ArticleFindingController extends Controller
      * @param MedicinalPlantNameCondition $condition
      * @return \VMN\Contracts\Article\Article[]
      */
-    public function find(MedicinalPlantNameCondition $condition)
+    public function findPlants(MedicinalPlantNameCondition $condition)
     {
 
         return view('medicinalPlants')
@@ -58,6 +59,14 @@ class ArticleFindingController extends Controller
         return view('advancedSearch')
             ->with('condition', $condition)
             ->with('plants', $plants)
+            ;
+    }
+
+    public function findRemedies(RemediesKeywordCondition $condition)
+    {
+        return view('remedies')
+            ->with('condition', $condition)
+            ->with('listRemedy', $this->finder->find($condition))
             ;
     }
 

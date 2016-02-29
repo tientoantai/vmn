@@ -67,7 +67,7 @@
     <script src={{asset('assets/js/plugins/owl-carousel.js')}}></script>
     <script src={{asset('assets/js/plugins/revolution-slider.js')}}></script>
     <script src={{asset('assets/js/plugins/style-switcher.js')}}></script>
-
+    <script src={{asset('assets/js/plugins/serializeJson.js')}}></script>
     @yield('pageJS')
     <!--[if lt IE 9]>
     <script src={{asset('assets/plugins/respond.js')}}></script>

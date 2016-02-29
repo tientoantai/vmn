@@ -57,7 +57,7 @@
 
                     <!-- Remedy -->
                     <li class="">
-                        <a href="" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">
+                        <a href="{{route('remedies')}}" class="dropdown-toggle">
                             Bài thuốc
                         </a>
                     </li>
