@@ -23,8 +23,8 @@ class MedicinalPlant extends Seeder
         $plant->location        = 'châu Âu, châu Á, bắc Phi, Alaska và bắc Mỹ';
         $plant->utility         = 'Cầm máu, Giảm đau nhức, Sát trùng, kháng khuẩn, Điều hòa khí huyết';
         $plant->ratingPoint     = 3;
-        $plant->thumbnailUrl    = '1.jpg';
-        $plant->imgUrl          = json_encode(['1.jpg','2.jpg']);
+        $plant->thumbnailUrl    = 'ImgSample/ngai-cuu1.jpg';
+        $plant->imgUrl          = json_encode(['ImgSample/ngai-cuu1.jpg','ImgSample/ngai-cuu-2.jpg','ImgSample/ngai-cuu-12.jpg']);
         $plant->save();
 
         $plant1 = new \VMN\Article\MedicinalPlant();
@@ -37,8 +37,8 @@ class MedicinalPlant extends Seeder
         $plant1->location        = 'Ấn Độ sang Đông Á';
         $plant1->utility         = 'Tạo hưng phấn, trị cảm, nhức mỏi, ho suyễn';
         $plant1->ratingPoint     = 3;
-        $plant1->thumbnailUrl    = 'TiaTo.jpg';
-        $plant1->imgUrl          = json_encode(['1.jpg','2.jpg']);
+        $plant1->thumbnailUrl    = 'ImgSample/tiato2.jpg';
+        $plant1->imgUrl          = json_encode(['ImgSample/tiato2.jpg','ImgSample/tiato1.jpg','ImgSample/Cay-tia-to.jpg']);
         $plant1->save();
 
         $plant2 = new \VMN\Article\MedicinalPlant();
@@ -54,12 +54,12 @@ class MedicinalPlant extends Seeder
         $plant2->utility         = 'Chữa chảy máu bên trong và bên ngoài, rong kinh, băng huyết, chảy máu cam, trĩ, đại tiểu tiện ra máu, nôn và ho ra máu, chảy máu dưới da;
                                     ban sởi, ho, hen, viêm họng, bỏng, nấm da, tưa lưỡi.';
         $plant2->ratingPoint     = 3;
-        $plant2->thumbnailUrl    = 'NhoNoi.jpg';
-        $plant2->imgUrl          = json_encode(['1.jpg','2.jpg']);
+        $plant2->thumbnailUrl    = 'ImgSample/nhonoi12.png';
+        $plant2->imgUrl          = json_encode(['ImgSample/nhonoi12.png','ImgSample/nhonoi2.jpg','ImgSample/nhonoi3.jpg']);
         $plant2->save();
 
         $plant3 = new \VMN\Article\MedicinalPlant();
-        $plant3->commonName      = 'Nghệ';
+        $plant3->commonName      = 'Nghệ vàng';
         $plant3->otherName       = 'khương hoàng';
         $plant3->scienceName     = 'Curcuma longa';
         $plant3->characteristic  = 'Loại thực vật thân thảo lâu năm, mà có thể đạt đến chiều cao 1 mét.
@@ -71,8 +71,8 @@ class MedicinalPlant extends Seeder
         $plant3->location        = 'châu Âu, châu Á, bắc Phi, Alaska và bắc Mỹ';
         $plant3->utility         = 'Chữa các bệnh về dạ dày và gan, chữa bệnh về da: chàm, thủy đậu, bệnh zona, dị ứng, và ghẻ.';
         $plant3->ratingPoint     = 3;
-        $plant3->thumbnailUrl    = 'nghe.jpg';
-        $plant3->imgUrl          = json_encode(['1.jpg','2.jpg']);
+        $plant3->thumbnailUrl    = 'ImgSample/nghe.jpg';
+        $plant3->imgUrl          = json_encode(['ImgSample/nghe.jpg','ImgSample/nghe1.jpg','ImgSample/nghe12.png']);
         $plant3->save();
 
         $plant4 = new \VMN\Article\MedicinalPlant();
@@ -84,8 +84,8 @@ class MedicinalPlant extends Seeder
         $plant4->location        = 'châu Âu, châu Á, bắc Phi, Alaska và bắc Mỹ';
         $plant4->utility         = 'Giải độc, bổ thận, bổ huyết, chữa được cước khí, bồi bổ cơ thể.';
         $plant4->ratingPoint     = 3;
-        $plant4->thumbnailUrl    = 'doden.jpg';
-        $plant4->imgUrl          = json_encode(['1.jpg','2.jpg']);
+        $plant4->thumbnailUrl    = 'ImgSample/doden.jpg';
+        $plant4->imgUrl          = json_encode(['ImgSample/doden.jpg','ImgSample/doden11.jpg','ImgSample/doden21.jpg']);
         $plant4->save();
 
         $plant5 = new \VMN\Article\MedicinalPlant();
@@ -97,8 +97,8 @@ class MedicinalPlant extends Seeder
         $plant5->location        = '';
         $plant5->utility         = 'Giải độc, giải rượu,chữa lở loét, làm sáng mắt, nhuận họng, hạ huyết áp, mát buồng mật, bổ dạ dày';
         $plant5->ratingPoint     = 3;
-        $plant5->thumbnailUrl    = 'doxanh.jpg';
-        $plant5->imgUrl          = json_encode(['1.jpg','2.jpg']);
+        $plant5->thumbnailUrl    = 'ImgSample/doxanh.jpg';
+        $plant5->imgUrl          = json_encode(['ImgSample/doxanh.jpg','ImgSample/doxanh12.jpg','ImgSample/doxanh1234.jpg']);
         $plant5->save();
 
         $plant6 = new \VMN\Article\MedicinalPlant();
@@ -110,13 +110,13 @@ class MedicinalPlant extends Seeder
         $plant6->location        = '';
         $plant6->utility         = 'Giảm đau, an thần, kháng viêm, hoạt huyết, ngăn ngừa sự phát triển của nhiều loại tế bào ung thư';
         $plant6->ratingPoint     = 3;
-        $plant6->thumbnailUrl    = 'luocvang.jpg';
-        $plant6->imgUrl          = json_encode(['1.jpg','2.jpg']);
+        $plant6->thumbnailUrl    = 'ImgSample/luocvang.jpg';
+        $plant6->imgUrl          = json_encode(['ImgSample/luocvang.jpg','ImgSample/luocvang1.jpg','ImgSample/luocvang121.jpg']);
         $plant6->save();
 
         $plant7 = new \VMN\Article\MedicinalPlant();
-        $plant7->commonName      = 'Rau tần';
-        $plant7->otherName       = 'húng chanh, tần dày lá';
+        $plant7->commonName      = 'Húng chanh';
+        $plant7->otherName       = 'Rau tần, tần dày lá';
         $plant7->scienceName     = 'Plectranthus amboinicus';
         $plant7->characteristic  = 'Cây thân thảo, cao 20–50 cm. Phần thân sát gốc hoá gỗ. Lá mọc đối, dày cứng, giòn, mọng nước, mép khía răng tròn.
                                     Thân và lá dòn, mập, lá dày có lông mịn, thơm và cay. Hai mặt lá màu xanh lục nhạt. Hoa nhỏ,4 tiểu nhị, màu tím đỏ, mọc thành bông ở đầu cành.
@@ -124,8 +124,8 @@ class MedicinalPlant extends Seeder
         $plant7->location        = '';
         $plant7->utility         = 'bổ phế trừ đàm, giải cảm, làm ra mồ hôi, thông khí, giải độc; trị các chứng: ho, viêm hầu họng, nghẹt mũi, cảm cúm, cổ họng khô rát, mất tiếng, nói khàn';
         $plant7->ratingPoint     = 3;
-        $plant7->thumbnailUrl    = 'rautan.jpg';
-        $plant7->imgUrl          = json_encode(['1.jpg','2.jpg']);
+        $plant7->thumbnailUrl    = 'ImgSample/hungchanh12321.jpg';
+        $plant7->imgUrl          = json_encode(['ImgSample/hungchanh12321.jpg','ImgSample/hungchanh1212.jpg','ImgSample/hungchanh12.jpg']);
         $plant7->save();
 
     }
