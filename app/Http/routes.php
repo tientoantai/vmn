@@ -35,17 +35,20 @@ Route::group(['domain' => 'admin.vmn.local'], function () {
 
 Route::group(['middleware' => ['web']], function () {
     //
-    Route::get('/', ['uses'=>'Article\HomeController@home'])->name('home');
+    Route::get('/', ['uses'=>'Article\PageShowingController@home'])->name('home');
     Route::get('/medicinalPlants', [
         'uses' => 'Article\ArticleFindingController@findPlants',
     ])->name('medicinal-plant');
     Route::get('/advanceSearchPlant', [
         'uses'=>'Article\ArticleFindingController@showAdvanceSearchPlant'
     ])->name('advanced-search-plant');
+//    Route::get('/plantAdvanceSearch', [
+//        'uses'=>'Article\ArticleFindingController@advanceSearchPlant'
+//    ])->name('advanced-search-plant');
     Route::get('/plantDetail', [
         'uses' => 'Article\ArticleFindingController@medicinalPlantsDetail'
     ])->name('plant-detail');
-    Route::get('/addPlant', ['uses'=>'Article\ArticleEditingController@showAddPlant'])->name('add-plant');
+    Route::get('/addPlant', ['uses'=>'Article\PageShowingController@showAddPlant'])->name('add-plant');
 
     Route::get('/remedies',[
         'uses' => 'Article\ArticleFindingController@findRemedies',
@@ -73,16 +76,15 @@ Route::group(['middleware' => ['web']], function () {
         return $auth->byToken(Request::input('token'));
     });
 
-    Route::post('/contributePlants', function(){
-
-    });
+    Route::post('/contributePlants',['uses'=>'Article\ArticleEditingController@addPlants'])
+    ->name('contribute-plant');
 
     Route::get('/test-build', function () {
-        return 'Hello World! It works';
+
     });
 
     Route::get('/test-upload', function () {
-        return view('test-upload');
+        return view('profile');
     });
 
     Route::post('/upload', ['middleware' => [UploadingFile::class], function (Uploader $uploader)
