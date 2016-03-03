@@ -7,157 +7,36 @@
             <div class="col-md-4 filter-by-block md-margin-bottom-60">
                 <h1>TÌM KIẾM</h1>
                 <div class="panel-group" id="accordion">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h2 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                    Brands
-                                    <i class="fa fa-angle-down"></i>
-                                </a>
-                            </h2>
-                        </div>
-                        <div id="collapseOne" class="panel-collapse collapse in">
-                            <div class="panel-body">
-                                <ul class="list-unstyled checkbox-list">
-                                    <li>
-                                        <label class="checkbox">
-                                            <input type="checkbox" name="checkbox" checked />
-                                            <i></i>
-                                            Calvin Klein
-                                            <small><a href="#">(23)</a></small>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="checkbox">
-                                            <input type="checkbox" name="checkbox" checked />
-                                            <i></i>
-                                            Gucci
-                                            <small><a href="#">(4)</a></small>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="checkbox">
-                                            <input type="checkbox" name="checkbox" />
-                                            <i></i>
-                                            Adidas
-                                            <small><a href="#">(11)</a></small>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="checkbox">
-                                            <input type="checkbox" name="checkbox" />
-                                            <i></i>
-                                            Puma
-                                            <small><a href="#">(3)</a></small>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="checkbox">
-                                            <input type="checkbox" name="checkbox" />
-                                            <i></i>
-                                            Zara
-                                            <small><a href="#">(87)</a></small>
-                                        </label>
-                                    </li>
-                                </ul>
+                    <div class="panel panel-default panel-body">
+                        <form id="searchInfo" class="panel-collapse" method="get" action="/advanceSearchPlant" >
+                            <div class="form-group">
+                                <label for="characteristic">Đặc điểm:</label>
+                                <input type="text" class="form-control" id="characteristic" name="characteristic" value="{{$condition->characteristic()}}">
                             </div>
-                        </div>
+                            <div class="form-group">
+                                <label for="scienceName">Tên khoa học:</label>
+                                <input type="text" class="form-control" id="scienceName" name="scienceName" value="{{$condition->scienceName()}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="characteristic">Công dụng:</label>
+                                <input type="text" class="form-control" id="utility" name="utility" value="{{$condition->utility()}}">
+                            </div>
+                            <label for="ratingPoint">Điểm đánh giá</label>
+                            <select class="form-control" id="ratingPoint" name="ratingPoint">
+                                @for($i = 0; $i<=5; $i ++)
+                                    @if($i == $condition->ratingPoint())
+                                    <option value="{{$i}}" selected>{{$i}}</option>
+                                    @else
+                                    <option value="{{$i}}">{{$i}}</option>
+                                    @endif
+                                @endfor
+                            </select>
+                            <button type="submit" class="btn-u margin-top-20">Tìm kiếm</button>
+
+                        </form>
                     </div>
                 </div><!--/end panel group-->
 
-                <div class="panel-group" id="accordion-v2">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h2 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion-v2" href="#collapseTwo">
-                                    Categories
-                                    <i class="fa fa-angle-down"></i>
-                                </a>
-                            </h2>
-                        </div>
-                        <div id="collapseTwo" class="panel-collapse collapse in">
-                            <div class="panel-body">
-                                <ul class="list-unstyled checkbox-list">
-                                    <li>
-                                        <label class="checkbox">
-                                            <input type="checkbox" name="checkbox" checked />
-                                            <i></i>
-                                            Clothes
-                                            <small><a href="#">(23)</a></small>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="checkbox">
-                                            <input type="checkbox" name="checkbox" checked />
-                                            <i></i>
-                                            Glasses
-                                            <small><a href="#">(4)</a></small>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="checkbox">
-                                            <input type="checkbox" name="checkbox" />
-                                            <i></i>
-                                            Shoes
-                                            <small><a href="#">(11)</a></small>
-                                        </label>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div><!--/end panel group-->
-
-                <div class="panel-group" id="accordion-v3">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h2 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion-v3" href="#collapseThree">
-                                    Size
-                                    <i class="fa fa-angle-down"></i>
-                                </a>
-                            </h2>
-                        </div>
-                        <div id="collapseThree" class="panel-collapse collapse in">
-                            <div class="panel-body">
-                                <ul class="list-unstyled checkbox-list">
-                                    <li>
-                                        <label class="checkbox">
-                                            <input type="checkbox" name="checkbox" />
-                                            <i></i>
-                                            S
-                                            <small><a href="#">(23)</a></small>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="checkbox">
-                                            <input type="checkbox" name="checkbox" checked />
-                                            <i></i>
-                                            M
-                                            <small><a href="#">(4)</a></small>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="checkbox">
-                                            <input type="checkbox" name="checkbox" />
-                                            <i></i>
-                                            L
-                                            <small><a href="#">(11)</a></small>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="checkbox">
-                                            <input type="checkbox" name="checkbox" />
-                                            <i></i>
-                                            XL
-                                            <small><a href="#">(3)</a></small>
-                                        </label>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div><!--/end panel group-->
             </div>
             <div class="col-md-8">
                 <div class="row margin-bottom-5">
