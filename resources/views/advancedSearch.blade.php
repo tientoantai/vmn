@@ -1,5 +1,7 @@
 @extends('layout')
-
+@section('title')
+    Tìm kiếm cây thuốc nâng cao
+@endsection
 @section('content')
     <!--=== Content Part ===-->
         <div class="content container">
