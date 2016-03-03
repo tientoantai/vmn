@@ -8,7 +8,7 @@ use VMN\ArticleFindingService\ArticleFinder;
 use VMN\ArticleFindingService\NewMedicinalPlantsCondition;
 use VMN\ArticleFindingService\ProminentMedicalPlantsCondition;
 
-class HomeController extends Controller
+class PageShowingController extends Controller
 {
 
     protected $finder;
@@ -28,5 +28,10 @@ class HomeController extends Controller
                 'newMedicinalPlants' => $this->finder->find(new NewMedicinalPlantsCondition())
             ])
             ;
+    }
+
+    public function showAddPlant()
+    {
+        return view('addPlant');
     }
 }

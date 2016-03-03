@@ -8,6 +8,7 @@ use VMN\ArticleFindingService\AllMedicinalPlantsCondition;
 use VMN\ArticleFindingService\ArticleFinder;
 use VMN\ArticleFindingService\MedicinalPlantNameCondition;
 use VMN\ArticleFindingService\MedicinalPlantsIdCondition;
+use VMN\ArticleFindingService\AdvanceSearchPlantsCondition;
 use VMN\ArticleFindingService\RemediesKeywordCondition;
 
 /**
@@ -50,12 +51,14 @@ class ArticleFindingController extends Controller
         $plant = $this->finder->find($condition);
         return view('plantsDetail')
             ->with('plant',$plant)
+            ->with('img', json_decode($plant[0]->imgUrl));
             ;
     }
 
-    public function showAdvanceSearchPlant(MedicinalPlantNameCondition $condition)
+    public function showAdvanceSearchPlant(AdvanceSearchPlantsCondition $condition)
     {
         $plants = $this->finder->find($condition);
+
         return view('advancedSearch')
             ->with('condition', $condition)
             ->with('plants', $plants)
