@@ -300,7 +300,7 @@
         @foreach($newMedicinalPlants as $plant)
         <div class="col-md-3 col-sm-6 md-margin-bottom-30">
             <div class="product-img">
-                <a href="shop-ui-inner.html"><img class="full-width img-responsive" src="assets/img/blog/25.jpg" alt=""></a>
+                <img class="full-width img-responsive" src="{{$plant->thumbnailUrl}}" alt="">
                 <a class="add-to-cart" href="#"><i class="fa fa-eye"></i>CHI TIẾT</a>
             </div>
             <div class="product-description product-description-brd">
