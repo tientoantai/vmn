@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: tientoantai
- * Date: 20/02/2016
- * Time: 13:59
- */
 
 namespace VMN\ArticleFindingService;
-use Illuminate\Support\Facades\DB;
 
 class   MedicinalPlantNameCondition implements ArticleFindingCondition, PaginatableCondition
 {
@@ -47,7 +40,7 @@ class   MedicinalPlantNameCondition implements ArticleFindingCondition, Paginata
 
     public function getQuery()
     {
-        return DB::table('medicinal_plants')
+        return \DB::table('medicinal_plants')
             ->where('commonName','like','%'.$this->keyword.'%')
             ->paginate(6)
             ->appends('keyword', $this->keyword)
