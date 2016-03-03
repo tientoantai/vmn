@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use VMN\ArticleFindingService\MedicinalPlantsIdCondition;
 use VMN\ArticleFindingService\ArticleFindingCondition;
 use VMN\ArticleFindingService\MedicinalPlantNameCondition;
+use VMN\ArticleFindingService\AdvanceSearchPlantsCondition;
 use VMN\ArticleFindingService\RemediesKeywordCondition;
 
 class FindingCondition
@@ -35,6 +36,14 @@ class FindingCondition
                 {
                     return with(new MedicinalPlantsIdCondition())->setId($request->get('id'));
                 }
+                break;
+            case 'advanceSearchPlant':
+                return with(new AdvanceSearchPlantsCondition())
+                        ->setScienceName($request->get('scienceName'))
+                        ->setCharacteristic($request->get('characteristic'))
+                        ->setUtility($request->get('utility'))
+                        ->setRatingPoint($request->get('ratingPoint')
+                );
                 break;
             case 'remedies':
                 return with(new RemediesKeywordCondition())->setKeyword($request->get('keyword'));
