@@ -49,8 +49,9 @@ class Authenticator implements AuthContract
      */
     public function byPassword($email, $password)
     {
-        $foundCredential = $this->credential->where('email', '=', $email)->first();
-
+        $foundCredential = $this->credential->where('email', '=', $email)
+            ->orWhere('name', '=', $email)
+            ->first();
         if ( ! $foundCredential)
         {
             return null;

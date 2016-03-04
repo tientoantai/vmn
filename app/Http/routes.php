@@ -36,15 +36,14 @@ Route::group(['domain' => 'admin.vmn.local'], function () {
 Route::group(['middleware' => ['web']], function () {
     //
     Route::get('/', ['uses'=>'Article\PageShowingController@home'])->name('home');
+
     Route::get('/medicinalPlants', [
         'uses' => 'Article\ArticleFindingController@findPlants',
     ])->name('medicinal-plant');
     Route::get('/advanceSearchPlant', [
         'uses'=>'Article\ArticleFindingController@showAdvanceSearchPlant'
     ])->name('advanced-search-plant');
-//    Route::get('/plantAdvanceSearch', [
-//        'uses'=>'Article\ArticleFindingController@advanceSearchPlant'
-//    ])->name('advanced-search-plant');
+
     Route::get('/plantDetail', [
         'uses' => 'Article\ArticleFindingController@medicinalPlantsDetail'
     ])->name('plant-detail');
@@ -57,6 +56,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/login', ['uses'=>'Auth\LoginController@showLogin'])->name('login');
 
     Route::get('/logout', ['uses'=>'Auth\LoginController@doLogout'])->name('logout');
+
+    Route::get('/profile', ['uses' => 'Auth\ProfileController@showMemberProfile'])->name('profile');
 
     Route::get('/register', function () {
         return view('register');

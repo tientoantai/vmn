@@ -14,7 +14,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-7 md-margin-bottom-50">
-                <h2 class="welcome-title">Welcome to <VMN></VMN></h2>
+                <h2 class="welcome-title">Welcome to VMN</h2>
                 <p>Suspendisse et tincidunt ipsum, et dignissim urna. Vestibulum nisl tortor, gravida at magna et, suscipit vehicula massa.</p><br>
                 <div class="info-block-v2">
                     <i class="icon icon-layers"></i>
@@ -40,14 +40,14 @@
             </div>
 
             <div class="col-md-5">
-                <form id="sky-form1" class="log-reg-block sky-form">
+                <form id="sky-form1" class="log-reg-block sky-form" method="post" action="/login">
                     <h2>Log in to your account</h2>
 
                     <section>
                         <label class="input login-input">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                <input type="text" placeholder="Email hoặc tài khoản" name="email" class="form-control">
+                                <input type="text" placeholder="Email hoặc tài khoản" name="username" class="form-control">
                             </div>
                         </label>
                     </section>
@@ -88,7 +88,7 @@
                 </form>
 
                 <div class="margin-bottom-20"></div>
-                <p class="text-center">Chưa có tài khoản? Đăng ký <a href="shop-ui-register.html">tại đây</a></p>
+                <p class="text-center">Chưa có tài khoản? Đăng ký <a href="{{route('register')}}">tại đây</a></p>
             </div>
         </div><!--/end row-->
     </div><!--/end container-->

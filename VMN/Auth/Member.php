@@ -2,10 +2,11 @@
 
 namespace VMN\Auth;
 
+use Illuminate\Database\Eloquent\Model;
 use VMN\Contracts\Auth\Authenticable;
 use VMN\Contracts\Auth\Credential;
 
-class Member implements Authenticable
+class Member extends Model implements Authenticable
 {
     /**
      * @return Credential

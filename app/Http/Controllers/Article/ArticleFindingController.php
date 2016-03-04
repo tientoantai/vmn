@@ -46,6 +46,10 @@ class ArticleFindingController extends Controller
         ;
     }
 
+    /**
+     * @param MedicinalPlantsIdCondition $condition
+     * @return \VMN\Contracts\Article\Article[]
+     */
     public function medicinalPlantsDetail(MedicinalPlantsIdCondition $condition)
     {
         $plant = $this->finder->find($condition);
@@ -55,6 +59,10 @@ class ArticleFindingController extends Controller
             ;
     }
 
+    /**
+     * @param AdvanceSearchPlantsCondition $condition
+     * @return \VMN\Contracts\Article\Article[]
+     */
     public function showAdvanceSearchPlant(AdvanceSearchPlantsCondition $condition)
     {
         $plants = $this->finder->find($condition);
@@ -65,6 +73,10 @@ class ArticleFindingController extends Controller
             ;
     }
 
+    /**
+     * @param RemediesKeywordCondition $condition
+     * @return \VMN\Contracts\Article\Article[]
+     */
     public function findRemedies(RemediesKeywordCondition $condition)
     {
         return view('remedies')
@@ -73,11 +85,4 @@ class ArticleFindingController extends Controller
             ;
     }
 
-    /**
-     * @return \Illuminate\View\View
-     */
-    public function showSearchView()
-    {
-        return view('article.search');
-    }
 }
