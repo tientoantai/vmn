@@ -25,6 +25,7 @@ class MedicinalPlant extends Seeder
         $plant->ratingPoint     = 3;
         $plant->thumbnailUrl    = 'ImgSample/ngai-cuu1.jpg';
         $plant->imgUrl          = json_encode(['ImgSample/ngai-cuu1.jpg','ImgSample/ngai-cuu-2.jpg','ImgSample/ngai-cuu-12.jpg']);
+        $plant->author          = 'shinji';
         $plant->save();
 
         $plant1 = new \VMN\Article\MedicinalPlant();
@@ -39,6 +40,7 @@ class MedicinalPlant extends Seeder
         $plant1->ratingPoint     = 3;
         $plant1->thumbnailUrl    = 'ImgSample/tiato2.jpg';
         $plant1->imgUrl          = json_encode(['ImgSample/tiato2.jpg','ImgSample/tiato1.jpg','ImgSample/Cay-tia-to.jpg']);
+        $plant1->author          = 'shinji';
         $plant1->save();
 
         $plant2 = new \VMN\Article\MedicinalPlant();
@@ -56,6 +58,7 @@ class MedicinalPlant extends Seeder
         $plant2->ratingPoint     = 3;
         $plant2->thumbnailUrl    = 'ImgSample/nhonoi12.png';
         $plant2->imgUrl          = json_encode(['ImgSample/nhonoi12.png','ImgSample/nhonoi2.jpg','ImgSample/nhonoi3.jpg']);
+        $plant2->author          = 'shinji';
         $plant2->save();
 
         $plant3 = new \VMN\Article\MedicinalPlant();
@@ -73,6 +76,7 @@ class MedicinalPlant extends Seeder
         $plant3->ratingPoint     = 3;
         $plant3->thumbnailUrl    = 'ImgSample/nghe.jpg';
         $plant3->imgUrl          = json_encode(['ImgSample/nghe.jpg','ImgSample/nghe1.jpg','ImgSample/nghe12.png']);
+        $plant3->author          = 'shinji';
         $plant3->save();
 
         $plant4 = new \VMN\Article\MedicinalPlant();
@@ -86,6 +90,7 @@ class MedicinalPlant extends Seeder
         $plant4->ratingPoint     = 3;
         $plant4->thumbnailUrl    = 'ImgSample/doden.jpg';
         $plant4->imgUrl          = json_encode(['ImgSample/doden.jpg','ImgSample/doden11.jpg','ImgSample/doden21.jpg']);
+        $plant4->author          = 'shinji';
         $plant4->save();
 
         $plant5 = new \VMN\Article\MedicinalPlant();
@@ -99,6 +104,7 @@ class MedicinalPlant extends Seeder
         $plant5->ratingPoint     = 3;
         $plant5->thumbnailUrl    = 'ImgSample/doxanh.jpg';
         $plant5->imgUrl          = json_encode(['ImgSample/doxanh.jpg','ImgSample/doxanh12.jpg','ImgSample/doxanh1234.jpg']);
+        $plant5->author          = 'shinji';
         $plant5->save();
 
         $plant6 = new \VMN\Article\MedicinalPlant();
@@ -112,6 +118,7 @@ class MedicinalPlant extends Seeder
         $plant6->ratingPoint     = 3;
         $plant6->thumbnailUrl    = 'ImgSample/luocvang.jpg';
         $plant6->imgUrl          = json_encode(['ImgSample/luocvang.jpg','ImgSample/luocvang1.jpg','ImgSample/luocvang121.jpg']);
+        $plant6->author          = 'shinji';
         $plant6->save();
 
         $plant7 = new \VMN\Article\MedicinalPlant();
@@ -126,6 +133,7 @@ class MedicinalPlant extends Seeder
         $plant7->ratingPoint     = 3;
         $plant7->thumbnailUrl    = 'ImgSample/hungchanh12321.jpg';
         $plant7->imgUrl          = json_encode(['ImgSample/hungchanh12321.jpg','ImgSample/hungchanh1212.jpg','ImgSample/hungchanh12.jpg']);
+        $plant7->author          = 'shinji';
         $plant7->save();
 
     }
