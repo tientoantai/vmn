@@ -23,11 +23,13 @@ class ProfileController extends Controller
 
     public function showMemberProfile()
     {
-
         $member = $this->memberFinder->getMemberProfile($this->credentialName);
-//        dd($member);
+        $plantsPosted = $this->memberFinder->getMemberMedicinalPlantsArticle($this->credentialName);
+        $remediesPosted = $this->memberFinder->getMemberRemediesArticle($this->credentialName);
         return view('profile')
-            ->with('info', $member);
+            ->with('info', $member)
+            ->with('plantsPosted', $plantsPosted)
+            ->with('remediesPosted', $remediesPosted)
             ;
     }
 }
