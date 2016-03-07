@@ -80,12 +80,10 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/contributePlants',['uses'=>'Article\ArticleEditingController@addPlants'])
     ->name('contribute-plant');
 
-    Route::get('/test-build', function () {
-
-    });
+    Route::post('/review', ['uses' => 'Article\ArticleReviewingController@reviewPlants'])
+    ->name('postReview');
 
     Route::get('/test-upload', function () {
-        return view('profile');
     });
 
     Route::post('/upload', ['middleware' => [UploadingFile::class], function (Uploader $uploader)
