@@ -1053,7 +1053,6 @@ li:first-child {
 
 .shop-product .shop-product-social li i {
 	color: #dedede;
-	font-size: 26px;
 	display: inline-block;
 }
 
@@ -1301,7 +1300,7 @@ li:first-child {
 
 /*Product Comment*/
 .product-comment {
-	padding: 20px;
+	padding: 5px;
 	border: 1px solid #f0f0f0;
 }
 
@@ -1332,8 +1331,6 @@ li:first-child {
 
 .product-comment .product-comment-dtl {
 	overflow: hidden;
-	margin-bottom: 10px;
-	padding-bottom: 10px;
 }
 
 .product-comment .product-comment-dtl h4 {
@@ -2982,4 +2979,8 @@ li:first-child {
 	color: #fff;
 	background: #18ba9b;
 	transition: all 0.3s ease-in-out;
+}
+
+textarea {
+	resize: none; width:100%; padding: 5px;
 }

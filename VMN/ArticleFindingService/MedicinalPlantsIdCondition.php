@@ -20,9 +20,16 @@ class MedicinalPlantsIdCondition implements ArticleFindingCondition
 
     public function getQuery()
     {
-        return \DB::table('medicinal_plants')
-            ->where('id','=', $this->id())
-            ->get()
-            ;
+        $plant =\DB::table('medicinal_plants')
+        ->where('id','=', $this->id())
+        ->get()
+        ;
+        $comment = \DB::table('medicinal_plants_reviews')
+        ->where('reviewed', '=', $this->id())
+        ->get()
+        ;
+
+//        $related = [];
+        return ['info' => $plant[0], 'comment' => $comment];
     }
 }

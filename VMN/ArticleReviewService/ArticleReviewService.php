@@ -8,13 +8,16 @@ use VMN\Contracts\Auth\Authenticable;
 class ArticleReviewService
 {
     /**
-     * @param Authenticable $reviewer
-     * @param Article $article
-     * @return Review
+     * @param Review $review
      */
-    public function review(Authenticable $reviewer, Article $article)
+    public function reviewPlants(Review $review)
     {
-
+        \DB::table('medicinal_plants_reviews')->insert([
+            'comment' =>$review->getComment(),
+            'reviewer' =>$review->getReviewer(),
+            'reviewed' =>$review->getReviewed(),
+            'ratingPoint' =>$review->getRating(),
+            ]);
     }
 
     /**

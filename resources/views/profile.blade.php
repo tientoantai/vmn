@@ -72,14 +72,15 @@
                                 </ul>
                                 <div class="tab-content">
                                     <div id="medicinal_plants" class="profile-edit tab-pane fade in active">
+                                        @foreach($plantsPosted as $postedPlant)
                                         <div class="row">
-                                            <div class="easy-block-v1 col-md-3">
-                                                <img class="img-responsive" src="assets/img/main/img12.jpg" alt="">
+                                            <div class="easy-block-v1 col-md-2">
+                                                <img class="img-responsive" src="{{$postedPlant->thumbnailUrl}}" alt="">
                                             </div>
-                                            <div class="col-md-9">
+                                            <div class="col-md-10">
                                                 <div class="projects">
-                                                    <h2><a class="color-dark" href="#">Ngải cứu</a></h2>
-                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry printing. Donec non dignissim eros. Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>
+                                                    <h2><a class="color-dark" href="{{route('plant-detail',['id' => $postedPlant->id])}}">
+                                                            {{$postedPlant->commonName}}</a></h2>
                                                 </div>
                                                 <div class="project-share">
                                                     <ul class="list-inline comment-list-v2 pull-left">
@@ -95,16 +96,18 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        @endforeach
                                     </div>
                                     <div id="remedies" class="profile-edit tab-pane fade in">
+                                        @foreach($remediesPosted as $postedRemedy)
                                         <div class="row">
                                             <div class="easy-block-v1 col-md-3">
                                                 <img class="img-responsive" src="assets/img/main/img12.jpg" alt="">
                                             </div>
                                             <div class="col-md-9">
                                                 <div class="projects">
-                                                    <h2><a class="color-dark" href="#">Ngải cứu</a></h2>
-                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry printing. Donec non dignissim eros. Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>
+                                                    <h2><a class="color-dark" href="{{route('plant-detail',['id' => $postedRemedy->id])}}">
+                                                            {{$postedRemedy->title}}</a></h2>
                                                 </div>
                                                 <div class="project-share">
                                                     <ul class="list-inline comment-list-v2 pull-left">
@@ -120,6 +123,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        @endforeach
                                     </div>
                                 </div>
 

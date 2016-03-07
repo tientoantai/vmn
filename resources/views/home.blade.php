@@ -301,7 +301,7 @@
         <div class="col-md-3 col-sm-6 md-margin-bottom-30">
             <div class="product-img">
                 <img class="full-width img-responsive" src="{{$plant->thumbnailUrl}}" alt="">
-                <a class="add-to-cart" href="#"><i class="fa fa-eye"></i>CHI TIẾT</a>
+                <a class="add-to-cart" href="{{route('plant-detail',['id' => $plant->id])}}"><i class="fa fa-eye"></i>CHI TIẾT</a>
             </div>
             <div class="product-description product-description-brd">
                 <div class="overflow-h margin-bottom-5">

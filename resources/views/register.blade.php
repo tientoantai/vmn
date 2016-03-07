@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="col-md-5">
-                    <form id="sky-form4" class="log-reg-block sky-form">
+                    <form id="sky-form4" class="log-reg-block sky-form" method="post">
                         <h2>Đăng ký tài khoản</h2>
 
                         <div class="login-input reg-input">

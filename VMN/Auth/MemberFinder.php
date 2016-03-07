@@ -15,9 +15,21 @@ class MemberFinder
             ;
     }
 
-    public function getMemberArticle($account)
+    public function getMemberMedicinalPlantsArticle($account)
     {
+        return \DB::table('medicinal_plants')
+            ->where('author','=',$account)
+            ->get();
+        ;
 
+    }
+
+    public function getMemberRemediesArticle($account)
+    {
+        return \DB::table('remedies')
+            ->where('author','=',$account)
+            ->get();
+        ;
 
     }
 

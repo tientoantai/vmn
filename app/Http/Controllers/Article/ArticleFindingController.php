@@ -55,7 +55,7 @@ class ArticleFindingController extends Controller
         $plant = $this->finder->find($condition);
         return view('plantsDetail')
             ->with('plant',$plant)
-            ->with('img', json_decode($plant[0]->imgUrl));
+            ->with('img', json_decode($plant['info']->imgUrl))
             ;
     }
 

@@ -1,6 +1,6 @@
 @extends('layout')
 @section('title')
-    {{$plant[0]->commonName}}
+    {{$plant['info']->commonName}}
 @endsection
 @section('pageCss')
 
@@ -34,10 +34,17 @@
 
                     <div class="col-md-6">
                         <div class="shop-product-heading">
-                            <h2>{{$plant[0]->commonName}}</h2>
+                            <h2>{{$plant['info']->commonName}}</h2>
+                            @if (\Session::get('credential'))
                             <ul class="list-inline shop-product-social">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                @if(\Session::get('credential')['attributes']['name'] == $plant['info']->author)
+                                <li><button href="#" class="btn-u btn-u-green">Chỉnh sửa <i class="fa fa-pencil"></i></button></li>
+                                @else
+                                <li><button href="#" class="btn-u btn-u-red" data-toggle="modal" data-target="#report-modal">
+                                        Báo cáo</button></li>
+                                @endif
                             </ul>
+                            @endif
                         </div><!--/end shop product social-->
 
                         <ul class="list-inline product-ratings margin-bottom-30">
@@ -59,27 +66,27 @@
                             <tbody>
                             <tr>
                                 <td><b>Tên khác:</b></td>
-                                <td>{{$plant[0]->otherName}}</td>
+                                <td>{{$plant['info']->otherName}}</td>
                             </tr>
                             <tr>
                                 <td><b>Tên khoa học:</b></td>
-                                <td>{{$plant[0]->scienceName}}</td>
+                                <td>{{$plant['info']->scienceName}}</td>
                             </tr>
                             <tr>
                                 <td><b>Đặc điểm:</b></td>
-                                <td>{{$plant[0]->characteristic}}</td>
+                                <td>{{$plant['info']->characteristic}}</td>
                             </tr>
                             <tr>
                                 <td><b>Nơi phân bố:</b></td>
-                                <td>{{$plant[0]->location}}</td>
+                                <td>{{$plant['info']->location}}</td>
                             </tr>
                             <tr>
                                 <td><b>Công dụng:</b></td>
-                                <td>{{$plant[0]->utility}}</td>
+                                <td>{{$plant['info']->utility}}</td>
                             </tr>
                             <tr>
                                 <td><b>Người đóng góp:</b></td>
-                                <td><a href="">{{$plant[0]->author}}</a></td>
+                                <td><a href="">{{$plant['info']->author}}</a></td>
                             </tr>
                         </tbody></table>
                     </div>
@@ -89,68 +96,71 @@
         <!--=== End Shop Product ===-->
 
     <!--=== Content Medium ===-->
-    {{--<div class="content-md container">--}}
+    <div class="content-md container">
 
-        {{--<div class="tab-v6">--}}
-            {{--<ul class="nav nav-tabs" role="tablist">--}}
-                {{--<li class="active"><a href="#reviews" role="tab" data-toggle="tab">Đánh giá (1)</a></li>--}}
-                {{--<li><a href="#related" role="tab" data-toggle="tab">Bài thuốc liên quan</a></li>--}}
-            {{--</ul>--}}
+        <div class="tab-v6">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="active"><a href="#reviews" role="tab" data-toggle="tab">Đánh giá ({!! count($plant['comment']) !!})</a></li>
+                <li><a href="#related" role="tab" data-toggle="tab">Bài thuốc liên quan</a></li>
+            </ul>
 
-            {{--<div class="tab-content">--}}
-                {{--<!-- Reviews -->--}}
-                {{--<div class="tab-pane fade in active" id="reviews">--}}
-                    {{--<div class="product-comment margin-bottom-40">--}}
-                        {{--<div class="product-comment-in">--}}
-                            {{--<img class="product-comment-img rounded-x" src="assets/img/team/01.jpg" alt="">--}}
-                            {{--<div class="product-comment-dtl">--}}
-                                {{--<h4>Mickel <small>22 days ago</small></h4>--}}
-                                {{--<p>I like the green colour, it's very likeable and reminds me of Hollister. A little loose though but I am very skinny</p>--}}
-                                {{--<ul class="list-inline product-ratings">--}}
-                                    {{--<li class="reply"><a href="#">Reply</a></li>--}}
-                                    {{--<li class="pull-right">--}}
-                                        {{--<ul class="list-inline">--}}
-                                            {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                                            {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                                            {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                                            {{--<li><i class="rating fa fa-star"></i></li>--}}
-                                            {{--<li><i class="rating fa fa-star"></i></li>--}}
-                                        {{--</ul>--}}
-                                    {{--</li>--}}
-                                {{--</ul>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                    {{--<h3 class="heading-md margin-bottom-30">Bình luận</h3>--}}
-                    {{--<form action="" method="post" id="comment" class="sky-form sky-changes-4">--}}
-                        {{--<fieldset>--}}
-                            {{--<div class="margin-bottom-30">--}}
-                                {{--<label class="textarea">--}}
-                                    {{--<textarea rows="2" placeholder="Viết bình luận ..." name="message" id="message"></textarea>--}}
-                                {{--</label>--}}
-                            {{--</div>--}}
-                        {{--</fieldset>--}}
+            <div class="tab-content">
+                <!-- Reviews -->
+                <div class="tab-pane fade in active" id="reviews">
+                    <div id="old-review">
+                    @foreach($plant['comment'] as $comment)
+                    <div class="product-comment margin-bottom-20">
+                        <div class="product-comment-in">
+                            <img class="product-comment-img rounded-x" src="assets/img/team/01.jpg" alt="">
+                            <div class="product-comment-dtl">
+                                <h4><a>{{$comment->reviewer}}</a> <small>{{$comment->created_at}}</small></h4>
+                                <div>{{$comment->comment}}</div>
+                                <ul class="list-inline product-ratings pull-right">
+                                    @for($j = 1; $j <= 5; $j++)
+                                        @if($j <= $comment->ratingPoint)
+                                        <li><i class="rating-selected fa fa-star"></i></li>
+                                        @else
+                                        <li><i class="rating fa fa-star"></i></li>
+                                        @endif
+                                    @endfor
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                    </div>
+                    @if (\Session::get('credential'))
+                    <h3 class="heading-md margin-bottom-30">Bình luận</h3>
+                    <form action="/review" method="post" data-review="{{$plant['info']->id}}" id="review" class="sky-form sky-changes-4">
+                        <fieldset>
+                            <div class="margin-bottom-30">
+                                <label class="textarea">
+                                    <textarea rows="3" placeholder="Viết bình luận ..." name="commentContent" id="message"></textarea>
+                                </label>
+                            </div>
+                        </fieldset>
 
-                        {{--<footer class="review-submit">--}}
-                            {{--<label class="label-v2">Review</label>--}}
-                            {{--<div class="stars-ratings">--}}
-                                {{--<input type="radio" name="stars-rating" id="stars-rating-5">--}}
-                                {{--<label for="stars-rating-5"><i class="fa fa-star"></i></label>--}}
-                                {{--<input type="radio" name="stars-rating" id="stars-rating-4">--}}
-                                {{--<label for="stars-rating-4"><i class="fa fa-star"></i></label>--}}
-                                {{--<input type="radio" name="stars-rating" id="stars-rating-3">--}}
-                                {{--<label for="stars-rating-3"><i class="fa fa-star"></i></label>--}}
-                                {{--<input type="radio" name="stars-rating" id="stars-rating-2">--}}
-                                {{--<label for="stars-rating-2"><i class="fa fa-star"></i></label>--}}
-                                {{--<input type="radio" name="stars-rating" id="stars-rating-1">--}}
-                                {{--<label for="stars-rating-1"><i class="fa fa-star"></i></label>--}}
-                            {{--</div>--}}
-                            {{--<button type="button" class="btn-u btn-u-sea-shop btn-u-sm pull-right">Gửi</button>--}}
-                        {{--</footer>--}}
-                    {{--</form>--}}
-                {{--</div>--}}
-                {{--<!-- End Reviews -->--}}
-                {{--<!-- Related -->--}}
+                        <footer class="review-submit">
+                            <label class="label-v2">Review</label>
+                            <div class="stars-ratings">
+                                <input type="radio" name="stars-rating" id="stars-rating-5">
+                                <label for="stars-rating-5"><i class="fa fa-star"></i></label>
+                                <input type="radio" name="stars-rating" id="stars-rating-4">
+                                <label for="stars-rating-4"><i class="fa fa-star"></i></label>
+                                <input type="radio" name="stars-rating" id="stars-rating-3">
+                                <label for="stars-rating-3"><i class="fa fa-star"></i></label>
+                                <input type="radio" name="stars-rating" id="stars-rating-2">
+                                <label for="stars-rating-2"><i class="fa fa-star"></i></label>
+                                <input type="radio" name="stars-rating" id="stars-rating-1">
+                                <label for="stars-rating-1"><i class="fa fa-star"></i></label>
+                            </div>
+                            <button type="submit" class="btn-u btn-u-sea-shop btn-u-sm pull-right">Gửi</button>
+                        </footer>
+                    </form>
+                    @endif
+                </div>
+                <!-- End Reviews -->
+                <!-- Related -->
                 {{--<div class="tab-pane fade " id="related">--}}
                     {{--<!--=== Illustration v2 ===-->--}}
                     {{--<div class="container">--}}
@@ -267,12 +277,32 @@
                     {{--</div>--}}
                     {{--<!--=== End Illustration v2 ===-->--}}
                 {{--</div>--}}
-                {{--<!-- End related -->--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</div><!--/end container-->--}}
+                <!-- End related -->
+            </div>
+        </div>
+    </div><!--/end container-->
     <!--=== End Content Medium ===-->
 
+    <!-- Report Modal -->
+    <div id="report-modal" class="modal fade" role="dialog">
+        <form class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Báo cáo vi phạm</h4>
+                </div>
+                <div class="modal-body">
+                    <textarea name="report_reason" id="" placeholder="Nhập nguyên nhân" rows="8"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn-u btn-u-orange rounded" >Gửi báo cáo</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
 @endsection
 
 @section('pageJS')
@@ -283,6 +313,7 @@
     <script src={{asset('assets/js/forms/product-quantity.js')}}></script>
     <script src={{asset('assets/js/plugins/master-slider.js')}}></script>
     <script src={{asset('assets/js/forms/product-quantity.js')}}></script>
+    <script src={{asset('assets/js/plugins/serializeJson.js')}}></script>
     <script>
         jQuery(document).ready(function() {
             App.init();
@@ -290,6 +321,27 @@
             OwlCarousel.initOwlCarousel();
             StyleSwitcher.initStyleSwitcher();
             MasterSliderShowcase2.initMasterSliderShowcase2();
+
+            var ratingPoint = 0;
+            $(":radio").on('click', function(){
+                ratingPoint = this.id.substr(-1);
+            });
+
+            $('#review').on('submit', function(event){
+                event.preventDefault();
+                var review = $(this).serializeJson();
+                review.ratingPoint =  ratingPoint;
+                review.Id = $(this).attr("data-review");
+                var sendReview = $.post($(this).attr('action'), review);
+                sendReview.then(function(response){
+                    $('#message').val('');
+                    $('.stars-ratings > input').removeAttr('checked');
+                    $('#old-review').append(response.htmlString);
+                });
+            });
+
+
         });
     </script>
 @endsection
+
