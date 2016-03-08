@@ -8,8 +8,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Middleware\ReviewingArticle;
 use VMN\ArticleReviewService\ArticleReviewService;
 use VMN\ArticleReviewService\Review;
-use VMN\ArticleReviewService\ReviewHtmlStringBuilder;
-use VMN\Contracts\Article\Article;
 
 /**
  * Class ArticleReviewingController
@@ -23,23 +21,26 @@ class ArticleReviewingController extends Controller
     protected $reviewingService;
 
     protected $builder;
+
     /**
      * ArticleReviewingController constructor.
      * @param ArticleReviewService $reviewService
      */
-    public function __construct(ArticleReviewService $reviewService, ReviewHtmlStringBuilder $builder)
+    public function __construct(ArticleReviewService $reviewService)
     {
         $this->reviewingService = $reviewService;
-        $this->builder = $builder;
         $this->middleware(ReviewingArticle::class);
     }
 
+    /**
+     * @param Review $review
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function reviewPlants(Review $review)
     {
         $this->reviewingService->reviewPlants($review);
-        $htmlString = $this->builder->build($review);
         return response()->json([
-            'htmlString' => $htmlString,
+            'reviewer' => \Session::get('credential')['attributes']['name'],
         ]);
     }
 }

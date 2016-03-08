@@ -73,6 +73,8 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::post('/login', ['uses'=>'Auth\LoginController@doLogin'])->name('auth.login');
 
+    Route::post('/register', ['uses' => 'Auth\LoginController@register'])->name('auth.register');
+
     Route::get('/me', function(Authenticator $auth){
         return $auth->byToken(Request::input('token'));
     });
