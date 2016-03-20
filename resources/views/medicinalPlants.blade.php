@@ -38,7 +38,7 @@
                         <div class="col-md-4">
                             <div class="product-img product-img-brd">
                                 <!--Thay = link thumbnail cây thuốc-->
-                                <a href="#"><img class="full-width img-responsive" src="assets/img/blog/16.jpg" alt=""></a>
+                                <a href="#"><img class="full-width img-responsive" src="{{$plant->thumbnailUrl}}" alt=""></a>
                                 <a class="add-to-cart" href="{{route('plant-detail',['id' => $plant->id])}}">
                                     <i class="fa fa-eye"></i>Xem chi tiết</a>
                                 {{--<div class="shop-rgba-dark-green rgba-banner">New</div>--}}
