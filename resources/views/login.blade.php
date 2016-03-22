@@ -41,7 +41,7 @@
 
             <div class="col-md-5">
                 <form id="sky-form1" class="log-reg-block sky-form" method="post" action="/login">
-                    <h2>Log in to your account</h2>
+                    <h2>Đăng nhập vào hệ thống</h2>
 
                     <section>
                         <label class="input login-input">
@@ -64,17 +64,17 @@
                             <label class="checkbox">
                                 <input type="checkbox" name="checkbox"/>
                                 <i></i>
-                                Remember me
+                                Ghi nhớ
                             </label>
                         </div>
                         <div class="col-xs-6 text-right">
-                            <a href="#">Forget your Password?</a>
+                            <a href="#">Quên mật khẩu?</a>
                         </div>
                     </div>
                     <button class="btn-u btn-u-sea-shop btn-block margin-bottom-20" type="submit">Log in</button>
 
                     <div class="border-wings">
-                        <span>or</span>
+                        <span>hoặc</span>
                     </div>
 
                     <div class="row columns-space-removes">
