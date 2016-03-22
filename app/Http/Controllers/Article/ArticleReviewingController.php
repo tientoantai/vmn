@@ -20,8 +20,6 @@ class ArticleReviewingController extends Controller
      */
     protected $reviewingService;
 
-    protected $builder;
-
     /**
      * ArticleReviewingController constructor.
      * @param ArticleReviewService $reviewService
