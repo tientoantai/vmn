@@ -17,11 +17,19 @@ class UsersTableSeeder extends Seeder
         $user->name         = 'Rikky';
         $user->email        = 'sonvl@vnvalley.com';
         $user->password     = Hash::make('sonvl');
+        $user->role         = 'mod';
         $user->save();
         $user1 = new \VMN\Contracts\Auth\Credential();
-        $user1->name         = 'TienNM';
-        $user1->email        = 'tiennmse02545@fpt.edu.vn';
-        $user1->password     = Hash::make('tiennm');
+        $user1->name        = 'TienNM';
+        $user1->email       = 'tiennmse02545@fpt.edu.vn';
+        $user1->password    = Hash::make('tiennm');
+        $user1->role        = 'mod';
         $user1->save();
+        $user2 = new \VMN\Contracts\Auth\Credential();
+        $user2->name        = 'shinji';
+        $user2->email       = 'waynerooney_hotboysanco@yahoo.com';
+        $user2->password    = Hash::make('tiennm');
+        $user2->role        = 'member';
+        $user2->save();
     }
 }

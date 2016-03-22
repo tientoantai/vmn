@@ -35,25 +35,36 @@ Route::group(['domain' => 'admin.vmn.local'], function () {
 
 Route::group(['middleware' => ['web']], function () {
     //
-    Route::get('/', ['uses'=>'Article\HomeController@home'])->name('home');
+    Route::get('/', ['uses'=>'Article\PageShowingController@home'])->name('home');
+
     Route::get('/medicinalPlants', [
         'uses' => 'Article\ArticleFindingController@findPlants',
     ])->name('medicinal-plant');
+
     Route::get('/advanceSearchPlant', [
         'uses'=>'Article\ArticleFindingController@showAdvanceSearchPlant'
     ])->name('advanced-search-plant');
+
     Route::get('/plantDetail', [
         'uses' => 'Article\ArticleFindingController@medicinalPlantsDetail'
     ])->name('plant-detail');
-    Route::get('/addPlant', ['uses'=>'Article\ArticleEditingController@showAddPlant'])->name('add-plant');
+    Route::get('/addPlant', ['uses'=>'Article\PageShowingController@showAddPlant'])->name('add-plant');
+
+    Route::get('/editPlant', ['uses'=>'Article\PageShowingController@showEditPlant'])->name('edit-plant');
 
     Route::get('/remedies',[
         'uses' => 'Article\ArticleFindingController@findRemedies',
     ])->name('remedies');
 
+    Route::get('/detailRemedy',[
+        'uses' => 'Article\ArticleFindingController@detailRemedy',
+    ])->name('remedy-detail');
+
     Route::get('/login', ['uses'=>'Auth\LoginController@showLogin'])->name('login');
 
     Route::get('/logout', ['uses'=>'Auth\LoginController@doLogout'])->name('logout');
+
+    Route::get('/profile', ['uses' => 'Auth\ProfileController@showMemberProfile'])->name('profile');
 
     Route::get('/register', function () {
         return view('register');
@@ -69,20 +80,25 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::post('/login', ['uses'=>'Auth\LoginController@doLogin'])->name('auth.login');
 
+    Route::post('/memberRegister', ['uses' => 'Auth\RegisterController@memberRegister'])->name('auth.register');
+
     Route::get('/me', function(Authenticator $auth){
         return $auth->byToken(Request::input('token'));
     });
 
-    Route::post('/contributePlants', function(){
+    Route::post('/contributePlants',['uses'=>'Article\ArticleEditingController@addPlants'])
+    ->name('contribute-plant');
 
-    });
+    Route::post('/updatePlants',['uses'=>'Article\ArticleEditingController@editPlants'])
+        ->name('update-plant');
 
-    Route::get('/test-build', function () {
-        return 'Hello World! It works';
-    });
+    Route::post('/review', ['uses' => 'Article\ArticleReviewingController@reviewPlants'])
+    ->name('postReview');
+
+    Route::post('/reportPlant', ['uses' => 'Article\ArticleReportingController@reportPlant'])
+        ->name('postReport');
 
     Route::get('/test-upload', function () {
-        return view('test-upload');
     });
 
     Route::post('/upload', ['middleware' => [UploadingFile::class], function (Uploader $uploader)

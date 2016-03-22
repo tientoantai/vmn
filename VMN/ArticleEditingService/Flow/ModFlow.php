@@ -2,12 +2,27 @@
 
 namespace VMN\ArticleEditingService\Flow;
 
+use VMN\Contracts\Article\Article;
 use VMN\Contracts\EditorFlow\EditorFlow;
+
+
 
 class ModFlow implements EditorFlow
 {
-    public function proceed()
+    protected $historyService;
+
+    /**
+     * MemberFlow constructor.
+     * @param ArticleEditingHistory $historyService
+     */
+    public function __construct(ArticleEditingHistory $historyService)
     {
-        // TODO: Implement proceed() method.
+        $this->historyService = $historyService;
+    }
+
+    public function proceed(Article $article, $type)
+    {
+        $this->historyService->logMedicinalPlant($article, $type);
+        $article->save();
     }
 }

@@ -8,8 +8,9 @@ use VMN\ArticleFindingService\AllMedicinalPlantsCondition;
 use VMN\ArticleFindingService\ArticleFinder;
 use VMN\ArticleFindingService\MedicinalPlantNameCondition;
 use VMN\ArticleFindingService\MedicinalPlantsIdCondition;
+use VMN\ArticleFindingService\AdvanceSearchPlantsCondition;
 use VMN\ArticleFindingService\RemediesKeywordCondition;
-
+use VMN\ArticleFindingService\RemedyDetailCondition;
 /**
  * Class ArticleFindingController
  * @package App\Http\Controllers\Article
@@ -45,23 +46,37 @@ class ArticleFindingController extends Controller
         ;
     }
 
+    /**
+     * @param MedicinalPlantsIdCondition $condition
+     * @return \VMN\Contracts\Article\Article[]
+     */
     public function medicinalPlantsDetail(MedicinalPlantsIdCondition $condition)
     {
         $plant = $this->finder->find($condition);
         return view('plantsDetail')
             ->with('plant',$plant)
+            ->with('img', json_decode($plant['info']->imgUrl))
             ;
     }
 
-    public function showAdvanceSearchPlant(MedicinalPlantNameCondition $condition)
+    /**
+     * @param AdvanceSearchPlantsCondition $condition
+     * @return \VMN\Contracts\Article\Article[]
+     */
+    public function showAdvanceSearchPlant(AdvanceSearchPlantsCondition $condition)
     {
         $plants = $this->finder->find($condition);
+
         return view('advancedSearch')
             ->with('condition', $condition)
             ->with('plants', $plants)
             ;
     }
 
+    /**
+     * @param RemediesKeywordCondition $condition
+     * @return \VMN\Contracts\Article\Article[]
+     */
     public function findRemedies(RemediesKeywordCondition $condition)
     {
         return view('remedies')
@@ -70,11 +85,15 @@ class ArticleFindingController extends Controller
             ;
     }
 
-    /**
-     * @return \Illuminate\View\View
-     */
-    public function showSearchView()
+    public function detailRemedy(RemedyDetailCondition $condition)
     {
-        return view('article.search');
+        $remedy = $this->finder->find($condition);
+        return view('remedyDetail')
+            ->with('remedy', $remedy['info'])
+            ->with('ingredient', $remedy['ingredient'])
+            ->with('comments', $remedy['comment'])
+            ->with('images', json_decode($remedy['info']->imgUrl))
+            ;
     }
+
 }

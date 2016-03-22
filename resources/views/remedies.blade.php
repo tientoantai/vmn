@@ -45,7 +45,7 @@
                                         <div class="product-img product-img-brd">
                                             <!--Thay = link thumbnail cây thuốc-->
                                             <a href="#"><img class="full-width img-responsive" src="assets/img/blog/16.jpg" alt=""></a>
-                                            <a class="add-to-cart" href="">
+                                            <a class="add-to-cart" href="{{route('remedy-detail', ['id' => $remedy->id])}}">
                                                 <i class="fa fa-eye"></i>Xem chi tiết</a>
                                             {{--<div class="shop-rgba-dark-green rgba-banner">New</div>--}}
                                         </div>

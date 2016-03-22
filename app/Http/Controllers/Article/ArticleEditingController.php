@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Article;
 
 use App\Http\Controllers\Controller;
+use VMN\Article\EditorFlowManager;
 use VMN\ArticleEditingService\ArticleEditingService;
 use VMN\ArticleEditingService\Flow\MemberFlow;
 use VMN\Contracts\Article\Article;
+use VMN\Article\MedicinalPlant;
 use VMN\Contracts\Auth\Authenticable;
+use App\Http\Middleware\EditingData;
 
 /**
  * Class ArticleEditingController
@@ -26,20 +29,22 @@ class ArticleEditingController extends Controller
     public function __construct(ArticleEditingService $editingService)
     {
         $this->editingService = $editingService;
+
+        $this->middleware(EditingData::class);
     }
 
-    public function showAddPlant()
+
+    public function addPlants(MedicinalPlant $plant, EditorFlowManager $editorFlowManager)
     {
-        return view('addPlant');
+        $this->editingService->add($editorFlowManager, \Session::get('credential')['attributes']['role'])
+            ->proceed($plant, 'add');
+        return response()->json(['msg'=>'Thông tin đã được gửi thành công']);
     }
-    /**
-     * @param Article $article
-     * @param Authenticable $authenticable
-     * @return mixed
-     */
-    public function edit(Article $article, Authenticable $authenticable)
+
+    public function editPlants(MedicinalPlant $plant, EditorFlowManager $editorFlowManager)
     {
-        return $this->editingService->edit($article, $authenticable)->proceed();
+        $this->editingService->edit($editorFlowManager, \Session::get('credential')['attributes']['role'])
+            ->proceed($plant, 'edit');
     }
 
     /**

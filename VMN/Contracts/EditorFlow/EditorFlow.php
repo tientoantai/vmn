@@ -2,7 +2,9 @@
 
 namespace VMN\Contracts\EditorFlow;
 
+use VMN\Contracts\Article\Article;
+
 interface EditorFlow
 {
-    public function proceed();
+    public function proceed(Article $article, $type);
 }
