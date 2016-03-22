@@ -32,7 +32,8 @@ class EditingData
      */
     public function handle(Request $request, \Closure $next)
     {
-        $validator = $this->articleValidator->validatePlant($request->all());
+
+        $validator = $this->articleValidator->validatePlant($request);
         if ($validator->fails())
         {
             return response()->json([

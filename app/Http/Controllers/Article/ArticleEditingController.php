@@ -45,6 +45,7 @@ class ArticleEditingController extends Controller
     {
         $this->editingService->edit($editorFlowManager, \Session::get('credential')['attributes']['role'])
             ->proceed($plant, 'edit');
+        return response()->json(['msg'=>'Thông tin đã được gửi thành công']);
     }
 
     /**

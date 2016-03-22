@@ -9,11 +9,21 @@ class ArticleValidator extends Validator
 
     public function validatePlant($request)
     {
-        return Validator::make($request, [
-            'commonName' => 'required|unique:medicinal_plants',
-            'characteristic' => 'required',
-            'utility' => 'required',
-        ]);
+        if ($request->path() == 'contributePlants')
+        {
+            return Validator::make($request->all(), [
+                'commonName' => 'required|unique:medicinal_plants',
+                'characteristic' => 'required',
+                'utility' => 'required',
+            ]);
+        }
+        else
+        {
+            return Validator::make($request->all(), [
+                'characteristic' => 'required',
+                'utility' => 'required',
+            ]);
+        }
 
     }
 
