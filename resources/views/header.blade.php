@@ -11,7 +11,7 @@
                 <div class="col-sm-6">
                     <ul class="list-inline right-topbar pull-right">
                         @if(Session::get('credential'))
-                        <li><a href="{{route('profile')}}">Trang cá nhân</a> | <a href="{{route('logout')}}">Đăng xuất</a></li>
+                        <li><a href="{{route('profile')}}">{{\Session::get('credential')['attributes']['name']}}</a> | <a href="{{route('logout')}}">Đăng xuất</a></li>
                         @else
                         <li><a id="logIn" href="{{route('login')}}">Đăng Nhập</a> | <a href="{{route('register')}}">Đăng ký</a></li>
                         @endif
