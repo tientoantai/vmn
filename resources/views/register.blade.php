@@ -91,7 +91,7 @@
                             </section>
                             <section>
                                 <label class="input">
-                                    <input type="password" name="passwordConfirm" placeholder="Nhập lại mật khẩu" class="form-control">
+                                    <input type="password" name="password_confirmation" placeholder="Nhập lại mật khẩu" class="form-control">
                                 </label>
                             </section>
                         </div>
@@ -120,7 +120,10 @@
                 var registerInfo = $(this).serializeJson();
                 var register = $.post($(this).attr('action'), registerInfo);
                 register.then(function(response){
-
+                    alert (response.message);
+                    if (response.status == 'OK'){
+                        window.location.href = $('#logIn').attr('href');
+                    }
                 });
             });
 

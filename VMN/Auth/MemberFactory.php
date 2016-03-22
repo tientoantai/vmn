@@ -8,7 +8,7 @@ class MemberFactory
     public function factory($memberRaw)
     {
         $member = new Member();
-        $member->setAttribute('accountName', $memberRaw['username']);
+        $member->setAttribute('accountName', $memberRaw['name']);
         $member->setAttribute('firstName', $memberRaw['firstname']);
         $member->setAttribute('lastName', $memberRaw['lastname']);
         $member->setAttribute('DoB', $memberRaw['DoB']);

@@ -13,7 +13,7 @@
                         @if(Session::get('credential'))
                         <li><a href="{{route('profile')}}">Trang cá nhân</a> | <a href="{{route('logout')}}">Đăng xuất</a></li>
                         @else
-                        <li><a href="{{route('login')}}">Đăng Nhập</a> | <a href="{{route('register')}}">Đăng ký</a></li>
+                        <li><a id="logIn" href="{{route('login')}}">Đăng Nhập</a> | <a href="{{route('register')}}">Đăng ký</a></li>
                         @endif
                     </ul>
                 </div>
