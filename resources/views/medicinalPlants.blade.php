@@ -68,7 +68,7 @@
                     @else
 
                         <h3 class="text-center">Không có kết quả cho cây thuốc bạn muốn tìm</h3>
-                        <h4 class="text-center">Bạn có đóng góp cây thuốc này cho hệ thống</h4>
+                        <h4 class="text-center">Bạn có thể đóng góp cây thuốc này cho hệ thống</h4>
                     @endif
                 </div><!--/end filter resilts-->
 

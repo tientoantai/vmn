@@ -16,6 +16,7 @@ class MemberTableSeeder extends Seeder
         $member = new \VMN\Auth\Member();
         $member->accountName    = 'Rikky';
         $member->email          = 'sonvl@vnvalley.com';
+        $member->gender         = 'Nam';
         $member->firstName      = 'Son';
         $member->lastName       = 'Le';
         $member->DoB            = '25/12/1990';
@@ -27,6 +28,7 @@ class MemberTableSeeder extends Seeder
         $member1 = new \VMN\Auth\Member();
         $member1->accountName    = 'TienNM';
         $member1->email          = 'tiennmse02545@fpt.edu.vn';
+        $member1->gender         = 'Nam';
         $member1->firstName      = 'Tien';
         $member1->lastName       = 'Nguyen';
         $member1->DoB            = '31/12/1992';
@@ -37,6 +39,7 @@ class MemberTableSeeder extends Seeder
         $member2 = new \VMN\Auth\Member();
         $member2->accountName    = 'shinji';
         $member2->email          = 'waynerooney_hotboysanco@yahoo.com';
+        $member2->gender         = 'Nam';
         $member2->firstName      = 'Shinji';
         $member2->lastName       = 'Kagawa';
         $member2->DoB            = '11/10/1989';

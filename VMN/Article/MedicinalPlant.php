@@ -16,14 +16,14 @@ use VMN\Contracts\Article\Article;
  * @property string thumbnailUrl
  * @property string author
  * @property string imgUrl
+ * @property string id
  */
 class MedicinalPlant extends Model implements Article
 {
     public function id()
     {
-        // TODO: Implement id() method.
+        return $this->id;
     }
-
     /**
      * @return string
      */

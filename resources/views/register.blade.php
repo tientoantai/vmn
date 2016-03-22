@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="col-md-5">
-                    <form id="sky-form4" class="log-reg-block sky-form" method="post">
+                    <form id="registerForm" class="log-reg-block sky-form" action="/memberRegister" method="post">
                         <h2>Đăng ký tài khoản</h2>
 
                         <div class="login-input reg-input">
@@ -49,14 +49,14 @@
                                 <div class="col-sm-6">
                                     <section>
                                         <label class="input">
-                                            <input type="text" name="lastname" placeholder="Tên" class="form-control">
+                                            <input type="text" name="firstname" placeholder="Tên" class="form-control">
                                         </label>
                                     </section>
                                 </div>
                                 <div class="col-sm-6">
                                     <section>
                                         <label class="input">
-                                            <input type="text" name="firstname" placeholder="Họ" class="form-control">
+                                            <input type="text" name="lastname" placeholder="Họ" class="form-control">
                                         </label>
                                     </section>
                                 </div>
@@ -64,46 +64,24 @@
                             <label class="select margin-bottom-15">
                                 <select name="gender" class="form-control">
                                     <option value="0" selected disabled>Giới tính</option>
-                                    <option value="1">Nam</option>
-                                    <option value="2">Nữ</option>
-                                    <option value="3">Khác</option>
+                                    <option value="Nam">Nam</option>
+                                    <option value="Nữ">Nữ</option>
+                                    <option value="Khác">Khác</option>
                                 </select>
                             </label>
-                            <div class="row margin-bottom-10">
-                                <div class="col-xs-6">
-                                    <label class="select">
-                                        <select name="month" class="form-control">
-                                            <option disabled="" selected="" value="0">Tháng</option>
-                                            <option>January</option>
-                                            <option>February</option>
-                                            <option>March</option>
-                                            <option>April</option>
-                                            <option>May</option>
-                                            <option>June</option>
-                                            <option>July</option>
-                                            <option>August</option>
-                                            <option>September</option>
-                                            <option>October</option>
-                                            <option>November</option>
-                                            <option>December</option>
-                                        </select>
-                                    </label>
-                                </div>
-                                <div class="col-xs-3">
-                                    <input type="text" name="day" placeholder="Ngày" class="form-control">
-                                </div>
-                                <div class="col-xs-3">
-                                    <input type="text" name="year" placeholder="Năm" class="form-control">
-                                </div>
-                            </div>
                             <section>
                                 <label class="input">
-                                    <input type="text" name="username" placeholder="Tên đăng nhập" class="form-control">
+                                    <input type="text" name="DoB" placeholder="Ngày sinh" class="form-control">
                                 </label>
                             </section>
                             <section>
                                 <label class="input">
-                                    <input type="email" name="email" placeholder="Email" class="form-control">
+                                    <input type="text" name="name" placeholder="Tên đăng nhập" class="form-control">
+                                </label>
+                            </section>
+                            <section>
+                                <label class="input">
+                                    <input type="text" name="email" placeholder="Email" class="form-control">
                                 </label>
                             </section>
                             <section>
@@ -117,15 +95,35 @@
                                 </label>
                             </section>
                         </div>
-                        <a href="{{route('register-store')}}" class="margin-bottom-20">Đăng ký nhà thuốc</a>
                         <button class="btn-u btn-u-sea-shop btn-block margin-bottom-20 margin-top-20" type="submit">Tạo tài khoản</button>
                     </form>
 
-                    <div class="margin-bottom-20"></div>
+                    <p class="text-center"><a href="{{route('register-store')}}" class="margin-bottom-20">Đăng ký nhà thuốc</a></p>
                     <p class="text-center">Bạn đã có tài khoản? <a href="{{route('login')}}">Đăng Nhập</a></p>
                 </div>
             </div><!--/end row-->
         </div><!--/end container-->
     </div>
     <!--=== End Registre ===-->
+@endsection
+
+@section('pageJS')
+    <script src={{asset('assets/js/plugins/serializeJson.js')}}></script>
+    <script>
+        jQuery(document).ready(function() {
+            App.init();
+            App.initScrollBar();
+            OwlCarousel.initOwlCarousel();
+
+            $('#registerForm').on('submit', function(event){
+                event.preventDefault();
+                var registerInfo = $(this).serializeJson();
+                var register = $.post($(this).attr('action'), registerInfo);
+                register.then(function(response){
+
+                });
+            });
+
+        });
+    </script>
 @endsection

@@ -40,6 +40,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/medicinalPlants', [
         'uses' => 'Article\ArticleFindingController@findPlants',
     ])->name('medicinal-plant');
+
     Route::get('/advanceSearchPlant', [
         'uses'=>'Article\ArticleFindingController@showAdvanceSearchPlant'
     ])->name('advanced-search-plant');
@@ -49,9 +50,15 @@ Route::group(['middleware' => ['web']], function () {
     ])->name('plant-detail');
     Route::get('/addPlant', ['uses'=>'Article\PageShowingController@showAddPlant'])->name('add-plant');
 
+    Route::get('/editPlant', ['uses'=>'Article\PageShowingController@showEditPlant'])->name('edit-plant');
+
     Route::get('/remedies',[
         'uses' => 'Article\ArticleFindingController@findRemedies',
     ])->name('remedies');
+
+    Route::get('/detailRemedy',[
+        'uses' => 'Article\ArticleFindingController@detailRemedy',
+    ])->name('remedy-detail');
 
     Route::get('/login', ['uses'=>'Auth\LoginController@showLogin'])->name('login');
 
@@ -73,7 +80,7 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::post('/login', ['uses'=>'Auth\LoginController@doLogin'])->name('auth.login');
 
-    Route::post('/register', ['uses' => 'Auth\LoginController@register'])->name('auth.register');
+    Route::post('/memberRegister', ['uses' => 'Auth\RegisterController@memberRegister'])->name('auth.register');
 
     Route::get('/me', function(Authenticator $auth){
         return $auth->byToken(Request::input('token'));
@@ -82,8 +89,14 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/contributePlants',['uses'=>'Article\ArticleEditingController@addPlants'])
     ->name('contribute-plant');
 
+    Route::post('/updatePlants',['uses'=>'Article\ArticleEditingController@editPlants'])
+        ->name('update-plant');
+
     Route::post('/review', ['uses' => 'Article\ArticleReviewingController@reviewPlants'])
     ->name('postReview');
+
+    Route::post('/reportPlant', ['uses' => 'Article\ArticleReportingController@reportPlant'])
+        ->name('postReport');
 
     Route::get('/test-upload', function () {
     });

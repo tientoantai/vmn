@@ -8,6 +8,7 @@ use VMN\ArticleFindingService\ArticleFindingCondition;
 use VMN\ArticleFindingService\MedicinalPlantNameCondition;
 use VMN\ArticleFindingService\AdvanceSearchPlantsCondition;
 use VMN\ArticleFindingService\RemediesKeywordCondition;
+use VMN\ArticleFindingService\RemedyDetailCondition;
 
 class FindingCondition
 {
@@ -47,6 +48,12 @@ class FindingCondition
                 break;
             case 'remedies':
                 return with(new RemediesKeywordCondition())->setKeyword($request->get('keyword'));
+                break;
+            case 'detailRemedy':
+                if($request->has('id'))
+                {
+                    return with(new RemedyDetailCondition())->setId($request->get('id'));
+                }
                 break;
         endswitch;
     }

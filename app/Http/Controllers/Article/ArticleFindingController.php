@@ -10,7 +10,7 @@ use VMN\ArticleFindingService\MedicinalPlantNameCondition;
 use VMN\ArticleFindingService\MedicinalPlantsIdCondition;
 use VMN\ArticleFindingService\AdvanceSearchPlantsCondition;
 use VMN\ArticleFindingService\RemediesKeywordCondition;
-
+use VMN\ArticleFindingService\RemedyDetailCondition;
 /**
  * Class ArticleFindingController
  * @package App\Http\Controllers\Article
@@ -82,6 +82,17 @@ class ArticleFindingController extends Controller
         return view('remedies')
             ->with('condition', $condition)
             ->with('listRemedy', $this->finder->find($condition))
+            ;
+    }
+
+    public function detailRemedy(RemedyDetailCondition $condition)
+    {
+        $remedy = $this->finder->find($condition);
+        return view('remedyDetail')
+            ->with('remedy', $remedy['info'])
+            ->with('ingredient', $remedy['ingredient'])
+            ->with('comments', $remedy['comment'])
+            ->with('images', json_decode($remedy['info']->imgUrl))
             ;
     }
 

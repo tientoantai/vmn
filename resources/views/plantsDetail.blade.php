@@ -38,9 +38,9 @@
                             @if (\Session::get('credential'))
                             <ul class="list-inline shop-product-social">
                                 @if(\Session::get('credential')['attributes']['name'] == $plant['info']->author)
-                                <li><button href="#" class="btn-u btn-u-green">Chỉnh sửa <i class="fa fa-pencil"></i></button></li>
+                                <li><a href="{{route('edit-plant',['id' => $plant['info']->id])}}" class="btn-u btn-u-green">Chỉnh sửa <i class="fa fa-pencil"></i></a></li>
                                 @else
-                                <li><button href="#" class="btn-u btn-u-red" data-toggle="modal" data-target="#report-modal">
+                                <li><button class="btn-u btn-u-red" data-toggle="modal" data-target="#report-modal">
                                         Báo cáo</button></li>
                                 @endif
                             </ul>
@@ -100,7 +100,7 @@
 
         <div class="tab-v6">
             <ul class="nav nav-tabs" role="tablist">
-                <li class="active"><a href="#reviews" role="tab" data-toggle="tab">Đánh giá ({!! count($plant['comment']) !!})</a></li>
+                <li class="active"><a href="#reviews" role="tab" data-toggle="tab">Đánh giá (<span id="noOfcomment">{!! count($plant['comment']) !!}</span>)</a></li>
                 <li><a href="#related" role="tab" data-toggle="tab">Bài thuốc liên quan</a></li>
             </ul>
 
@@ -285,7 +285,7 @@
 
     <!-- Report Modal -->
     <div id="report-modal" class="modal fade" role="dialog">
-        <form class="modal-dialog">
+        <form class="modal-dialog" id="report" action="/reportPlant" data-report="{{$plant['info']->id}}">
 
             <!-- Modal content-->
             <div class="modal-content">
@@ -337,6 +337,19 @@
                     $('#message').val('');
                     $('.stars-ratings > input').removeAttr('checked');
                     $('#old-review').append(buildReviewHTML(response.reviewer, review.commentContent, review.ratingPoint));
+                    var noOfComment = parseInt($('#noOfcomment').text())+1;
+                    $('#noOfcomment').text(noOfComment);
+                });
+            });
+
+            $('#report').on('submit', function(event){
+                event.preventDefault();
+                var report = $(this).serializeJson();
+                report.reported = $(this).attr("data-report");
+                var sendReport = $.post($(this).attr('action'), report);
+                sendReport.then(function(response){
+                    alert(response.msg);
+                    $('#report-modal').modal('hide');
                 });
             });
 
@@ -347,7 +360,7 @@
                 "<div class='product-comment-dtl'>"+
                 "<h4><a>" + reviewer + "</a> <small>Vừa xong</small></h4>"+
                 "<div>" + content + "</div>"+
-                " <ul class='list-inline product-ratings pull-right list-inline'>"
+                "<ul class='list-inline product-ratings pull-right list-inline'>"
                 ;
                 for (var i = 1; i <= 5; i++)
                 {

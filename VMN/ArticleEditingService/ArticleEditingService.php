@@ -2,7 +2,9 @@
 
 namespace VMN\ArticleEditingService;
 
+use VMN\ArticleEditingService\Flow\ArticleEditingHistory;
 use VMN\ArticleEditingService\Flow\MemberFlow;
+use VMN\ArticleEditingService\Flow\ModFlow;
 use VMN\Contracts\Article\Article;
 use VMN\Contracts\Auth\Authenticable;
 use VMN\Contracts\EditorFlow\EditorFlow;
@@ -11,23 +13,23 @@ class ArticleEditingService
 {
 
     /**
-     * @param Article $article
-     * @param Authenticable $editor
+     * @param $editorFlowManager
+     * @param $type
      * @return EditorFlow
      */
-    public function edit(Article $article, Authenticable $editor)
+    public function edit($editorFlowManager, $type)
     {
-
+        return $editorFlowManager->get($type);
     }
 
     /**
-     * @param Article $article
-     * @param Authenticable $editor
+     * @param $editorFlowManager
+     * @param $type
      * @return EditorFlow
      */
-    public function add(Article $article, Authenticable $editor)
+    public function add($editorFlowManager, $type)
     {
-
+        return $editorFlowManager->get($type);
     }
 
     /**

@@ -54,14 +54,13 @@
                                         <dd>{{$info->DoB}}</dd>
                                         <hr>
                                         <dt><strong>Giới tính: </strong></dt>
-                                        <dd>Nam</dd>
+                                        <dd>{{$info->gender}}</dd>
                                         <hr>
                                         <dt><strong>Ngày tham gia: </strong></dt>
                                         <dd>{{$info->created_at}}</dd>
                                         <hr>
                                     </dl>
                                 </div>
-
                             </div>
                         </div>
                         <div id="posted" class="profile-edit tab-pane fade in ">
