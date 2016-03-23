@@ -20,8 +20,8 @@ class RemedyTableSeeder extends Seeder
         $remedy->usage          = 'Chia làm 3-4 lần uống/ngày';
         $remedy->utility        = 'An thai';
         $remedy->ratingPoint    = 3;
-        $remedy->thumbnailUrl   = '1.jpg';
-        $remedy->imgUrl         = json_encode(['1.jpg','2.jpg']);
+        $remedy->thumbnailUrl   = 'ImgSample/tiacmnto.png';
+        $remedy->imgUrl         = json_encode(['ImgSample/tiacmnto.png','ImgSample/ngai-cuu1.jpg','ImgSample/tiato2.jpg']);
         $remedy->author         = 'shinji';
         $remedy->save();
 

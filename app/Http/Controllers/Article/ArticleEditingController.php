@@ -38,14 +38,14 @@ class ArticleEditingController extends Controller
     {
         $this->editingService->add($editorFlowManager, \Session::get('credential')['attributes']['role'])
             ->proceed($plant, 'add');
-        return response()->json(['msg'=>'Thông tin đã được gửi thành công']);
+        return response()->json(['message'=>'Thông tin đã được gửi thành công']);
     }
 
     public function editPlants(MedicinalPlant $plant, EditorFlowManager $editorFlowManager)
     {
         $this->editingService->edit($editorFlowManager, \Session::get('credential')['attributes']['role'])
             ->proceed($plant, 'edit');
-        return response()->json(['msg'=>'Thông tin đã được gửi thành công']);
+        return response()->json(['message'=>'Thông tin đã được gửi thành công']);
     }
 
     /**
