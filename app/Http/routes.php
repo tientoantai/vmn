@@ -28,9 +28,7 @@ use VMN\UploadService\Uploader;
 
 
 Route::group(['domain' => 'admin.vmn.local'], function () {
-    Route::get('/', function () {
-        return 'admin page';
-    });
+    Route::get('/', ['uses' => 'AdminController@adminHome'])->name('adminHome');
 });
 
 Route::group(['middleware' => ['web']], function () {
@@ -60,11 +58,17 @@ Route::group(['middleware' => ['web']], function () {
         'uses' => 'Article\ArticleFindingController@detailRemedy',
     ])->name('remedy-detail');
 
+    Route::get('/advanceSearchRemedy', [
+        'uses'=>'Article\ArticleFindingController@showAdvanceSearchRemedy'
+    ])->name('advanced-search-remedy');
+
+    Route::get('/addRemedy', ['uses'=>'Article\PageShowingController@showAddRemedy'])->name('add-remedy');
+
     Route::get('/login', ['uses'=>'Auth\LoginController@showLogin'])->name('login');
 
     Route::get('/logout', ['uses'=>'Auth\LoginController@doLogout'])->name('logout');
 
-    Route::get('/profile', ['uses' => 'Auth\ProfileController@showMemberProfile'])->name('profile');
+    Route::get('/profile/{account}', ['uses' => 'Auth\ProfileController@showMemberProfile'])->name('profile');
 
     Route::get('/register', function () {
         return view('register');
@@ -92,14 +96,17 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/updatePlants',['uses'=>'Article\ArticleEditingController@editPlants'])
         ->name('update-plant');
 
+    Route::post('/contributeRemedy', ['uses'=>'Article\ArticleEditingController@addRemedy'])
+        ->name('contribute-remedy');
+
+
     Route::post('/review', ['uses' => 'Article\ArticleReviewingController@reviewPlants'])
     ->name('postReview');
 
     Route::post('/reportPlant', ['uses' => 'Article\ArticleReportingController@reportPlant'])
         ->name('postReport');
 
-    Route::get('/test-upload', function () {
-    });
+
 
     Route::post('/upload', ['middleware' => [UploadingFile::class], function (Uploader $uploader)
     {

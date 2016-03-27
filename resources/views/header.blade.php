@@ -11,7 +11,10 @@
                 <div class="col-sm-6">
                     <ul class="list-inline right-topbar pull-right">
                         @if(Session::get('credential'))
-                        <li><a href="{{route('profile')}}">{{\Session::get('credential')['attributes']['name']}}</a> | <a href="{{route('logout')}}">Đăng xuất</a></li>
+                        <li><a href="{{route('profile',
+                            ['account' => Session::get('credential')['attributes']['name']]
+                            )}}">
+                                {{\Session::get('credential')['attributes']['name']}}</a> | <a href="{{route('logout')}}">Đăng xuất</a></li>
                         @else
                         <li><a id="logIn" href="{{route('login')}}">Đăng Nhập</a> | <a href="{{route('register')}}">Đăng ký</a></li>
                         @endif
@@ -34,7 +37,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="{{route('home')}}">
-                    <img id="logo-header" src="assets/img/logo.png" alt="Logo">
+                    <img id="logo-header" src="{{asset('assets/img/logo.png')}}" alt="Logo">
                 </a>
             </div>
 
