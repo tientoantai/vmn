@@ -8,11 +8,15 @@ class ListPlantNameCondition implements ArticleFindingCondition
 
     public function getQuery()
     {
-        $listPlantName = \DB::table('medicinal_plants')->select('commonName')->get();
-        $listPlantName = array_map(function($object){
-            return (array) $object;
-        }, $listPlantName);
-        $listPlantName = array_column($listPlantName, 'commonName');
-        return $listPlantName;
+        $listPlant = \DB::table('medicinal_plants')->select('id','commonName')
+            ->orderBy('id', 'asc')->get();
+        foreach($listPlant as $k => $plant)
+        {
+            $listPlant[$k]->value = $plant->commonName .':' . $plant->id;
+            $listPlant[$k]->label = $plant->commonName;
+            unset($listPlant[$k]->id);
+            unset($listPlant[$k]->commonName);
+        }
+        return $listPlant;
     }
 }

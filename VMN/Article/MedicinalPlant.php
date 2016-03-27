@@ -196,7 +196,6 @@ class MedicinalPlant extends Model implements Article
             'characteristic',
             'location',
             'utility',
-            'ratingPoint',
             'author',
             'thumbnailUrl',
             'imgUrl',

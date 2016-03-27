@@ -2,6 +2,8 @@
 
 namespace VMN\ArticleEditingService\Flow;
 
+use VMN\Article\MedicinalPlant;
+use VMN\Article\Remedy;
 use VMN\Contracts\Article\Article;
 use VMN\Contracts\EditorFlow\EditorFlow;
 use VMN\Article\ArticleReader;
@@ -19,7 +21,14 @@ class MemberFlow implements EditorFlow
 
     public function proceed(Article $article, $type)
     {
-        $this->historyService->logMedicinalPlant($article, $type);
+        if ($article instanceof MedicinalPlant)
+        {
+            $this->historyService->logMedicinalPlant($article, $type);
+        }
+        elseif ($article instanceof Remedy)
+        {
+            $this->historyService->logRemedy($article, $type);
+        }
     }
 
 }

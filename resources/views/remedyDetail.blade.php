@@ -72,14 +72,23 @@
                             <td><b>Thành phần</b></td>
                             <td>
                                 @foreach($ingredient as $plant)
-                                    <p><a href="{{route('plant-detail',['id' => $plant->id])}}">
-                                            {{$plant->medicinalPlantName}}</a> : {{$plant->dosage}}</p>
+                                    @if(isset($plant->id))
+                                        [<a href="{{route('plant-detail',['id' => $plant->id])}}">
+                                            {{$plant->medicinalPlantName}}</a>]
+                                    @else
+                                        [<a href="{{route('medicinal-plant',['keyword' => $plant->medicinalPlantName])}}">
+                                            {{$plant->medicinalPlantName}}</a>]
+                                    @endif
                                 @endforeach
                             </td>
                         </tr>
                         <tr>
                             <td><b>Mô tả:</b></td>
                             <td>{{$remedy->description}}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Cách dùng:</b></td>
+                            <td>{{$remedy->usage}}</td>
                         </tr>
                         <tr>
                             <td><b>Lưu ý:</b></td>

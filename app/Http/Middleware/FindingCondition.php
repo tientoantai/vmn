@@ -9,6 +9,7 @@ use VMN\ArticleFindingService\MedicinalPlantNameCondition;
 use VMN\ArticleFindingService\AdvanceSearchPlantsCondition;
 use VMN\ArticleFindingService\RemediesKeywordCondition;
 use VMN\ArticleFindingService\RemedyDetailCondition;
+use VMN\ArticleFindingService\AdvanceSearchRemediesCondition;
 
 class FindingCondition
 {
@@ -43,8 +44,8 @@ class FindingCondition
                         ->setScienceName($request->get('scienceName'))
                         ->setCharacteristic($request->get('characteristic'))
                         ->setUtility($request->get('utility'))
-                        ->setRatingPoint($request->get('ratingPoint')
-                );
+                        ->setRatingPoint($request->get('ratingPoint'))
+                    ;
                 break;
             case 'remedies':
                 return with(new RemediesKeywordCondition())->setKeyword($request->get('keyword'));
@@ -54,6 +55,12 @@ class FindingCondition
                 {
                     return with(new RemedyDetailCondition())->setId($request->get('id'));
                 }
+                break;
+            case 'advanceSearchRemedy':
+                return with(new AdvanceSearchRemediesCondition())
+                    ->setUtility($request->get('utility'))
+                    ->setIngredient($request->get('ingredient'))
+                   ;
                 break;
         endswitch;
     }

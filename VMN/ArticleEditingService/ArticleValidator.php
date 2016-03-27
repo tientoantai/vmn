@@ -17,11 +17,21 @@ class ArticleValidator extends Validator
                 'utility' => 'required',
             ]);
         }
-        else
+        elseif($request->path() == 'updatePlants')
         {
             return Validator::make($request->all(), [
                 'characteristic' => 'required',
                 'utility' => 'required',
+            ]);
+        }
+        elseif($request->path() == 'contributeRemedy')
+        {
+            return Validator::make($request->all(), [
+                'title' => 'required|unique:remedies',
+                'description' => 'required',
+                'utility' => 'required',
+                'ingredient' => 'required',
+
             ]);
         }
 

@@ -32,6 +32,9 @@ class PageShowingController extends Controller
             ;
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function showAddPlant()
     {
         $listPlant = $this->finder->find(new ListPlantNameCondition());
@@ -49,5 +52,14 @@ class PageShowingController extends Controller
         return view('editPlant')
             ->with('plant', $plant['info'])
             ->with('image', json_decode($plant['info']->imgUrl));
+    }
+
+    public function showAddRemedy()
+    {
+        $listPlant = $this->finder->find(new ListPlantNameCondition());
+        return view('addRemedy')
+            ->with('listCurrentPlant', json_encode($listPlant))
+
+            ;
     }
 }

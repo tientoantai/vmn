@@ -28,8 +28,8 @@
                         </div>
                     </form>
                     <div class="margin-bottom-10">
-                        <a href="" type="button" class="btn btn-success "><i class="fa fa-plus"></i> Đóng góp bài thuốc</a>
-                        <a href="" type="button" class="btn btn-primary pull-right"><i class="fa fa-search-plus"></i> Hiển thị tìm kiếm nâng cao</a>
+                        <a href="{{route('add-remedy')}}" type="button" class="btn btn-success "><i class="fa fa-plus"></i> Đóng góp bài thuốc</a>
+                        <a href="{{route('advanced-search-remedy')}}" type="button" class="btn btn-primary pull-right"><i class="fa fa-search-plus"></i> Hiển thị tìm kiếm nâng cao</a>
                     </div>
                 </div>
                 <?php
@@ -44,7 +44,7 @@
                                     <div class="col-md-4">
                                         <div class="product-img product-img-brd">
                                             <!--Thay = link thumbnail cây thuốc-->
-                                            <a href="#"><img class="full-width img-responsive" src="assets/img/blog/16.jpg" alt=""></a>
+                                            <a href="#"><img class="full-width img-responsive" src="{{$remedy->thumbnailUrl}}" alt=""></a>
                                             <a class="add-to-cart" href="{{route('remedy-detail', ['id' => $remedy->id])}}">
                                                 <i class="fa fa-eye"></i>Xem chi tiết</a>
                                             {{--<div class="shop-rgba-dark-green rgba-banner">New</div>--}}

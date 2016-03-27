@@ -40,6 +40,17 @@ class ArticleFactory
 
     public function makeRemedy($remedyInfo)
     {
+        $remedy = new Remedy();
+        $remedy->setTitle($remedyInfo['title']);
+        $remedy->setDescription($remedyInfo['description']);
+        $remedy->setNote($remedyInfo['note']);
+        $remedy->setUsage($remedyInfo['usage']);
+        $remedy->setUtility($remedyInfo['utility']);
+        $remedy->setImgUrl($remedyInfo['images']);
+        $remedy->setThumbnailUrl($remedyInfo['thumbnail']);
+        $remedy->setAuthor(\Session::get('credential')['attributes']['name']);
+        $remedy->setIngredient($remedyInfo['ingredient']);
+        return $remedy;
 
     }
 }

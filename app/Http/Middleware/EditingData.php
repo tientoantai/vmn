@@ -56,14 +56,18 @@ class EditingData
      */
     public function makeArticleInstance(Request $request)
     {
-        $plantFactory = new ArticleFactory();
+        $articleFactory = new ArticleFactory();
         if ($request->path() == 'contributePlants')
         {
-            return $plantFactory->makeNewPlant($request->all());
+            return $articleFactory->makeNewPlant($request->all());
         }
         elseif($request->path() == 'updatePlants')
         {
-            return $plantFactory->makePlantChange($request->all());
+            return $articleFactory->makePlantChange($request->all());
+        }
+        elseif($request->path() == 'contributeRemedy')
+        {
+            return $articleFactory->makeRemedy($request->all());
         }
     }
 
