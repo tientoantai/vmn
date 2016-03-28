@@ -10,18 +10,18 @@
             <!--=== Registre ===-->
     <div class="log-reg-v3 content-md margin-bottom-30">
         <div class="container">
-            <form id="sky-form4" class="log-reg-block sky-form row">
+            <form id="storeRegister" class="log-reg-block sky-form row" action="/storeRegister" method="post">
                 <h2>Đăng ký nhà thuốc</h2>
 
                 <div class="login-input reg-input col-md-6">
                     <section>
                         <label class="input">
-                            <input type="text" name="username" placeholder="Tên đăng nhập" class="form-control">
+                            <input type="text" name="name" placeholder="Tên đăng nhập" class="form-control">
                         </label>
                     </section>
                     <section>
                         <label class="input">
-                            <input type="email" name="email" placeholder="Email" class="form-control">
+                            <input type="text" name="email" placeholder="Email" class="form-control">
                         </label>
                     </section>
                     <section>
@@ -31,7 +31,7 @@
                     </section>
                     <section>
                         <label class="input">
-                            <input type="password" name="passwordConfirm" placeholder="Nhập lại mật khẩu" class="form-control">
+                            <input type="password" name="password_confirmation" placeholder="Nhập lại mật khẩu" class="form-control">
                         </label>
                     </section>
                 </div>
@@ -48,12 +48,12 @@
                     </section>
                     <section>
                         <label class="input">
-                            <input type="password" name="phonenumber" placeholder="Số điện thoại" id="password" class="form-control">
+                            <input type="text" name="phonenumber" placeholder="Số điện thoại" id="password" class="form-control">
                         </label>
                     </section>
                     <section>
                         <label class="input">
-                            <input type="password" name="representative" placeholder="Người đại diện" class="form-control">
+                            <input type="text" name="representative" placeholder="Người đại diện" class="form-control">
                         </label>
                     </section>
                 </div>
@@ -67,4 +67,25 @@
         </div><!--/end container-->
     </div>
     <!--=== End Registre ===-->
+
+    <script>
+        jQuery(document).ready(function() {
+            App.init();
+            App.initScrollBar();
+            OwlCarousel.initOwlCarousel();
+
+            $('#storeRegister').on('submit', function(event){
+                event.preventDefault();
+                var registerInfo = $(this).serializeJson();
+                var register = $.post($(this).attr('action'), registerInfo);
+                register.then(function(response){
+                    alert (response.message);
+                    if (response.status == 'OK'){
+                        window.location.href = $('#logIn').attr('href');
+                    }
+                });
+            });
+
+        });
+    </script>
 @endsection

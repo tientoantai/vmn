@@ -74,7 +74,7 @@
                                         @foreach($plantsPosted as $postedPlant)
                                         <div class="row">
                                             <div class="easy-block-v1 col-md-2">
-                                                <img class="img-responsive" src="{{$postedPlant->thumbnailUrl}}" alt="">
+                                                <img class="img-responsive" src="{{asset($postedPlant->thumbnailUrl)}}" alt="">
                                             </div>
                                             <div class="col-md-10">
                                                 <div class="projects">
@@ -101,11 +101,11 @@
                                         @foreach($remediesPosted as $postedRemedy)
                                         <div class="row">
                                             <div class="easy-block-v1 col-md-3">
-                                                <img class="img-responsive" src="assets/img/main/img12.jpg" alt="">
+                                                <img class="img-responsive" src="{{asset($postedRemedy->thumbnailUrl)}}" alt="">
                                             </div>
                                             <div class="col-md-9">
                                                 <div class="projects">
-                                                    <h2><a class="color-dark" href="{{route('plant-detail',['id' => $postedRemedy->id])}}">
+                                                    <h2><a class="color-dark" href="{{route('remedy-detail',['id' => $postedRemedy->id])}}">
                                                             {{$postedRemedy->title}}</a></h2>
                                                 </div>
                                                 <div class="project-share">

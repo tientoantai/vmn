@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use VMN\Auth\MemberFinder;
-use App\Http\Middleware\ProfileMiddleWare;
 
 
 class ProfileController extends Controller
@@ -18,17 +17,25 @@ class ProfileController extends Controller
     public function __construct(MemberFinder $finder)
     {
         $this->memberFinder = $finder;
-//        $this->credentialName = $account;
-//        $this->middleware(ProfileMiddleWare::class);
     }
 
 
     public function showMemberProfile($account)
     {
-        $member = $this->memberFinder->getMemberProfile($account);
-        $plantsPosted = $this->memberFinder->getMemberMedicinalPlantsArticle($this->credentialName);
-        $remediesPosted = $this->memberFinder->getMemberRemediesArticle($this->credentialName);
-        return view('profile')
+        $role = $this->memberFinder->getMemberRole($account);
+        if($role != 'store')
+        {
+            $member = $this->memberFinder->getMemberProfile($account);
+            $view = 'profile';
+        }
+        else
+        {
+            $member = $this->memberFinder->getStoreInfo($account);
+            $view = 'storeInfo';
+        }
+        $plantsPosted = $this->memberFinder->getMemberMedicinalPlantsArticle($account);
+        $remediesPosted = $this->memberFinder->getMemberRemediesArticle($account);
+        return view($view)
             ->with('info', $member)
             ->with('plantsPosted', $plantsPosted)
             ->with('remediesPosted', $remediesPosted)

@@ -5,7 +5,7 @@ namespace VMN\Auth;
 
 class MemberFactory
 {
-    public function factory($memberRaw)
+    public function factoryMember($memberRaw)
     {
         $member = new Member();
         $member->setAttribute('accountName', $memberRaw['name']);
@@ -15,5 +15,17 @@ class MemberFactory
         $member->setAttribute('email', $memberRaw['email']);
         $member->setAttribute('gender', $memberRaw['gender']);
         return $member;
+    }
+
+    public function factoryStore($storeRaw)
+    {
+        $store = new HerbalMedicineStore();
+        $store->setAttribute('accountName', $storeRaw['name']);
+        $store->setAttribute('storename', $storeRaw['storename']);
+        $store->setAttribute('address', $storeRaw['address']);
+        $store->setAttribute('phonenumber', $storeRaw['phonenumber']);
+        $store->setAttribute('email', $storeRaw['email']);
+        $store->setAttribute('representative', $storeRaw['representative']);
+        return $store;
     }
 }

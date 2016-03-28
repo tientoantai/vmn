@@ -84,7 +84,12 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::post('/login', ['uses'=>'Auth\LoginController@doLogin'])->name('auth.login');
 
-    Route::post('/memberRegister', ['uses' => 'Auth\RegisterController@memberRegister'])->name('auth.register');
+    Route::post('/memberRegister',
+        ['uses' => 'Auth\RegisterController@memberRegister'])
+        ->name('auth.register');
+
+    Route::post('/storeRegister', ['uses' => 'Auth\RegisterController@storeRegister'])
+        ->name('auth.storeRegister');
 
     Route::get('/me', function(Authenticator $auth){
         return $auth->byToken(Request::input('token'));

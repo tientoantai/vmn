@@ -86,7 +86,8 @@
                             </tr>
                             <tr>
                                 <td><b>Người đóng góp:</b></td>
-                                <td><a href="">{{$plant['info']->author}}</a></td>
+                                <td><a href="{{route('profile',['account' => $plant['info']->author])}}">
+                                        {{$plant['info']->author}}</a></td>
                             </tr>
                         </tbody></table>
                     </div>
