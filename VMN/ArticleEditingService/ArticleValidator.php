@@ -31,7 +31,16 @@ class ArticleValidator extends Validator
                 'description' => 'required',
                 'utility' => 'required',
                 'ingredient' => 'required',
+                'usage' => 'required',
 
+            ]);
+        }
+        elseif($request->path() == 'updateRemedy')
+        {
+            return Validator::make($request->all(), [
+                'description' => 'required',
+                'utility' => 'required',
+                'usage' => 'required',
             ]);
         }
 

@@ -32,7 +32,6 @@ class EditingData
      */
     public function handle(Request $request, \Closure $next)
     {
-
         $validator = $this->articleValidator->validatePlant($request);
         if ($validator->fails())
         {
@@ -68,6 +67,10 @@ class EditingData
         elseif($request->path() == 'contributeRemedy')
         {
             return $articleFactory->makeRemedy($request->all());
+        }
+        elseif($request->path() == 'updateRemedy')
+        {
+            return $articleFactory->makeRemedyChange($request->all());
         }
     }
 

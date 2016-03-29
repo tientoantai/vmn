@@ -16,6 +16,7 @@ use VMN\Contracts\Article\Article;
  * @property string author
  * @property string imgUrl
  * @property string id
+ * @property string ingredients
  */
 
 class Remedy extends Model implements Article
@@ -27,7 +28,12 @@ class Remedy extends Model implements Article
 
     public function setIngredient($ingredient)
     {
-        $this->attributes['ingredient'] = $ingredient;
+        $this->ingredients = $ingredient;
+    }
+
+    public function getIngredient()
+    {
+        return $this->ingredients;
     }
     /**
      * @return string

@@ -38,7 +38,7 @@
                         @if (\Session::get('credential'))
                             <ul class="list-inline shop-product-social">
                                 @if(\Session::get('credential')['attributes']['name'] == $remedy->author)
-                                    <li><a href="{{route('edit-plant',['id' => $remedy->id])}}" class="btn-u btn-u-green">Chỉnh sửa <i class="fa fa-pencil"></i></a></li>
+                                    <li><a href="{{route('edit-remedy',['id' => $remedy->id])}}" class="btn-u btn-u-green">Chỉnh sửa <i class="fa fa-pencil"></i></a></li>
                                 @else
                                     <li><button class="btn-u btn-u-red" data-toggle="modal" data-target="#report-modal">
                                             Báo cáo</button></li>

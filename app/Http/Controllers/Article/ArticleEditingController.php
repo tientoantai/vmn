@@ -62,12 +62,23 @@ class ArticleEditingController extends Controller
     public function addRemedy(Remedy $remedy, EditorFlowManager $editorFlowManager)
     {
 
-        $this->editingService->add($editorFlowManager, 'mod')
+        $this->editingService->add($editorFlowManager, \Session::get('credential')['attributes']['role'])
             ->proceed($remedy, 'add');
         return response()
             ->json(['message'=>'Thông tin đã được gửi thành công',
                     'flow' => $this->type,
                     'status' => 'OK'
+            ]);
+    }
+
+    public function editRemedy(Remedy $remedy, EditorFlowManager $editorFlowManager)
+    {
+        $this->editingService->edit($editorFlowManager, \Session::get('credential')['attributes']['role'])
+            ->proceed($remedy, 'edit');
+        return response()
+            ->json(['message'=>'Thông tin đã được gửi thành công',
+                'flow' => $this->type,
+                'status' => 'OK'
             ]);
     }
     

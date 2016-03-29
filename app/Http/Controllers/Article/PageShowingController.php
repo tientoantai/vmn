@@ -9,6 +9,7 @@ use VMN\ArticleFindingService\MedicinalPlantsIdCondition;
 use VMN\ArticleFindingService\NewMedicinalPlantsCondition;
 use VMN\ArticleFindingService\ProminentMedicalPlantsCondition;
 use VMN\ArticleFindingService\ListPlantNameCondition;
+use VMN\ArticleFindingService\RemedyDetailCondition;
 
 class PageShowingController extends Controller
 {
@@ -43,7 +44,7 @@ class PageShowingController extends Controller
     }
 
     /**
-     * @return mixed
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function showEditPlant()
     {
@@ -54,6 +55,9 @@ class PageShowingController extends Controller
             ->with('image', json_decode($plant['info']->imgUrl));
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function showAddRemedy()
     {
         $listPlant = $this->finder->find(new ListPlantNameCondition());
@@ -61,5 +65,15 @@ class PageShowingController extends Controller
             ->with('listCurrentPlant', json_encode($listPlant))
 
             ;
+    }
+
+    public function showEditRemedy()
+    {
+        $remedyCondition = new RemedyDetailCondition();
+        $remedy = $this->finder->find($remedyCondition->setId(\Request::input('id')));
+        return view('editRemedy')
+            ->with('remedy', $remedy['info'])
+            ->with('ingredient', $remedy['ingredient'])
+            ->with('image', json_decode($remedy['info']->imgUrl));
     }
 }

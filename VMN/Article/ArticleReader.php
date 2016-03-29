@@ -38,7 +38,6 @@ class ArticleReader
             if (method_exists($remedy, $method) && $property != 'ratingPoint')
                 $remedyInfo[$property] = call_user_func(array($remedy, $this->getFunction($property)));
         }
-        $remedyInfo['ingredient'] = $remedy->ingredient;
         return $remedyInfo;
     }
 

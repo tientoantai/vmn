@@ -36,10 +36,12 @@ class ModFlow implements EditorFlow
         elseif ($article instanceof Remedy)
         {
             $this->historyService->logRemedy($article, $type);
-            $ingredient = $article->ingredient;
-            unset($article->ingredient);
             $article->save();
-            $this->ingredientService->insertIngredient(explode(',' ,$ingredient), $article->id());
+            if ( $type == 'add')
+            {
+                $this->ingredientService->insertIngredient(explode(',' ,$article->ingredient), 3);
+            }
+
         }
 
     }

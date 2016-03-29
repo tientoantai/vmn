@@ -123,8 +123,8 @@
 
 
                 $createPlant.then(function (response) {
-//                    alert(response.msg);
-//                    window.location.replace('/medicinalPlants');
+                    alert(response.message);
+                    window.location.replace('/medicinalPlants');
                 });
             });
 

@@ -53,4 +53,17 @@ class ArticleFactory
         return $remedy;
 
     }
+
+    public function makeRemedyChange($remedyInfo)
+    {
+        $remedy = new Remedy();
+        $remedy = $remedy->find($remedyInfo['remedyId']);
+        //update info (without image)
+        $remedy->setDescription($remedyInfo['description']);
+        $remedy->setNote($remedyInfo['note']);
+        $remedy->setUsage($remedyInfo['usage']);
+        $remedy->setUtility($remedyInfo['utility']);
+        return $remedy;
+
+    }
 }

@@ -26,6 +26,10 @@ class DeleteIngredientsColumnRemediessTable extends Migration
      */
     public function down()
     {
-        //
+        if ( ! Schema::hasColumn('remedies', 'ingredients')) {
+            Schema::table('remedies', function ($table) {
+                $table->string('ingredients');
+            });
+        }
     }
 }

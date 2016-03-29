@@ -50,6 +50,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/plantDetail', [
         'uses' => 'Article\ArticleFindingController@medicinalPlantsDetail'
     ])->name('plant-detail');
+
     Route::get('/addPlant', ['uses'=>'Article\PageShowingController@showAddPlant'])->name('add-plant');
 
     Route::get('/editPlant', ['uses'=>'Article\PageShowingController@showEditPlant'])->name('edit-plant');
@@ -67,6 +68,8 @@ Route::group(['middleware' => ['web']], function () {
     ])->name('advanced-search-remedy');
 
     Route::get('/addRemedy', ['uses'=>'Article\PageShowingController@showAddRemedy'])->name('add-remedy');
+
+    Route::get('/editRemedy', ['uses'=>'Article\PageShowingController@showEditRemedy'])->name('edit-remedy');
 
     Route::get('/login', ['uses'=>'Auth\LoginController@showLogin'])->name('login');
 
@@ -103,6 +106,9 @@ Route::group(['middleware' => ['web']], function () {
     ->name('contribute-plant');
 
     Route::post('/updatePlants',['uses'=>'Article\ArticleEditingController@editPlants'])
+        ->name('update-plant');
+
+    Route::post('/updateRemedy',['uses'=>'Article\ArticleEditingController@editRemedy'])
         ->name('update-plant');
 
     Route::post('/contributeRemedy', ['uses'=>'Article\ArticleEditingController@addRemedy'])
