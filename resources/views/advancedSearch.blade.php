@@ -52,7 +52,7 @@
                     <div class="list-product-description product-description-brd margin-bottom-30">
                         <div class="row">
                             <div class="col-sm-4">
-                                <a href="shop-ui-inner.html"><img class="img-responsive sm-margin-bottom-20" src="assets/img/blog/16.jpg" alt=""></a>
+                                <a href="shop-ui-inner.html"><img class="img-responsive sm-margin-bottom-20" src="{!! $plant->thumbnailUrl ? $plant->thumbnailUrl : 'assets/img/team/01.jpg'!!}"  alt=""></a>
                             </div>
                             <div class="col-sm-8 product-description">
                                 <div class="overflow-h margin-bottom-5">

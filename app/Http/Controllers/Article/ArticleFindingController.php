@@ -30,7 +30,6 @@ class ArticleFindingController extends Controller
     public function __construct(ArticleFinder $finder)
     {
         $this->finder = $finder;
-        // todo Register finding condition middleware here
         $this->middleware(FindingCondition::class);
     }
 

@@ -43,6 +43,10 @@ Route::group(['middleware' => ['web']], function () {
         'uses'=>'Article\ArticleFindingController@showAdvanceSearchPlant'
     ])->name('advanced-search-plant');
 
+    Route::get('/searchStore', [
+        'uses'=>'Auth\HerbalMedicineStoreController@search'
+    ])->name('search-store');
+
     Route::get('/plantDetail', [
         'uses' => 'Article\ArticleFindingController@medicinalPlantsDetail'
     ])->name('plant-detail');

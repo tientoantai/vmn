@@ -13,7 +13,7 @@
     <div class="row">
         <!--Left Sidebar-->
         <div class="col-md-3 md-margin-bottom-40">
-            <img class="img-responsive profile-img margin-bottom-20 full-width" src="{{asset('assets/img/team/01.jpg')}}" alt="">
+            <img class="img-responsive profile-img margin-bottom-20 full-width" src="{{asset($info->avatar)}}" alt="">
 
             <ul class="list-group sidebar-nav-v1 margin-bottom-40 " id="sidebar-nav-1">
                 <li class="list-group-item active">

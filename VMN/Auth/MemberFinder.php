@@ -7,14 +7,14 @@ namespace VMN\Auth;
 class MemberFinder
 {
 
-    public function getMemberRole($account)
+    public function getMemberCredential($account)
     {
         $role =  \DB::table('credentials')
-            ->select('role')
+            ->select('role', 'avatar')
             ->where('name','=',$account)
             ->first();
         ;
-        return $role->role;
+        return $role;
     }
 
     public function getMemberProfile($account)

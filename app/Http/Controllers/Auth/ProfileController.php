@@ -22,8 +22,8 @@ class ProfileController extends Controller
 
     public function showMemberProfile($account)
     {
-        $role = $this->memberFinder->getMemberRole($account);
-        if($role != 'store')
+        $credential = $this->memberFinder->getMemberCredential($account);
+        if($credential->role != 'store')
         {
             $member = $this->memberFinder->getMemberProfile($account);
             $view = 'profile';
@@ -33,6 +33,7 @@ class ProfileController extends Controller
             $member = $this->memberFinder->getStoreInfo($account);
             $view = 'storeInfo';
         }
+        $member->avatar = $credential->avatar ? $credential->avatar : 'assets/img/team/01.jpg';
         $plantsPosted = $this->memberFinder->getMemberMedicinalPlantsArticle($account);
         $remediesPosted = $this->memberFinder->getMemberRemediesArticle($account);
         return view($view)

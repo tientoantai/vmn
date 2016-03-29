@@ -30,7 +30,7 @@ Tìm kiếm bài thuốc nâng cao
         <div class="col-md-8">
             <div class="row margin-bottom-5">
                 <div class="col-sm-8 result-category">
-                    <h2>DANH SÁCH CÂY THUỐC</h2>
+                    <h2>DANH SÁCH BÀI THUỐC</h2>
                     <small class="shop-bg-red badge-results">{{$remedies->total()}} Kết quả</small>
                 </div>
             </div>
@@ -39,7 +39,7 @@ Tìm kiếm bài thuốc nâng cao
                 <div class="list-product-description product-description-brd margin-bottom-30">
                     <div class="row">
                         <div class="col-sm-4">
-                            <a href="shop-ui-inner.html"><img class="img-responsive sm-margin-bottom-20" src="assets/img/blog/16.jpg" alt=""></a>
+                            <a href="shop-ui-inner.html"><img class="img-responsive sm-margin-bottom-20" src="{!! $remedy->thumbnailUrl ? $remedy->thumbnailUrl : 'assets/img/team/01.jpg'!!}"  alt=""></a>
                         </div>
                         <div class="col-sm-8 product-description">
                             <div class="overflow-h margin-bottom-5">

@@ -73,7 +73,7 @@
                     <!-- Store -->
                     @if(Session::get('credential'))
                     <li class="">
-                        <a href="javascript:void(0);" class="dropdown-toggle">
+                        <a href="{{route('search-store')}}" class="dropdown-toggle">
                             Nhà thuốc
                         </a>
                     </li>
