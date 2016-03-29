@@ -34,5 +34,21 @@ class UsersTableSeeder extends Seeder
         $user2->role        = 'member';
         $user2->avatar      = 'assets/img/default/avatar.jpg';
         $user2->save();
+
+        $user3 = new \VMN\Contracts\Auth\Credential();
+        $user3->name        = 'thoxuanduong';
+        $user3->email       = 'dongy@thoxuanduong.com';
+        $user3->password    = Hash::make('tiennm');
+        $user3->role        = 'store';
+        $user3->avatar      = 'assets/img/default/avatar.jpg';
+        $user3->save();
+
+        $user4 = new \VMN\Contracts\Auth\Credential();
+        $user4->name        = 'dongyhangcot';
+        $user4->email       = 'boymanu94@gmail.com';
+        $user4->password    = Hash::make('tiennm');
+        $user4->role        = 'store';
+        $user4->avatar      = 'assets/img/default/avatar.jpg';
+        $user4->save();
     }
 }
