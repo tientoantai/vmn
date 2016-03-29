@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\HMSFindingCondition;
-use VMN\Auth\HerbalMedicineStoreFinder;
-use VMN\Auth\HSMFindingCondition;
+use VMN\MemberFindingService\HerbalMedicineStoreFinder;
+use VMN\MemberFindingService\HSMFindingCondition;
 
 class HerbalMedicineStoreController extends Controller
 {
