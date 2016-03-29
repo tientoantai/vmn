@@ -1,6 +1,6 @@
 <?php
 
-namespace VMN\Auth;
+namespace VMN\MemberFindingService;
 
 
 class HSMFindingCondition

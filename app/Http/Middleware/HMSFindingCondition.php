@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
-use VMN\Auth\HSMFindingCondition;
+use VMN\MemberFindingService\HSMFindingCondition;
 
 class HMSFindingCondition
 {
