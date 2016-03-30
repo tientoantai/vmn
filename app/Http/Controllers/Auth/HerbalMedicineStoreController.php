@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\HMSFindingCondition;
-use VMN\MemberFindingService\HerbalMedicineStoreFinder;
+use VMN\MemberFindingService\MemberFinder;
 use VMN\MemberFindingService\HSMFindingCondition;
 
 class HerbalMedicineStoreController extends Controller
@@ -13,7 +13,7 @@ class HerbalMedicineStoreController extends Controller
 
     protected $finder;
 
-    public function __construct(HerbalMedicineStoreFinder $finder)
+    public function __construct(MemberFinder $finder)
     {
         $this->finder = $finder;
         $this->middleware(HMSFindingCondition::class);

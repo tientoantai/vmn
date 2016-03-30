@@ -4,7 +4,7 @@ namespace VMN\Auth;
 
 
 
-class MemberFinder
+class ProfileFinder
 {
 
     public function getMemberCredential($account)

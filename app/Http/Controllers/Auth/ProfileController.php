@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
-use VMN\Auth\MemberFinder;
+use VMN\Auth\ProfileFinder;
 
 
 class ProfileController extends Controller
@@ -14,7 +14,7 @@ class ProfileController extends Controller
 
     protected $credentialName;
 
-    public function __construct(MemberFinder $finder)
+    public function __construct(ProfileFinder $finder)
     {
         $this->memberFinder = $finder;
     }

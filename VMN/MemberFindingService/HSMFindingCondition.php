@@ -3,7 +3,7 @@
 namespace VMN\MemberFindingService;
 
 
-class HSMFindingCondition
+class HSMFindingCondition implements MemberFindingCondition
 {
     protected $storeName;
     protected $address;
