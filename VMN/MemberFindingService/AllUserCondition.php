@@ -3,14 +3,14 @@
 namespace VMN\MemberFindingService;
 
 
-class WaitingStoreCondition implements MemberFindingCondition
+class AllUserCondition implements MemberFindingCondition
 {
 
     public function getQuery()
     {
         return \DB::table('credentials')
 //            ->join('herbal_medicine_stores', 'credentials.name' , '=', 'herbal_medicine_stores.accountName')
-            ->where('status', '=', 'waiting')
+            ->whereNotIn('status', ['waiting','denied'])
             ->get();
         ;
     }

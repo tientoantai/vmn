@@ -28,7 +28,22 @@ use VMN\UploadService\Uploader;
 
 
 Route::group(['domain' => 'admin.vmn.local'], function () {
-    Route::get('/', ['uses' => 'AdminController@adminHome'])->name('adminHome');
+
+    Route::get('/', ['uses' => 'Admin\AdminUsersDataController@adminHome'])->name('adminHome');
+
+    Route::get('/waitingStore', ['uses' => 'Admin\AdminUsersDataController@adminGetApprove'])->name('admin.waitingStore');
+
+    Route::get('/allUsers', ['uses' => 'Admin\AdminUsersDataController@adminAllUsers'])->name('admin.all-user');
+
+    Route::get('/storeInfo', ['uses' => 'Admin\AdminUsersDataController@adminStoreInfo'])->name('admin.storeInfo');
+
+    Route::put('/approveRegister', ['uses' => 'Admin\AdminProceedController@approveRegister'])->name('admin.proceedRegister');
+
+    Route::put('/changeStatus', ['uses' => 'Admin\AdminProceedController@changeStatus'])->name('admin.changeStatus');
+
+    Route::put('/changeRole', ['uses' => 'Admin\AdminProceedController@changeRole'])->name('admin.changeRole');
+
+    Route::get('/userDetail', ['uses' => 'Admin\AdminUsersDataController@adminUserDetail'])->name('admin.userDetail');
 });
 
 Route::group(['middleware' => ['web']], function () {

@@ -18,6 +18,7 @@ class UsersTableSeeder extends Seeder
         $user->email        = 'sonvl@vnvalley.com';
         $user->password     = Hash::make('sonvl');
         $user->role         = 'mod';
+        $user->status       = 'active';
         $user->avatar       = 'assets/img/default/avatar.jpg';
         $user->save();
         $user1 = new \VMN\Contracts\Auth\Credential();
@@ -25,6 +26,7 @@ class UsersTableSeeder extends Seeder
         $user1->email       = 'tiennmse02545@fpt.edu.vn';
         $user1->password    = Hash::make('tiennm');
         $user1->role        = 'mod';
+        $user1->status      = 'active';
         $user1->avatar      = 'assets/img/default/avatar.jpg';
         $user1->save();
         $user2 = new \VMN\Contracts\Auth\Credential();
@@ -32,6 +34,7 @@ class UsersTableSeeder extends Seeder
         $user2->email       = 'waynerooney_hotboysanco@yahoo.com';
         $user2->password    = Hash::make('tiennm');
         $user2->role        = 'member';
+        $user2->status        = 'active';
         $user2->avatar      = 'assets/img/default/avatar.jpg';
         $user2->save();
 
@@ -40,6 +43,7 @@ class UsersTableSeeder extends Seeder
         $user3->email       = 'dongy@thoxuanduong.com';
         $user3->password    = Hash::make('tiennm');
         $user3->role        = 'store';
+        $user3->status      = 'active';
         $user3->avatar      = 'assets/img/default/avatar.jpg';
         $user3->save();
 
@@ -49,6 +53,7 @@ class UsersTableSeeder extends Seeder
         $user4->password    = Hash::make('tiennm');
         $user4->role        = 'store';
         $user4->avatar      = 'assets/img/default/avatar.jpg';
+        $user4->status      = 'waiting';
         $user4->save();
     }
 }
