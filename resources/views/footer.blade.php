@@ -5,7 +5,7 @@
             <div class="row">
                 <!-- About -->
                 <div class="col-md-6 md-margin-bottom-40">
-                    <a href="{{route('home')}}"><img class="footer-logo" src="assets/img/graylogo3.png" alt=""></a>
+                    <a href="{{route('home')}}"><img class="footer-logo img-responsive" src="assets/img/graylogo3.png" alt=""></a>
                 </div>
                 <!-- End About -->
                 <div class="col-md-3 md-margin-bottom-40 margin-top-20">
