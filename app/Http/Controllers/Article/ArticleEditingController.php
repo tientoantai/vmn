@@ -5,11 +5,8 @@ namespace App\Http\Controllers\Article;
 use App\Http\Controllers\Controller;
 use VMN\Article\EditorFlowManager;
 use VMN\ArticleEditingService\ArticleEditingService;
-use VMN\ArticleEditingService\Flow\MemberFlow;
-use VMN\Contracts\Article\Article;
 use VMN\Article\MedicinalPlant;
 use VMN\Article\Remedy;
-use VMN\Contracts\Auth\Authenticable;
 use App\Http\Middleware\EditingData;
 
 /**
@@ -81,22 +78,5 @@ class ArticleEditingController extends Controller
                 'status' => 'OK'
             ]);
     }
-    
-    /**
-     * @param Authenticable $me
-     * @return \VMN\ArticleEditingService\Flow\MemberFlow[]
-     */
-    public function getApproveEdition(Authenticable $me)
-    {
-        return $this->editingService->editRequest($me);
-    }
 
-    /**
-     * @param MemberFlow $memberFlow
-     * @param Authenticable $me
-     */
-    public function approveEdition(MemberFlow $memberFlow, Authenticable $me)
-    {
-        $this->editingService->approve($memberFlow, $me);
-    }
 }
