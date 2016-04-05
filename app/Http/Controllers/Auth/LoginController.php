@@ -45,4 +45,28 @@ class LoginController extends Controller
         return response()->redirectToRoute('home');
     }
 
+    public function showManagementLogin()
+    {
+        return view('managementLogin');
+    }
+
+    public function doManagementLogin()
+    {
+        $credential = $this->auth->byPassword(\Request::input('username'), \Request::input('password'));
+        if ( ! $credential)
+        {
+            return '';
+        }
+        if ($credential->getRole() == 'admin')
+        {
+            $redirectName = 'adminHome';
+        }
+        if ($credential->getRole() == 'mod')
+        {
+            $redirectName = 'modHome';
+        }
+        request()->session()->put('managementCredential', $credential);
+        return response()->redirectToRoute($redirectName);
+    }
+
 }

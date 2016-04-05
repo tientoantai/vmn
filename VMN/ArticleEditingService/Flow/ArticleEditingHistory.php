@@ -19,6 +19,7 @@ class ArticleEditingHistory {
     {
         $plantInfo = $this->articleReader->readMedicinalPlant($article);
         $plantInfo['type'] = $type;
+        $plantInfo['updated_at'] = $plantInfo['created_at'] = date('Y-m-d H:i:s');
         \DB::table('medicinal_plants_history')->insert(
             $plantInfo
         );
@@ -28,6 +29,7 @@ class ArticleEditingHistory {
     {
         $remedyInfo = $this->articleReader->readRemedy($article);
         $remedyInfo['type'] = $type;
+        $remedyInfo['updated_at'] = $remedyInfo['created_at'] = date('Y-m-d H:i:s');
         \DB::table('remedies_history')->insert(
             $remedyInfo
         );

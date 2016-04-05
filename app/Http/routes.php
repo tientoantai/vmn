@@ -27,9 +27,17 @@ use VMN\UploadService\Uploader;
 */
 
 
-Route::group(['domain' => 'admin.vmn.local'], function () {
+Route::group(['domain' => 'admin.vmn.local', 'middleware' => ['web']], function () {
 
-    Route::get('/', ['uses' => 'Admin\AdminUsersDataController@adminHome'])->name('adminHome');
+    Route::get('/', function(){
+       return redirect('managementLogin');
+    });
+
+    Route::get('/managementLogin', ['uses' => 'Auth\LoginController@showManagementLogin'])->name('managementLogin');
+
+    Route::post('/managementLogin', ['uses' => 'Auth\LoginController@doManagementLogin'])->name('managementLogin');
+
+    Route::get('/adminDashboard', ['uses' => 'Admin\AdminUsersDataController@adminHome'])->name('adminHome');
 
     Route::get('/waitingStore', ['uses' => 'Admin\AdminUsersDataController@adminGetApprove'])->name('admin.waitingStore');
 
@@ -44,11 +52,26 @@ Route::group(['domain' => 'admin.vmn.local'], function () {
     Route::put('/changeRole', ['uses' => 'Admin\AdminProceedController@changeRole'])->name('admin.changeRole');
 
     Route::get('/userDetail', ['uses' => 'Admin\AdminUsersDataController@adminUserDetail'])->name('admin.userDetail');
+
+    Route::get('/modDashboard', ['uses' => 'Mod\ModArticleDataFindingController@modHome'])->name('modHome');
+
+    Route::get('/plantManagement', ['uses' => 'Mod\ModArticleDataFindingController@getWaitingPlants'])->name('plantManagement');
+
+    Route::get('/remedyManagement', ['uses' => 'Mod\ModArticleDataFindingController@getWaitingRemedies'])->name('remedyManagement');
+
 });
 
 Route::group(['domain' => 'admin.vmn.vnvalley.com'], function () {
 
-    Route::get('/', ['uses' => 'Admin\AdminUsersDataController@adminHome'])->name('adminHome');
+    Route::get('/', function(){
+        return redirect('managementLogin');
+    });
+
+    Route::get('/managementLogin', ['uses' => 'Auth\LoginController@showManagementLogin'])->name('managementLogin');
+
+    Route::post('/managementLogin', ['uses' => 'Auth\LoginController@doManagementLogin'])->name('managementLogin');
+
+    Route::get('/adminDashboard', ['uses' => 'Admin\AdminUsersDataController@adminHome'])->name('adminHome');
 
     Route::get('/waitingStore', ['uses' => 'Admin\AdminUsersDataController@adminGetApprove'])->name('admin.waitingStore');
 
@@ -63,6 +86,13 @@ Route::group(['domain' => 'admin.vmn.vnvalley.com'], function () {
     Route::put('/changeRole', ['uses' => 'Admin\AdminProceedController@changeRole'])->name('admin.changeRole');
 
     Route::get('/userDetail', ['uses' => 'Admin\AdminUsersDataController@adminUserDetail'])->name('admin.userDetail');
+
+    Route::get('/modDashboard', ['uses' => 'Mod\ModArticleDataFindingController@modHome'])->name('modHome');
+
+    Route::get('/plantManagement', ['uses' => 'Mod\ModArticleDataFindingController@getWaitingPlants'])->name('plantManagement');
+
+    Route::get('/remedyManagement', ['uses' => 'Mod\ModArticleDataFindingController@getWaitingRemedies'])->name('remedyManagement');
+
 });
 
 Route::group(['middleware' => ['web']], function () {

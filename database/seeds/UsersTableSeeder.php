@@ -13,6 +13,15 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('credentials')->truncate();
 
+        $admin = new \VMN\Contracts\Auth\Credential();
+        $admin->name         = 'iamadmin';
+        $admin->email        = 'tientoantai@vmn.com';
+        $admin->password     = Hash::make('tiennm');
+        $admin->role         = 'admin';
+        $admin->status       = 'active';
+        $admin->avatar       = 'assets/img/default/avatar.jpg';
+        $admin->save();
+
         $user = new \VMN\Contracts\Auth\Credential();
         $user->name         = 'Rikky';
         $user->email        = 'sonvl@vnvalley.com';
