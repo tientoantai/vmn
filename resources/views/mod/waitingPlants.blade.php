@@ -207,8 +207,8 @@
             $('.new-plant').on('click', function(){
                 buildDialog($(this));
                 $('.report-only').hide();
-                $('.btn-footer').html("<button id='approve-new' class='btn btn-success'>Duyệt</button>"+
-                "<button id='reject-new' class='btn btn-danger'>Từ chối</button>");
+                $('.btn-footer').html("<button id='approve-new' class='btn btn-success'>Duyệt</button>"
+                        +"<button id='reject-new' class='btn btn-danger'>Từ chối</button>");
                 $('.modal').modal('show');
             });
 
@@ -241,18 +241,27 @@
                 $.each(dataInfo, function(key, value) {
                     $('#plant-' + key).html(value);
                 });
-                var img = JSON.parse(dataInfo.imgUrl);
+                var img = '';
                 var imgHtml = '';
-                $.each(img, function (key, value){
-                    if (key == 0){
-                        imgHtml += "<div class='item active'>";
-                    }else {
-                        imgHtml += "<div class='item'>";
-                    }
-                    imgHtml += "<img class='image-slide' src='"+ value + "' alt='...'>"
+                if (dataInfo.imgUrl != null && dataInfo.imgUrl != ''){
+                    img = JSON.parse(dataInfo.imgUrl);
+                    $.each(img, function (key, value){
+                        if (key == 0){
+                            imgHtml += "<div class='item active'>";
+                        }else {
+                            imgHtml += "<div class='item'>";
+                        }
+                        imgHtml += "<img class='image-slide' src='"+ value + "' alt='...'>"
+                                +"<div class='carousel-caption'>"
+                                +"</div></div>";
+                    });
+                }else{
+                    imgHtml = "<div class='item active'>"
+                            + "<img class='image-slide' src='assets/img/default/noImage.jpg' alt='...'>"
                             +"<div class='carousel-caption'>"
                             +"</div></div>";
-                });
+                }
+
                 $('.carousel-inner').html(imgHtml);
 
             }
