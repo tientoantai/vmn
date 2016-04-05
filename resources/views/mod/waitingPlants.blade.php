@@ -245,9 +245,9 @@
                 var imgHtml = '';
                 $.each(img, function (key, value){
                     if (key == 0){
-                        imgHtml += "<div class='item active'>"
+                        imgHtml += "<div class='item active'>";
                     }else {
-                        imgHtml += "<div class='item'>"
+                        imgHtml += "<div class='item'>";
                     }
                     imgHtml += "<img class='image-slide' src='"+ value + "' alt='...'>"
                             +"<div class='carousel-caption'>"
