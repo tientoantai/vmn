@@ -27,41 +27,41 @@ use VMN\UploadService\Uploader;
 */
 
 
-Route::group(['domain' => 'admin.vmn.local', 'middleware' => ['web']], function () {
+//Route::group(['domain' => 'admin.vmn.local', 'middleware' => ['web']], function () {
+//
+//    Route::get('/', function(){
+//       return redirect('managementLogin');
+//    });
+//
+//    Route::get('/managementLogin', ['uses' => 'Auth\LoginController@showManagementLogin'])->name('managementLogin');
+//
+//    Route::post('/managementLogin', ['uses' => 'Auth\LoginController@doManagementLogin'])->name('managementLogin');
+//
+//    Route::get('/adminDashboard', ['uses' => 'Admin\AdminUsersDataController@adminHome'])->name('adminHome');
+//
+//    Route::get('/waitingStore', ['uses' => 'Admin\AdminUsersDataController@adminGetApprove'])->name('admin.waitingStore');
+//
+//    Route::get('/allUsers', ['uses' => 'Admin\AdminUsersDataController@adminAllUsers'])->name('admin.all-user');
+//
+//    Route::get('/storeInfo', ['uses' => 'Admin\AdminUsersDataController@adminStoreInfo'])->name('admin.storeInfo');
+//
+//    Route::put('/approveRegister', ['uses' => 'Admin\AdminProceedController@approveRegister'])->name('admin.proceedRegister');
+//
+//    Route::put('/changeStatus', ['uses' => 'Admin\AdminProceedController@changeStatus'])->name('admin.changeStatus');
+//
+//    Route::put('/changeRole', ['uses' => 'Admin\AdminProceedController@changeRole'])->name('admin.changeRole');
+//
+//    Route::get('/userDetail', ['uses' => 'Admin\AdminUsersDataController@adminUserDetail'])->name('admin.userDetail');
+//
+//    Route::get('/modDashboard', ['uses' => 'Mod\ModArticleDataFindingController@modHome'])->name('modHome');
+//
+//    Route::get('/plantManagement', ['uses' => 'Mod\ModArticleDataFindingController@getWaitingPlants'])->name('plantManagement');
+//
+//    Route::get('/remedyManagement', ['uses' => 'Mod\ModArticleDataFindingController@getWaitingRemedies'])->name('remedyManagement');
+//
+//});
 
-    Route::get('/', function(){
-       return redirect('managementLogin');
-    });
-
-    Route::get('/managementLogin', ['uses' => 'Auth\LoginController@showManagementLogin'])->name('managementLogin');
-
-    Route::post('/managementLogin', ['uses' => 'Auth\LoginController@doManagementLogin'])->name('managementLogin');
-
-    Route::get('/adminDashboard', ['uses' => 'Admin\AdminUsersDataController@adminHome'])->name('adminHome');
-
-    Route::get('/waitingStore', ['uses' => 'Admin\AdminUsersDataController@adminGetApprove'])->name('admin.waitingStore');
-
-    Route::get('/allUsers', ['uses' => 'Admin\AdminUsersDataController@adminAllUsers'])->name('admin.all-user');
-
-    Route::get('/storeInfo', ['uses' => 'Admin\AdminUsersDataController@adminStoreInfo'])->name('admin.storeInfo');
-
-    Route::put('/approveRegister', ['uses' => 'Admin\AdminProceedController@approveRegister'])->name('admin.proceedRegister');
-
-    Route::put('/changeStatus', ['uses' => 'Admin\AdminProceedController@changeStatus'])->name('admin.changeStatus');
-
-    Route::put('/changeRole', ['uses' => 'Admin\AdminProceedController@changeRole'])->name('admin.changeRole');
-
-    Route::get('/userDetail', ['uses' => 'Admin\AdminUsersDataController@adminUserDetail'])->name('admin.userDetail');
-
-    Route::get('/modDashboard', ['uses' => 'Mod\ModArticleDataFindingController@modHome'])->name('modHome');
-
-    Route::get('/plantManagement', ['uses' => 'Mod\ModArticleDataFindingController@getWaitingPlants'])->name('plantManagement');
-
-    Route::get('/remedyManagement', ['uses' => 'Mod\ModArticleDataFindingController@getWaitingRemedies'])->name('remedyManagement');
-
-});
-
-Route::group(['domain' => 'admin.vmn.vnvalley.com'], function () {
+Route::group(['domain' => 'admin.vmn.vnvalley.com', 'middleware' => ['web']],function () {
 
     Route::get('/', function(){
         return redirect('managementLogin');
