@@ -292,8 +292,8 @@
                 data: {id: element.attr('data-id')}
             });
             $approve.then(function(response){
-//                alert (response.message)
-//                location.reload();
+                alert (response.message)
+                location.reload();
             });
         }
     </script>
