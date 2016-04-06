@@ -13,4 +13,13 @@ class ArticleReportingService
             'reported'  =>$report->getReported()
         ]);
     }
+
+    public function reportRemedy(Report $report)
+    {
+        \DB::table('remedies_reports')->insert([
+            'reason'    =>$report->getReason(),
+            'reporter'  =>$report->getReporter(),
+            'reported'  =>$report->getReported()
+        ]);
+    }
 }

@@ -146,7 +146,7 @@
                     </div>
                     @if (\Session::get('credential'))
                         <h3 class="heading-md margin-bottom-30">Bình luận</h3>
-                        <form action="/review" method="post" data-review="{{$remedy->id}}" id="review" class="sky-form sky-changes-4">
+                        <form action="/reviewRemedy" method="post" data-review="{{$remedy->id}}" id="review" class="sky-form sky-changes-4">
                             <fieldset>
                                 <div class="margin-bottom-30">
                                     <label class="textarea">
@@ -300,7 +300,7 @@
 
     <!-- Report Modal -->
     <div id="report-modal" class="modal fade" role="dialog">
-        <form class="modal-dialog" id="report" action="/reportPlant" data-report="{{$remedy->id}}">
+        <form class="modal-dialog" id="report" action="/reportRemedy" data-report="{{$remedy->id}}">
 
             <!-- Modal content-->
             <div class="modal-content">

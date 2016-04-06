@@ -105,7 +105,6 @@
             MasterSliderShowcase2.initMasterSliderShowcase2();
 
             var imageDropzone = new Dropzone("#image-dropzone");
-            console.log(imageDropzone.prototype);
             imageDropzone.on("success", function(file, response) {
                 uploadedImages.push(response.file);
             });
@@ -113,11 +112,11 @@
                 event.preventDefault();
                 var plantRaw = $(this).serializeJson();
                 if(uploadedImages.length > 0){
-                    plantRaw.images = JSON.stringify(uploadedImages);
-                    plantRaw.thumbnail = uploadedImages[0];
+                    plantRaw.imgUrl = JSON.stringify(uploadedImages);
+                    plantRaw.thumbnailUrl = uploadedImages[0];
                 }
                 else{
-                    plantRaw.images = plantRaw.thumbnail = '';
+                    plantRaw.imgUrl = plantRaw.thumbnailUrl = '';
                 }
                 var $createPlant = $.post($(this).attr('action'), plantRaw);
 

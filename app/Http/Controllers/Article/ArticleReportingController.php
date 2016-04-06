@@ -26,4 +26,12 @@ class ArticleReportingController extends Controller
            'msg' => 'Báo cáo đã được gửi'
         ]);
     }
+
+    public function reportRemedy(Report $report)
+    {
+        $this->reportService->reportRemedy($report);
+        return response([
+            'msg' => 'Báo cáo đã được gửi'
+        ]);
+    }
 }

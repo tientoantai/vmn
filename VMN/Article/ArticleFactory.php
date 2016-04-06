@@ -12,6 +12,7 @@ class ArticleFactory
      */
     public function makeNewPlant($plantInfo)
     {
+
         $plant = new MedicinalPlant();
         $plant->setCommonName($plantInfo['commonName']);
         $plant->setOtherName($plantInfo['otherName']);
@@ -19,9 +20,11 @@ class ArticleFactory
         $plant->setCharacteristic($plantInfo['characteristic']);
         $plant->setLocation($plantInfo['location']);
         $plant->setUtility($plantInfo['utility']);
-        $plant->setImgUrl($plantInfo['images']);
-        $plant->setThumbnailUrl($plantInfo['thumbnail']);
-        $plant->setAuthor(\Session::get('credential')['attributes']['name']);
+        $plant->setImgUrl($plantInfo['imgUrl']);
+        $plant->setThumbnailUrl($plantInfo['thumbnailUrl']);
+        $author = isset($plantInfo['author']) ?
+            $plantInfo['author'] : \Session::get('credential')['attributes']['name'];
+        $plant->setAuthor($author);
         return $plant;
     }
 

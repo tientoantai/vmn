@@ -21,7 +21,7 @@
 
                     <form id="homeSearch" class="col-md-12 col-lg-12" method="get" action="/remedies">
                         <div class="input-group col-md-6 pull-right margin-bottom-10">
-                            <input type="text" class="form-control" name="keyword"  value="" placeholder="Nhập tên từ khóa để tìm kiếm">
+                            <input type="text" class="form-control" name="keyword"  value="{{$condition->keyword()}}" placeholder="Nhập tên từ khóa để tìm kiếm">
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="submit"><i class="fa fa-search"></i></button>
                             </span>
