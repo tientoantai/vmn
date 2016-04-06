@@ -14,6 +14,7 @@ class Register
     {
 
         $validator = $this->makeValidator($request);
+
         if ($validator->fails()){
             return response()->json([
                 'status' => 'error',
@@ -21,7 +22,6 @@ class Register
                 'message' => $validator->errors()->all()
             ]);
         }
-        
         $credential = $this->makeCredentialInstance($request);
 
         app()->bind(get_class($credential), function () use ($credential) {
@@ -68,7 +68,7 @@ class Register
     {
         $rule = [
             'name' => 'required|unique:credentials',
-            'email' => 'required|max:255|unique:credentials',
+            'email' => 'email|required|max:255|unique:credentials',
             'password' => 'required|confirmed|min:6',
         ];
         if($request->path() == 'memberRegister')
