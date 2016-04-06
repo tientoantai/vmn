@@ -35,6 +35,8 @@ Route::group(['domain' => 'admin.vmn.vnvalley.com', 'middleware' => ['web']],fun
 
     Route::get('/managementLogin', ['uses' => 'Auth\LoginController@showManagementLogin'])->name('managementLogin');
 
+    Route::get('/managementLogout', ['uses' => 'Auth\LoginController@doManagementLogout'])->name('managementLogout');
+//
     Route::post('/managementLogin', ['uses' => 'Auth\LoginController@doManagementLogin'])->name('managementLogin');
 
     Route::get('/adminDashboard', ['uses' => 'Admin\AdminUsersDataController@adminHome'])->name('adminHome');

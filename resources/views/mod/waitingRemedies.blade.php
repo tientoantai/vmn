@@ -41,7 +41,7 @@
                         <tbody>
                         @foreach($new as $remedy)
                         <tr>
-                            <td>{{$remedy->title}}</td>
+                            <td>{{str_limit($remedy->title,50)}}</td>
                             <td>{{$remedy->author}}</td>
                             <td>{{$remedy->created_at}}</td>
                             <td><a class="btn btn-info new-remedy" data-toggle="modal" data-info="{{json_encode($remedy)}}">Chi tiết</a></td>
@@ -65,7 +65,7 @@
                         <tbody>
                         @foreach($edit as $remedy)
                         <tr>
-                            <td>{{$remedy->title}}</td>
+                            <td>{{str_limit($remedy->title,50)}}</td>
                             <td>{{$remedy->author}}</td>
                             <td>{{$remedy->created_at}}</td>
                             <td><a class="btn btn-info edit-remedy" data-toggle="modal" data-info="{{json_encode($remedy)}}">Chi tiết</a></td>
@@ -88,7 +88,7 @@
                         <tbody>
                         @foreach($reported as $remedy)
                         <tr>
-                            <td>{{$remedy->title}}</td>
+                            <td>{{str_limit($remedy->title,50)}}</td>
                             <td>{{$remedy->reporter}}</td>
                             <td>{{$remedy->created_at}}</td>
                             <td><a class="btn btn-info reported-remedy" data-info="{{json_encode($remedy)}}">Chi tiết</a></td>
@@ -204,63 +204,59 @@
 
             $('.new-remedy').on('click', function(){
                 buildDialog($(this));
-                $('.report-only').hide();
-                $('.btn-footer').html("<button id='approve-new' class='btn btn-success'>Duyệt</button>"
-                        +"<button id='reject-new' class='btn btn-danger'>Từ chối</button>");
-                $('.modal').modal('show');
             });
 
             $('.edit-remedy').on('click', function(){
                 buildDialog($(this));
-                $('.report-only').hide();
-                $('.btn-footer').html("<button id='approve-edit' class='btn btn-success'>Duyệt</button>"
-                        +"<button id='reject-edit' class='btn btn-danger'>Từ chối</button>");
-                $('.modal').modal('show');
             });
 
             $('.reported-remedy').on('click', function() {
                 buildDialog($(this));
+            });
+
+
+        });
+        function buildDialog (element){
+            var dataInfo = JSON.parse(element.attr('data-info'));
+            $.each(dataInfo, function(key, value) {
+                $('#remedy-' + key).html(value);
+            });
+            var img = '';
+            var imgHtml = '';
+            if (dataInfo.imgUrl != null && dataInfo.imgUrl != ''){
+                img = JSON.parse(dataInfo.imgUrl);
+                $.each(img, function (key, value){
+                    if (key == 0){
+                        imgHtml += "<div class='item active'>";
+                    }else {
+                        imgHtml += "<div class='item'>";
+                    }
+                    imgHtml += "<img class='image-slide img-responsive' src='"+ value + "' alt='...'>"
+                            +"</div>";
+                });
+            }else{
+                imgHtml = "<div class='item active'>"
+                        + "<img class='image-slide' src='assets/img/default/noImage.jpg' alt='...'>"
+                        +"</div>";
+            }
+
+            $('.carousel-inner').html(imgHtml);
+            if (element.hasClass('new-remedy')){
+                $('.report-only').hide();
+                $('.btn-footer').html("<button id='approve-new' class='btn btn-success'>Duyệt</button>"
+                        +"<button id='reject-new' class='btn btn-danger'>Từ chối</button>");
+            }
+            else if(element.hasClass('edit-remedy')){
+                $('.report-only').hide();
+                $('.btn-footer').html("<button id='approve-edit' class='btn btn-success'>Duyệt</button>"
+                        +"<button id='reject-edit' class='btn btn-danger'>Từ chối</button>");
+            }else if(element.hasClass('reported-remedy')){
                 $('.report-only').show();
                 $('.btn-footer').html("<button id='proceed' class='btn btn-success'>Xóa bài</button>"
                         +"<button id='ignore' class='btn btn-danger'>Bỏ qua</button>");
                 $('.modal').modal('show');
-            });
-
-            $('#approve-new').on('click', function(){
-
-            });
-
-            $('#approve-edit').on('click', function(){
-
-            });
-
-            function buildDialog (element){
-                var dataInfo = JSON.parse(element.attr('data-info'));
-                $.each(dataInfo, function(key, value) {
-                    $('#remedy-' + key).html(value);
-                });
-                var img = '';
-                var imgHtml = '';
-                if (dataInfo.imgUrl != null && dataInfo.imgUrl != ''){
-                    img = JSON.parse(dataInfo.imgUrl);
-                    $.each(img, function (key, value){
-                        if (key == 0){
-                            imgHtml += "<div class='item active'>";
-                        }else {
-                            imgHtml += "<div class='item'>";
-                        }
-                        imgHtml += "<img class='image-slide img-responsive' src='"+ value + "' alt='...'>"
-                                +"</div>";
-                    });
-                }else{
-                    imgHtml = "<div class='item active'>"
-                            + "<img class='image-slide' src='assets/img/default/noImage.jpg' alt='...'>"
-                            +"</div>";
-                }
-
-                $('.carousel-inner').html(imgHtml);
-
             }
-        });
+            $('.modal').modal('show');
+        }
     </script>
 @endsection

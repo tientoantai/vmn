@@ -28,13 +28,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">Quản trị kỹ thuật</a>
+            <a class="navbar-brand" href="{{route('adminHome')}}">Quản trị kỹ thuật</a>
         </div>
         <!-- /.navbar-header -->
 
         <ul class="nav navbar-top-links navbar-right">
             <li>
-                <a href=""><i class="fa fa-sign-out fa-fw"></i> Đăng xuất</a>
+                <a href="{{route('managementLogout')}}"><i class="fa fa-sign-out fa-fw"></i> Đăng xuất</a>
             </li>
         </ul>
         <!-- /.navbar-top-links -->

@@ -28,7 +28,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">Quản trị kỹ thuật</a>
+            <a class="navbar-brand" href="{{route('modHome')}}">Quản trị nội dung</a>
         </div>
         <!-- /.navbar-header -->
 
