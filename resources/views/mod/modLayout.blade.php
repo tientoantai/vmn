@@ -34,7 +34,7 @@
 
         <ul class="nav navbar-top-links navbar-right">
             <li>
-                <a href=""><i class="fa fa-sign-out fa-fw"></i> Đăng xuất</a>
+                <a href="{{route('managementLogout')}}"><i class="fa fa-sign-out fa-fw"></i> Đăng xuất</a>
             </li>
         </ul>
         <!-- /.navbar-top-links -->
