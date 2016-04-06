@@ -69,4 +69,10 @@ class LoginController extends Controller
         return response()->redirectToRoute($redirectName);
     }
 
+    public function doManagementLogout()
+    {
+        request()->session()->pull('managementCredential');
+        return response()->redirectToRoute('managementLogin');
+    }
+
 }
