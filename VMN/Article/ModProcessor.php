@@ -10,7 +10,10 @@ class ModProcessor
 
     public function approvePlant(MedicinalPlant $plant, $logId)
     {
-
+        \DB::table('medicinal_plants_history')
+            ->where('id', $logId)
+            ->update(['status' => 'approved']);
+        $plant->save();
     }
 
     public function approveNewRemedy(Remedy $remedy, $logId)

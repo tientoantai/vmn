@@ -206,65 +206,95 @@
 
             $('.new-plant').on('click', function(){
                 buildDialog($(this));
-                $('.report-only').hide();
-                $('.btn-footer').html("<button id='approve-new' class='btn btn-success'>Duyệt</button>"
-                        +"<button id='reject-new' class='btn btn-danger'>Từ chối</button>");
-                $('.modal').modal('show');
+
             });
 
             $('.editing-plant').on('click', function(){
                 buildDialog($(this));
-                $('.report-only').hide();
-                $('.btn-footer').html("<button id='approve-edit' class='btn btn-success'>Duyệt</button>"
-                        +"<button id='reject-edit' class='btn btn-danger'>Từ chối</button>");
-                $('.modal').modal('show');
+
             });
 
             $('.reported-plant').on('click', function() {
                 buildDialog($(this));
-                $('.report-only').show();
-                $('.btn-footer').html("<button id='proceed' class='btn btn-success'>Xóa bài</button>"
-                        +"<button id='ignore' class='btn btn-danger'>Bỏ qua</button>");
-                $('.modal').modal('show');
             });
 
-            $('#approve-new').on('click', function(){
+            $('#approve-new').click(function(){
 
             });
 
             $('#approve-edit').on('click', function(){
 
             });
-
-            function buildDialog (element){
-                var dataInfo = JSON.parse(element.attr('data-info'));
-                $.each(dataInfo, function(key, value) {
-                    $('#plant-' + key).html(value);
-                });
-                var img = '';
-                var imgHtml = '';
-                if (dataInfo.imgUrl != null && dataInfo.imgUrl != ''){
-                    img = JSON.parse(dataInfo.imgUrl);
-                    $.each(img, function (key, value){
-                        if (key == 0){
-                            imgHtml += "<div class='item active'>";
-                        }else {
-                            imgHtml += "<div class='item'>";
-                        }
-                        imgHtml += "<img class='image-slide' src='"+ value + "' alt='...'>"
-                                +"<div class='carousel-caption'>"
-                                +"</div></div>";
-                    });
-                }else{
-                    imgHtml = "<div class='item active'>"
-                            + "<img class='image-slide' src='assets/img/default/noImage.jpg' alt='...'>"
-                            +"<div class='carousel-caption'>"
-                            +"</div></div>";
-                }
-
-                $('.carousel-inner').html(imgHtml);
-
-            }
         });
+        function buildDialog (element){
+            var dataInfo = JSON.parse(element.attr('data-info'));
+            $.each(dataInfo, function(key, value) {
+                $('#plant-' + key).html(value);
+            });
+            var img = '';
+            var imgHtml = '';
+            if (dataInfo.imgUrl != null && dataInfo.imgUrl != ''){
+                img = JSON.parse(dataInfo.imgUrl);
+                $.each(img, function (key, value){
+                    if (key == 0){
+                        imgHtml += "<div class='item active'>";
+                    }else {
+                        imgHtml += "<div class='item'>";
+                    }
+                    imgHtml += "<img class='image-slide' src='"+ value + "' alt='...'>"
+                            +"</div>";
+                });
+            }else{
+                imgHtml = "<div class='item active'>"
+                        + "<img class='image-slide' src='assets/img/default/noImage.jpg' alt='...'>"
+                        +"</div>";
+            }
+
+            $('.carousel-inner').html(imgHtml);
+            if (element.hasClass('new-plant')){
+                $('.report-only').hide();
+                $('.btn-footer').html(
+                    "<button id='approve-new' data-id='"+dataInfo.id+"' onclick='approveNewPlant($(this))' class='btn btn-success'>Duyệt</button>"
+                    +"<button id='reject-new' data-id='"+dataInfo.id+"' class='btn btn-danger'>Từ chối</button>");
+            }
+            if (element.hasClass('editing-plant')){
+                $('.report-only').hide();
+                $('.btn-footer').html(
+                        "<button id='approve-edit' data-id='"+dataInfo.id+"' class='btn btn-success' onclick='approveEditPlant($(this))'>Duyệt</button>"
+                        +"<button id='reject-edit' data-id='"+dataInfo.id+"' class='btn btn-danger'>Từ chối</button>");
+                $('.modal').modal('show');
+            }
+            if (element.hasClass('reported-plant')){
+                $('.report-only').show();
+                $('.btn-footer').html("<button id='proceed' class='btn btn-success'>Xóa bài</button>"
+                        +"<button id='ignore' class='btn btn-danger'>Bỏ qua</button>");
+                $('.modal').modal('show');
+            }
+            $('.modal').modal('show');
+        }
+
+        function approveNewPlant (element){
+            var $approve = $.ajax({
+                method: "PUT",
+                url: "/approveNewPlant",
+                data: {id: element.attr('data-id')}
+            });
+            $approve.then(function(response){
+                    alert (response.message)
+                    location.reload();
+            });
+        }
+
+        function approveEditPlant(element){
+            var $approve = $.ajax({
+                method: "PUT",
+                url: "/approveEditPlant",
+                data: {id: element.attr('data-id')}
+            });
+            $approve.then(function(response){
+//                alert (response.message)
+//                location.reload();
+            });
+        }
     </script>
 @endsection

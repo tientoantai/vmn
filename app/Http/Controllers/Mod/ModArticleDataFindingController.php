@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Mod;
 use App\Http\Controllers\Controller;
 use VMN\ArticleFindingService\ArticleFinder;
 use VMN\ArticleFindingService\PlantManagementCondition;
+use VMN\ArticleFindingService\RemedyManagementCondition;
 
 
 class ModArticleDataFindingController extends Controller
@@ -38,9 +39,13 @@ class ModArticleDataFindingController extends Controller
             ;
     }
 
-    public function getWaitingRemedies($condition)
+    public function getWaitingRemedies(RemedyManagementCondition $condition)
     {
         $list = $this->modFinder->find($condition);
-        return view('mod/waitingRemedies');
+        return view('mod/waitingRemedies')
+            ->with('new', $list['new'])
+            ->with('edit', $list['edit'])
+            ->with('reported', $list['reported'])
+            ;
     }
 }
