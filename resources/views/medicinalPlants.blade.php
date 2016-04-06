@@ -31,14 +31,16 @@
 //                    $listPlantDisplay = array_chunk((array)$listPlant->items(),3)
                 ?>
                 <div class="filter-results">
+                    <div class="row illustration-v2 margin-bottom-30">
                     @if($listPlant)
                     {{--@foreach($listPlantDisplay as $plantRow)--}}
-                    {{--<div class="row illustration-v2 margin-bottom-30">--}}
                         @foreach($listPlant as $plant)
                         <div class="col-md-4 col-sm-6">
                             <div class="product-img product-img-brd">
                                 <!--Thay = link thumbnail cây thuốc-->
-                                <a href="{{route('plant-detail',['id' => $plant->id])}}"><img class="full-width img-responsive plant-image" src="{{$plant->thumbnailUrl}}" alt=""></a>
+                                <a href="{{route('plant-detail',['id' => $plant->id])}}">
+                                    <img class="full-width img-responsive plant-image" src="{{$plant->thumbnailUrl}}" alt="">
+                                </a>
                             </div>
                             <div class="product-description product-description-brd margin-bottom-30">
                                 <div class="overflow-h margin-bottom-5">
@@ -67,6 +69,8 @@
                         <h3 class="text-center">Không có kết quả cho cây thuốc bạn muốn tìm</h3>
                         <h4 class="text-center">Bạn có thể đóng góp cây thuốc này cho hệ thống</h4>
                     @endif
+                    </div> <!-- illustration-v2 -->
+
                 </div><!--/end filter resilts-->
 
                 {!! $listPlant->render()   !!}<!--/end pagination-->

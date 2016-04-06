@@ -34,44 +34,44 @@
                 </div>
                 <?php
                 if ($listRemedy)
-                    $listRemedyDisplay = array_chunk((array)$listRemedy->items(),3)
+//                    $listRemedyDisplay = array_chunk((array)$listRemedy->items(),3)
                 ?>
                 <div class="filter-results">
-                    @if($listRemedyDisplay)
-                        @foreach($listRemedyDisplay as $remedyRow)
-                            <div class="row illustration-v2 margin-bottom-30">
-                                @foreach($remedyRow as $remedy)
-                                    <div class="col-md-4">
-                                        <div class="product-img product-img-brd">
-                                            <!--Thay = link thumbnail cây thuốc-->
-                                            <a href="#"><img class="full-width img-responsive" src="{{$remedy->thumbnailUrl}}" alt=""></a>
-                                            <a class="add-to-cart" href="{{route('remedy-detail', ['id' => $remedy->id])}}">
-                                                <i class="fa fa-eye"></i>Xem chi tiết</a>
-                                            {{--<div class="shop-rgba-dark-green rgba-banner">New</div>--}}
-                                        </div>
-                                        <div class="product-description product-description-brd margin-bottom-30">
-                                            <div class="overflow-h margin-bottom-5">
-                                                <div class="pull-left">
-                                                    <h4 class="title-price"><a href=""></a>{{$remedy->title}}</h4>
-                                                </div>
-                                            </div>
-                                            <ul class="list-inline product-ratings">
-                                                <li><i class="rating-selected fa fa-star"></i></li>
-                                                <li><i class="rating-selected fa fa-star"></i></li>
-                                                <li><i class="rating-selected fa fa-star"></i></li>
-                                                <li><i class="rating fa fa-star"></i></li>
-                                                <li><i class="rating fa fa-star"></i></li>
-                                            </ul>
+                    <div class="row illustration-v2 margin-bottom-30">
+                    @if($listRemedy)
+                        {{--@foreach($listRemedyDisplay as $remedyRow)--}}
+                        @foreach($listRemedy as $remedy)
+                            <div class="col-md-4">
+                                <div class="product-img product-img-brd">
+                                    <!--Thay = link thumbnail cây thuốc-->
+                                    <a href="#"><img class="full-width img-responsive plant-image" src="{{$remedy->thumbnailUrl}}" alt=""></a>
+                                    <a class="add-to-cart" href="{{route('remedy-detail', ['id' => $remedy->id])}}">
+                                        <i class="fa fa-eye"></i>Xem chi tiết</a>
+                                    {{--<div class="shop-rgba-dark-green rgba-banner">New</div>--}}
+                                </div>
+                                <div class="product-description product-description-brd margin-bottom-30">
+                                    <div class="overflow-h margin-bottom-5">
+                                        <div class="pull-left">
+                                            <h4 class="title-price"><a href=""></a>{{$remedy->title}}</h4>
                                         </div>
                                     </div>
-                                @endforeach
+                                    <ul class="list-inline product-ratings">
+                                        <li><i class="rating-selected fa fa-star"></i></li>
+                                        <li><i class="rating-selected fa fa-star"></i></li>
+                                        <li><i class="rating-selected fa fa-star"></i></li>
+                                        <li><i class="rating fa fa-star"></i></li>
+                                        <li><i class="rating fa fa-star"></i></li>
+                                    </ul>
+                                </div>
                             </div>
                         @endforeach
+                        {{--@endforeach--}}
                     @else
 
                         <h3 class="text-center">Không có kết quả cho cây thuốc bạn muốn tìm</h3>
                         <h4 class="text-center">Bạn có đóng góp cây thuốc này cho hệ thống</h4>
                     @endif
+                    </div> <!-- illustration-v2  -->
                 </div><!--/end filter resilts-->
 
                 {!! $listRemedy->render()   !!}<!--/end pagination-->
