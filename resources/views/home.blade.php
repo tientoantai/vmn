@@ -249,7 +249,7 @@
             @foreach($prominentMedicalPlants as $prominentPlant)
             <li class="item">
                 <div class="product-img">
-                    <a href="#"><img class="full-width img-responsive" src="assets/img/blog/09.jpg" alt=""></a>
+                    <a href="#"><img class="full-width img-responsive home-image" src="{{$prominentPlant->thumbnailUrl}}" alt=""></a>
                     <a class="add-to-cart" href="{{route('plant-detail',['id' => $prominentPlant->id])}}"><i class="fa fa-eye"></i>CHI TIẾT</a>
                 </div>
                 <div class="product-description product-description-brd">
@@ -282,7 +282,7 @@
         @foreach($newMedicinalPlants as $plant)
         <div class="col-md-3 col-sm-6 md-margin-bottom-30">
             <div class="product-img">
-                <img class="full-width img-responsive" src="{{$plant->thumbnailUrl}}" alt="">
+                <img class="full-width img-responsive home-image" src="{{$plant->thumbnailUrl}}" alt="">
                 <a class="add-to-cart" href="{{route('plant-detail',['id' => $plant->id])}}"><i class="fa fa-eye"></i>CHI TIẾT</a>
             </div>
             <div class="product-description product-description-brd">

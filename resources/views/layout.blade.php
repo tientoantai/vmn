@@ -20,6 +20,7 @@
     <!-- CSS Global Compulsory -->
     <link rel="stylesheet" href="{{asset('assets/plugins/bootstrap/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/shop.style.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/image-grid.css')}}">
 
     <!-- CSS Header and Footer -->
     <link rel="stylesheet" href="{{asset('assets/css/headers/header-v5.css')}}">

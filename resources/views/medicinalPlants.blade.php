@@ -28,20 +28,17 @@
                 </div>
                 <?php
                 if ($listPlant)
-                    $listPlantDisplay = array_chunk((array)$listPlant->items(),3)
+//                    $listPlantDisplay = array_chunk((array)$listPlant->items(),3)
                 ?>
                 <div class="filter-results">
-                    @if($listPlantDisplay)
-                    @foreach($listPlantDisplay as $plantRow)
-                    <div class="row illustration-v2 margin-bottom-30">
-                        @foreach($plantRow as $plant)
-                        <div class="col-md-4">
+                    @if($listPlant)
+                    {{--@foreach($listPlantDisplay as $plantRow)--}}
+                    {{--<div class="row illustration-v2 margin-bottom-30">--}}
+                        @foreach($listPlant as $plant)
+                        <div class="col-md-4 col-sm-6">
                             <div class="product-img product-img-brd">
                                 <!--Thay = link thumbnail cây thuốc-->
-                                <a href="#"><img class="full-width img-responsive" src="{{$plant->thumbnailUrl}}" alt=""></a>
-                                <a class="add-to-cart" href="{{route('plant-detail',['id' => $plant->id])}}">
-                                    <i class="fa fa-eye"></i>Xem chi tiết</a>
-                                {{--<div class="shop-rgba-dark-green rgba-banner">New</div>--}}
+                                <a href="{{route('plant-detail',['id' => $plant->id])}}"><img class="full-width img-responsive plant-image" src="{{$plant->thumbnailUrl}}" alt=""></a>
                             </div>
                             <div class="product-description product-description-brd margin-bottom-30">
                                 <div class="overflow-h margin-bottom-5">
@@ -63,8 +60,8 @@
                             </div>
                         </div>
                         @endforeach
-                    </div>
-                    @endforeach
+                    {{--</div>--}}
+                    {{--@endforeach--}}
                     @else
 
                         <h3 class="text-center">Không có kết quả cho cây thuốc bạn muốn tìm</h3>
