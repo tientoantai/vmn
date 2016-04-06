@@ -27,8 +27,8 @@ use VMN\UploadService\Uploader;
 */
 
 
-//Route::group(['domain' => 'admin.vmn.local', 'middleware' => ['web']], function () {
-Route::group(['domain' => 'admin.vmn.vnvalley.com', 'middleware' => ['web']],function () {
+Route::group(['domain' => 'admin.vmn.local', 'middleware' => ['web']], function () {
+//Route::group(['domain' => 'admin.vmn.vnvalley.com', 'middleware' => ['web']],function () {
     Route::get('/', function(){
        return redirect('managementLogin');
     });
@@ -62,6 +62,10 @@ Route::group(['domain' => 'admin.vmn.vnvalley.com', 'middleware' => ['web']],fun
     Route::put('/approveNewPlant', ['uses' => 'Mod\ModProceedController@approveNewPlant'])->name('mod.approveNewPlant');
 
     Route::put('/approveEditPlant', ['uses' => 'Mod\ModProceedController@approveEditedPlant'])->name('mod.approveEditedPlant');
+
+    Route::put('/denyPlant', ['uses' => 'Mod\ModProceedController@denyPlant'])->name('mod.denyNewPlant');
+
+
 });
 
 Route::group(['middleware' => ['web']], function () {

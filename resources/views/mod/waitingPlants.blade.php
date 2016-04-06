@@ -255,13 +255,13 @@
                 $('.report-only').hide();
                 $('.btn-footer').html(
                     "<button id='approve-new' data-id='"+dataInfo.id+"' onclick='approveNewPlant($(this))' class='btn btn-success'>Duyệt</button>"
-                    +"<button id='reject-new' data-id='"+dataInfo.id+"' class='btn btn-danger'>Từ chối</button>");
+                    +"<button id='reject-new' data-id='"+dataInfo.id+"' class='btn btn-danger' onclick='denyPlant($(this))'>Từ chối</button>");
             }
             if (element.hasClass('editing-plant')){
                 $('.report-only').hide();
                 $('.btn-footer').html(
                         "<button id='approve-edit' data-id='"+dataInfo.id+"' class='btn btn-success' onclick='approveEditPlant($(this))'>Duyệt</button>"
-                        +"<button id='reject-edit' data-id='"+dataInfo.id+"' class='btn btn-danger'>Từ chối</button>");
+                        +"<button id='reject-edit' data-id='"+dataInfo.id+"' class='btn btn-danger' onclick='denyPlant($(this))'>Từ chối</button>");
                 $('.modal').modal('show');
             }
             if (element.hasClass('reported-plant')){
@@ -292,7 +292,19 @@
                 data: {id: element.attr('data-id')}
             });
             $approve.then(function(response){
-                alert (response.message)
+                alert (response.message);
+                location.reload();
+            });
+        }
+
+        function denyPlant(element){
+            var $approve = $.ajax({
+                method: "PUT",
+                url: "/denyPlant",
+                data: {id: element.attr('data-id')}
+            });
+            $approve.then(function(response){
+                alert (response.message);
                 location.reload();
             });
         }

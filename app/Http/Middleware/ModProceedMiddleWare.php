@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
 use VMN\Article\ArticleFactory;
-use VMN\Article\MedicinalPlant;
 
 class ModProceedMiddleWare
 {

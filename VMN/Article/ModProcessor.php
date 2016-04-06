@@ -16,6 +16,12 @@ class ModProcessor
         $plant->save();
     }
 
+    public function denyPlant($logId)
+    {
+        \DB::table('medicinal_plants_history')
+            ->where('id', $logId)
+            ->update(['status' => 'rejected']);
+    }
     public function approveNewRemedy(Remedy $remedy, $logId)
     {
 

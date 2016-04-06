@@ -35,6 +35,15 @@ class ModProceedController extends Controller
         ]);
     }
 
+    public function denyPlant()
+    {
+        $this->processor->denyPlant(\Request::input('id'));
+        return response()->json([
+            'message' => 'Yêu cầu đã bị từ chối'
+        ]);
+    }
+
+
     public function approveNewRemedy()
     {
         
