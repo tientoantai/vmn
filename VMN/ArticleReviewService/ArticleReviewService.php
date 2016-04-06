@@ -20,6 +20,16 @@ class ArticleReviewService
             ]);
     }
 
+    public function reviewRemedy(Review $review)
+    {
+        \DB::table('remedies_reviews')->insert([
+            'comment' =>$review->getComment(),
+            'reviewer' =>$review->getReviewer(),
+            'reviewed' =>$review->getReviewed(),
+            'ratingPoint' =>$review->getRating(),
+        ]);
+    }
+
     /**
      * @param Article $article
      * @return Review[]

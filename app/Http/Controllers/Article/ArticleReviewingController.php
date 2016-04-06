@@ -37,8 +37,10 @@ class ArticleReviewingController extends Controller
     public function reviewPlants(Review $review)
     {
         $this->reviewingService->reviewPlants($review);
-        return response()->json([
-            'reviewer' => \Session::get('credential')['attributes']['name'],
-        ]);
+    }
+
+    public function reviewRemedy(Review $review)
+    {
+        $this->reviewingService->reviewRemedy($review);
     }
 }

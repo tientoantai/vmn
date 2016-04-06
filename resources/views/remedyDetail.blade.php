@@ -349,11 +349,7 @@
                 review.Id = $(this).attr("data-review");
                 var sendReview = $.post($(this).attr('action'), review);
                 sendReview.then(function(response){
-                    $('#message').val('');
-                    $('.stars-ratings > input').removeAttr('checked');
-                    $('#old-review').append(buildReviewHTML(response.reviewer, review.commentContent, review.ratingPoint));
-                    var noOfComment = parseInt($('#noOfcomment').text())+1;
-                    $('#noOfcomment').text(noOfComment);
+                    window.location.reload();
                 });
             });
 
@@ -367,31 +363,6 @@
                     $('#report-modal').modal('hide');
                 });
             });
-
-            function buildReviewHTML(reviewer, content, rating){
-                var string = "<div class='product-comment margin-bottom-20'>"+
-                                "<div class='product-comment-in'>"+
-                                "<img class='product-comment-img rounded-x' src='assets/img/team/01.jpg' alt=''>"+
-                                "<div class='product-comment-dtl'>"+
-                                "<h4><a>" + reviewer + "</a> <small>Vừa xong</small></h4>"+
-                                "<div>" + content + "</div>"+
-                                "<ul class='list-inline product-ratings pull-right list-inline'>"
-                        ;
-                for (var i = 1; i <= 5; i++)
-                {
-                    if(i <= rating)
-                    {
-                        string += "<li><i class='rating-selected fa fa-star'></i></li>&nbsp;";
-                    }
-                    else
-                    {
-                        string += "<li><i class='rating fa fa-star'></i></li>&nbsp;";
-                    }
-                }
-                string += "</ul></li></ul></div></div></div>";
-                return string;
-            }
-
 
         });
     </script>

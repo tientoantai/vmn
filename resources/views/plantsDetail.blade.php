@@ -89,6 +89,21 @@
                                 <td><a href="{{route('profile',['account' => $plant['info']->author])}}">
                                         {{$plant['info']->author}}</a></td>
                             </tr>
+                            <tr>
+                                <td><b>Đánh giá</b></td>
+                                <td><div class="stars-ratings">
+                                        <input type="radio" name="stars-rating" id="stars-rating-5">
+                                        <label for="stars-rating-5"><i class="fa fa-star fa-lg"></i></label>
+                                        <input type="radio" name="stars-rating" id="stars-rating-4">
+                                        <label for="stars-rating-4"><i class="fa fa-star fa-lg"></i></label>
+                                        <input type="radio" name="stars-rating" id="stars-rating-3">
+                                        <label for="stars-rating-3"><i class="fa fa-star fa-lg"></i></label>
+                                        <input type="radio" name="stars-rating" id="stars-rating-2">
+                                        <label for="stars-rating-2"><i class="fa fa-star fa-lg"></i></label>
+                                        <input type="radio" name="stars-rating" id="stars-rating-1">
+                                        <label for="stars-rating-1"><i class="fa fa-star fa-lg"></i></label>
+                                    </div></td>
+                            </tr>
                         </tbody></table>
                     </div>
                 </div><!--/end row-->
@@ -116,15 +131,6 @@
                             <div class="product-comment-dtl">
                                 <h4><a>{{$comment->reviewer}}</a> <small>{{$comment->created_at}}</small></h4>
                                 <div>{!! nl2br($comment->comment) !!}</div>
-                                <ul class="list-inline product-ratings pull-right">
-                                    @for($j = 1; $j <= 5; $j++)
-                                        @if($j <= $comment->ratingPoint)
-                                        <li><i class="rating-selected fa fa-star"></i></li>
-                                        @else
-                                        <li><i class="rating fa fa-star"></i></li>
-                                        @endif
-                                    @endfor
-                                </ul>
                             </div>
                         </div>
                     </div>
@@ -142,19 +148,8 @@
                         </fieldset>
 
                         <footer class="review-submit">
-                            <label class="label-v2">Review</label>
-                            <div class="stars-ratings">
-                                <input type="radio" name="stars-rating" id="stars-rating-5">
-                                <label for="stars-rating-5"><i class="fa fa-star"></i></label>
-                                <input type="radio" name="stars-rating" id="stars-rating-4">
-                                <label for="stars-rating-4"><i class="fa fa-star"></i></label>
-                                <input type="radio" name="stars-rating" id="stars-rating-3">
-                                <label for="stars-rating-3"><i class="fa fa-star"></i></label>
-                                <input type="radio" name="stars-rating" id="stars-rating-2">
-                                <label for="stars-rating-2"><i class="fa fa-star"></i></label>
-                                <input type="radio" name="stars-rating" id="stars-rating-1">
-                                <label for="stars-rating-1"><i class="fa fa-star"></i></label>
-                            </div>
+                            {{--<label class="label-v2">Review</label>--}}
+
                             <button type="submit" class="btn-u btn-u-sea-shop btn-u-sm pull-right">Gửi</button>
                         </footer>
                     </form>
@@ -335,11 +330,7 @@
                 review.Id = $(this).attr("data-review");
                 var sendReview = $.post($(this).attr('action'), review);
                 sendReview.then(function(response){
-                    $('#message').val('');
-                    $('.stars-ratings > input').removeAttr('checked');
-                    $('#old-review').append(buildReviewHTML(response.reviewer, review.commentContent, review.ratingPoint));
-                    var noOfComment = parseInt($('#noOfcomment').text())+1;
-                    $('#noOfcomment').text(noOfComment);
+                    window.location.reload();
                 });
             });
 
@@ -353,32 +344,6 @@
                     $('#report-modal').modal('hide');
                 });
             });
-
-            function buildReviewHTML(reviewer, content, rating){
-                var string = "<div class='product-comment margin-bottom-20'>"+
-                "<div class='product-comment-in'>"+
-                "<img class='product-comment-img rounded-x' src='assets/img/team/01.jpg' alt=''>"+
-                "<div class='product-comment-dtl'>"+
-                "<h4><a>" + reviewer + "</a> <small>Vừa xong</small></h4>"+
-                "<div>" + content + "</div>"+
-                "<ul class='list-inline product-ratings pull-right list-inline'>"
-                ;
-                for (var i = 1; i <= 5; i++)
-                {
-                    if(i <= rating)
-                    {
-                        string += "<li><i class='rating-selected fa fa-star'></i></li>&nbsp;";
-                    }
-                    else
-                    {
-                        string += "<li><i class='rating fa fa-star'></i></li>&nbsp;";
-                    }
-                }
-                string += "</ul></li></ul></div></div></div>";
-                return string;
-            }
-
-
         });
     </script>
 @endsection
