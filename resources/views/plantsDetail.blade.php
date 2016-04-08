@@ -329,7 +329,7 @@
                 review.ratingPoint =  ratingPoint;
                 review.Id = $(this).attr("data-review");
                 var sendReview = $.post($(this).attr('action'), review);
-                sendReview.then(function(response){
+                sendReview.then(function(){
                     window.location.reload();
                 });
             });

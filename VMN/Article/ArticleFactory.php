@@ -49,9 +49,11 @@ class ArticleFactory
         $remedy->setNote($remedyInfo['note']);
         $remedy->setUsage($remedyInfo['usage']);
         $remedy->setUtility($remedyInfo['utility']);
-        $remedy->setImgUrl($remedyInfo['images']);
-        $remedy->setThumbnailUrl($remedyInfo['thumbnail']);
-        $remedy->setAuthor(\Session::get('credential')['attributes']['name']);
+        $remedy->setImgUrl($remedyInfo['imgUrl']);
+        $remedy->setThumbnailUrl($remedyInfo['thumbnailUrl']);
+        $author = isset($remedyInfo['author']) ?
+            $remedyInfo['author'] : \Session::get('credential')['attributes']['name'];
+        $remedy->setAuthor($author);
         $remedy->setIngredient($remedyInfo['ingredient']);
         return $remedy;
 

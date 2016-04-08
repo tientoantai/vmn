@@ -20,12 +20,12 @@
         <div class="row">
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#newArticle">Bài thuốc viết mới</a></li>
-                <li><a data-toggle="tab" href="#edit">Bài thuốc đã sửa</a></li>
-                <li><a data-toggle="tab" href="#report">Bài thuốc bị vi phạm</a></li>
+                <li id="edit-tab"><a data-toggle="tab" href="#edit">Yêu cầu chỉnh sửa bài thuốc</a></li>
+                <li id="report-tab"><a data-toggle="tab" href="#report">Danh sách báo cáo</a></li>
 
             </ul>
             <div class="tab-content ">
-                <div id="newArticle" class="tab-pane fade in active content-manage  ">
+                <div id="newArticle" class="tab-pane fade in active content-manage">
                     <br>
                     <h3>Danh sách bài thuốc mới</h3>
 
@@ -100,7 +100,6 @@
             </div>
         </div>
     </div>
-
     <!-- Modal -->
     <div class="modal fade">
         <div class="modal-dialog" style="width:100%">
@@ -122,7 +121,7 @@
                                 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                                     <!-- Wrapper for slides -->
                                     <div class="carousel-inner">
-
+                                        <div class="item active"><img class="image-slide img-responsive" src="ImgSample/tiacmnto.png" alt=""></div>
                                     </div>
 
                                     <!-- Controls -->
@@ -243,20 +242,86 @@
             $('.carousel-inner').html(imgHtml);
             if (element.hasClass('new-remedy')){
                 $('.report-only').hide();
-                $('.btn-footer').html("<button id='approve-new' class='btn btn-success'>Duyệt</button>"
-                        +"<button id='reject-new' class='btn btn-danger'>Từ chối</button>");
+                $('.btn-footer').html(
+                        "<button id='approve-new' data-id='"+dataInfo.id+"' class='btn btn-success' onclick='approveNewRemedy($(this))'>Duyệt</button>"
+                        +"<button id='reject-new' data-id='"+dataInfo.id+"' class='btn btn-danger' >Từ chối</button>");
             }
             else if(element.hasClass('edit-remedy')){
                 $('.report-only').hide();
-                $('.btn-footer').html("<button id='approve-edit' class='btn btn-success'>Duyệt</button>"
-                        +"<button id='reject-edit' class='btn btn-danger'>Từ chối</button>");
+                $('.btn-footer').html(
+                        "<button id='approve-edit' data-id='"+dataInfo.id+"' class='btn btn-success' onclick='approveEditRemedy($(this))'>Duyệt</button>"
+                        +"<button id='reject-edit' data-id='"+dataInfo.id+"' class='btn btn-danger' onclick='rejectRemedy($(this))'>Từ chối</button>");
             }else if(element.hasClass('reported-remedy')){
                 $('.report-only').show();
-                $('.btn-footer').html("<button id='proceed' class='btn btn-success'>Xóa bài</button>"
-                        +"<button id='ignore' class='btn btn-danger'>Bỏ qua</button>");
+                $('.btn-footer').html(
+                        "<button id='proceed' data-id='"+dataInfo.id+"' data-reported='"+dataInfo.reported+"' " +
+                        "class='btn btn-success' onclick='remindAuthor($(this))'>Nhắc nhở</button>"
+                        +"<button id='ignore' data-id='"+dataInfo.id+"'  class='btn btn-danger'>Bỏ qua</button>");
                 $('.modal').modal('show');
             }
             $('.modal').modal('show');
         }
+
+        function approveNewRemedy (element){
+            var $approve = $.ajax({
+                method: "PUT",
+                url: "/approveNewRemedy",
+                data: {id: element.attr('data-id')}
+            });
+            $approve.then(function(response){
+                alert (response.message)
+                location.reload();
+            });
+        }
+
+        function approveEditRemedy (element){
+            var $approve = $.ajax({
+                method: "PUT",
+                url: "/approveEditRemedy",
+                data: {id: element.attr('data-id')}
+            });
+            $approve.then(function(response){
+                alert (response.message)
+                location.reload();
+            });
+        }
+
+        function rejectRemedy (element){
+            var $approve = $.ajax({
+                method: "PUT",
+                url: "/rejectRemedy",
+                data: {id: element.attr('data-id')}
+            });
+            $approve.then(function(response){
+                alert (response.message)
+                location.reload();
+            });
+        }
+
+        function remindAuthor (element){
+            var data = {
+                to          : $('#remedy-author').text(),
+                reported    : element.attr('data-reported'),
+                articleName : $('#remedy-title').text(),
+                reportId    : element.attr('data-id'),
+                reason      : $('#remedy-reason').text()
+            };
+            var $remind = $.post('/remindRemedyAuthor', data);
+            $remind.then(function(response){
+                alert (response.message);
+                location.reload();
+            });
+        }
+        function ignoreReport(element){
+            var data = {
+                reportId    : element.attr('data-id'),
+            };
+            var $remind = $.post('/ignoreReport', data);
+            $remind.then(function(response){
+                alert (response.message);
+                location.reload();
+            });
+        }
+
     </script>
 @endsection

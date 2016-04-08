@@ -36,10 +36,12 @@ class ProfileController extends Controller
         $member->avatar = $credential->avatar ? $credential->avatar : 'assets/img/team/01.jpg';
         $plantsPosted = $this->memberFinder->getMemberMedicinalPlantsArticle($account);
         $remediesPosted = $this->memberFinder->getMemberRemediesArticle($account);
+        $message = $this->memberFinder->getMemberMessage($account);
         return view($view)
             ->with('info', $member)
             ->with('plantsPosted', $plantsPosted)
             ->with('remediesPosted', $remediesPosted)
+            ->with('message', $message)
             ->with('isMe', $account == Session::get('credential')['attributes']['name'])
             ;
     }

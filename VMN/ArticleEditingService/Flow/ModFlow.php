@@ -39,7 +39,7 @@ class ModFlow implements EditorFlow
             $article->save();
             if ( $type == 'add')
             {
-                $this->ingredientService->insertIngredient(explode(',' ,$article->ingredient), 3);
+                $this->ingredientService->insertIngredient(explode(',' ,$article->getIngredient()), $article->id());
             }
 
         }

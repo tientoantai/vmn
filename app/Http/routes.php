@@ -27,8 +27,8 @@ use VMN\UploadService\Uploader;
 */
 
 
-//Route::group(['domain' => 'admin.vmn.local', 'middleware' => ['web']], function () {
-Route::group(['domain' => 'admin.vmn.vnvalley.com', 'middleware' => ['web']],function () {
+Route::group(['domain' => 'admin.vmn.local', 'middleware' => ['web']], function () {
+//Route::group(['domain' => 'admin.vmn.vnvalley.com', 'middleware' => ['web']],function () {
     Route::get('/', function(){
        return redirect('managementLogin');
     });
@@ -67,6 +67,15 @@ Route::group(['domain' => 'admin.vmn.vnvalley.com', 'middleware' => ['web']],fun
 
     Route::put('/denyPlant', ['uses' => 'Mod\ModProceedController@denyPlant'])->name('mod.denyNewPlant');
 
+    Route::put('/approveNewRemedy', ['uses' => 'Mod\ModProceedController@approveNewRemedy'])->name('mod.approveNewRemedy');
+
+    Route::put('/approveEditRemedy', ['uses' => 'Mod\ModProceedController@approveEditRemedy'])->name('mod.approveEditRemedy');
+
+    Route::put('/rejectRemedy', ['uses' => 'Mod\ModProceedController@rejectRemedy'])->name('mod.rejectRemedy');
+
+    Route::post('/remindPlantAuthor', ['uses' => 'Mod\ModProceedController@remindPlantAuthor'])->name('mod.remindPlantAuthor');
+
+    Route::post('/remindRemedyAuthor', ['uses' => 'Mod\ModProceedController@remindRemedyAuthor'])->name('mod.remindRemedyAuthor');
 
 });
 
@@ -157,7 +166,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/review', ['uses' => 'Article\ArticleReviewingController@reviewPlants'])
     ->name('postReview');
 
-    Route::post('/reviewRemedy', ['uses' => 'Article\ArticleReviewingController@reviewPlants'])
+    Route::post('/reviewRemedy', ['uses' => 'Article\ArticleReviewingController@reviewRemedy'])
         ->name('postReviewRemedy');
 
     Route::post('/reportPlant', ['uses' => 'Article\ArticleReportingController@reportPlant'])

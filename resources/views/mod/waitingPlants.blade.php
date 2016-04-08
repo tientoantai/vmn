@@ -124,7 +124,7 @@
                             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                                 <!-- Wrapper for slides -->
                                 <div class="carousel-inner">
-
+                                    <div class="item active"><img class="image-slide img-responsive" src="" alt=""></div>
                                 </div>
 
                                 <!-- Controls -->
@@ -266,8 +266,10 @@
             }
             if (element.hasClass('reported-plant')){
                 $('.report-only').show();
-                $('.btn-footer').html("<button id='proceed' class='btn btn-success'>Xóa bài</button>"
-                        +"<button id='ignore' class='btn btn-danger'>Bỏ qua</button>");
+                $('.btn-footer').html(
+                        "<button id='proceed' data-id='"+dataInfo.id+"' data-reported='"+dataInfo.reported+"' " +
+                        "class='btn btn-success' onclick='remindPlantsAuthor($(this))'>Nhắc nhở</button>"
+                        +"<button id='ignore' data-id='"+dataInfo.id+"' class='btn btn-danger'>Bỏ qua</button>");
                 $('.modal').modal('show');
             }
             $('.modal').modal('show');
@@ -280,8 +282,8 @@
                 data: {id: element.attr('data-id')}
             });
             $approve.then(function(response){
-                    alert (response.message)
-                    location.reload();
+                alert (response.message)
+                location.reload();
             });
         }
 
@@ -304,6 +306,32 @@
                 data: {id: element.attr('data-id')}
             });
             $approve.then(function(response){
+                alert (response.message);
+                location.reload();
+            });
+        }
+
+        function remindPlantsAuthor (element){
+            var data = {
+                to          : $('#plant-author').text(),
+                reported    : element.attr('data-reported'),
+                articleName : $('#plant-commonName').text(),
+                reportId    : element.attr('data-id'),
+                reason      : $('#plant-reason').text()
+            };
+            var $remind = $.post('/remindPlantAuthor', data);
+            $remind.then(function(response){
+                alert (response.message);
+                location.reload();
+            });
+        }
+
+        function ignoreReport(element){
+            var data = {
+                reportId    : element.attr('data-id'),
+            };
+            var $remind = $.post('/ignoreReport', data);
+            $remind.then(function(response){
                 alert (response.message);
                 location.reload();
             });

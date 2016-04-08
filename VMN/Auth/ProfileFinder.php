@@ -53,6 +53,9 @@ class ProfileFinder
 
     public function getMemberMessage($account)
     {
-
+        return \DB::table('messages')
+            ->where('to', $account)
+            ->get()
+            ;
     }
 }

@@ -136,11 +136,11 @@
                 event.preventDefault();
                 var remedyRaw = $(this).serializeJson();
                 if(uploadedImages.length > 0){
-                    remedyRaw.images = JSON.stringify(uploadedImages);
-                    remedyRaw.thumbnail = uploadedImages[0];
+                    remedyRaw.imgUrl = JSON.stringify(uploadedImages);
+                    remedyRaw.thumbnailUrl = uploadedImages[0];
                 }
                 else{
-                    remedyRaw.images = remedyRaw.thumbnail = '';
+                    remedyRaw.imgUrl = remedyRaw.thumbnailUrl = '';
                 }
 
 

@@ -136,16 +136,15 @@
                                 </div>
                                 <div class="panel-body margin-bottom-50">
                                     <div class="media media-v2">
-                                        <a class="pull-left" href="#">
-                                            <img class="media-object rounded-x" src="assets/img/testimonials/img2.jpg" alt="">
-                                        </a>
+                                        @foreach ($message as $msg)
                                         <div class="media-body">
                                             <h4 class="media-heading">
-                                                <strong><a href="#">Eva Nelson</a></strong>
-                                                <small>About an hour ago</small>
+                                                <strong><a href="#">{{$msg->from}}</a></strong>
+                                                <small>{{$msg->created_at}}</small>
                                             </h4>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada rhoncus tellus blandit facilisis. Morbi faucibus eros facilisis vulputate mollis. Mauris sodales ante lorem, sed fringilla orci rhoncus ac. Donec sit amet eros at libero egestas interdum non quis libero.</p>
-                                        </div>
+                                            <p>{!! $msg->content !!}</p>
+                                        </div></br>
+                                        @endforeach
                                     </div><!--/end media media v2-->
                                 </div>
                             </div>
