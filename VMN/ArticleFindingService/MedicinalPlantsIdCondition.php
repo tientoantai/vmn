@@ -29,7 +29,12 @@ class MedicinalPlantsIdCondition implements ArticleFindingCondition
         ->get()
         ;
 
-//        $related = [];
-        return ['info' => $plant[0], 'comment' => $comment];
+        $related = \DB::table('remedy_ingredients')
+        ->join('remedies', 'remedyId', '=', 'remedies.id')
+        ->select('remedies.id', 'remedies.title', 'remedies.thumbnailUrl')
+        ->where('medicinalPlantId', $this->id())
+        ->get();
+        ;
+        return ['info' => $plant[0], 'comment' => $comment, 'related' => $related];
     }
 }

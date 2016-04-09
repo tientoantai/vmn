@@ -48,13 +48,13 @@
                     </div><!--/end shop product social-->
 
                     <ul class="list-inline product-ratings margin-bottom-30">
-                        <li><i class="rating-selected fa fa-star"></i></li>
-                        <li><i class="rating-selected fa fa-star"></i></li>
-                        <li><i class="rating-selected fa fa-star"></i></li>
-                        <li><i class="rating fa fa-star"></i></li>
-                        <li><i class="rating fa fa-star"></i></li>
                         <li class="product-review-list">
-                            <span>(1) <a href="#">Review</a> | <a href="#"> Add Review</a></span>
+                            <div
+                                    class="fb-like"
+                                    data-share="true"
+                                    data-width="450"
+                                    data-show-faces="true">
+                            </div>
                         </li>
                     </ul><!--/end shop product ratings-->
 

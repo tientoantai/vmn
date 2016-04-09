@@ -48,13 +48,13 @@
                         </div><!--/end shop product social-->
 
                         <ul class="list-inline product-ratings margin-bottom-30">
-                            <li><i class="rating-selected fa fa-star"></i></li>
-                            <li><i class="rating-selected fa fa-star"></i></li>
-                            <li><i class="rating-selected fa fa-star"></i></li>
-                            <li><i class="rating fa fa-star"></i></li>
-                            <li><i class="rating fa fa-star"></i></li>
                             <li class="product-review-list">
-                                <span>(1) <a href="#">Review</a> | <a href="#"> Add Review</a></span>
+                                <div
+                                    class="fb-like"
+                                    data-share="true"
+                                    data-width="450"
+                                    data-show-faces="true">
+                                </div>
                             </li>
                         </ul><!--/end shop product ratings-->
 
@@ -157,122 +157,37 @@
                 </div>
                 <!-- End Reviews -->
                 <!-- Related -->
-                {{--<div class="tab-pane fade " id="related">--}}
-                    {{--<!--=== Illustration v2 ===-->--}}
-                    {{--<div class="container">--}}
-                        {{--<div class="heading heading-v1 margin-bottom-20">--}}
-                            {{--<h2>Bài thuốc liên quan</h2>--}}
-                        {{--</div>--}}
+                <div class="tab-pane fade " id="related">
+                    <!--=== Illustration v2 ===-->
+                    <div class="container">
+                        <div class="heading heading-v1 margin-bottom-20">
+                            <h2>Bài thuốc liên quan</h2>
+                        </div>
 
-                        {{--<div class="illustration-v2 margin-bottom-60">--}}
-                            {{--<div class="customNavigation margin-bottom-25">--}}
-                                {{--<a class="owl-btn prev rounded-x"><i class="fa fa-angle-left"></i></a>--}}
-                                {{--<a class="owl-btn next rounded-x"><i class="fa fa-angle-right"></i></a>--}}
-                            {{--</div>--}}
+                        <div class="illustration-v2 margin-bottom-60">
+                            <div class="customNavigation margin-bottom-25">
+                                <a class="owl-btn prev rounded-x"><i class="fa fa-angle-left"></i></a>
+                                <a class="owl-btn next rounded-x"><i class="fa fa-angle-right"></i></a>
+                            </div>
 
-                            {{--<ul class="list-inline owl-slider-v4">--}}
-                                {{--<li class="item">--}}
-                                    {{--<a href="#"><img class="img-responsive" src="assets/img/thumb/09.jpg" alt=""></a>--}}
-                                    {{--<div class="product-description-v2">--}}
-                                        {{--<div class="margin-bottom-5">--}}
-                                            {{--<h4 class="title-price"><a href="#">Double-breasted</a></h4>--}}
-                                            {{--<span class="title-price">$95.00</span>--}}
-                                        {{--</div>--}}
-                                        {{--<ul class="list-inline product-ratings">--}}
-                                            {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                                            {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                                            {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                                            {{--<li><i class="rating fa fa-star"></i></li>--}}
-                                            {{--<li><i class="rating fa fa-star"></i></li>--}}
-                                        {{--</ul>--}}
-                                    {{--</div>--}}
-                                {{--</li>--}}
-                                {{--<li class="item">--}}
-                                    {{--<a href="#"><img class="img-responsive" src="assets/img/thumb/07.jpg" alt=""></a>--}}
-                                    {{--<div class="product-description-v2">--}}
-                                        {{--<div class="margin-bottom-5">--}}
-                                            {{--<h4 class="title-price"><a href="#">Double-breasted</a></h4>--}}
-                                            {{--<span class="title-price">$60.00</span>--}}
-                                            {{--<span class="title-price line-through">$95.00</span>--}}
-                                        {{--</div>--}}
-                                        {{--<ul class="list-inline product-ratings">--}}
-                                            {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                                            {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                                            {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                                            {{--<li><i class="rating fa fa-star"></i></li>--}}
-                                            {{--<li><i class="rating fa fa-star"></i></li>--}}
-                                        {{--</ul>--}}
-                                    {{--</div>--}}
-                                {{--</li>--}}
-                                {{--<li class="item">--}}
-                                    {{--<a href="#"><img class="img-responsive" src="assets/img/thumb/08.jpg" alt=""></a>--}}
-                                    {{--<div class="product-description-v2">--}}
-                                        {{--<div class="margin-bottom-5">--}}
-                                            {{--<h4 class="title-price"><a href="#">Double-breasted</a></h4>--}}
-                                            {{--<span class="title-price">$95.00</span>--}}
-                                        {{--</div>--}}
-                                        {{--<ul class="list-inline product-ratings">--}}
-                                            {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                                            {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                                            {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                                            {{--<li><i class="rating fa fa-star"></i></li>--}}
-                                            {{--<li><i class="rating fa fa-star"></i></li>--}}
-                                        {{--</ul>--}}
-                                    {{--</div>--}}
-                                {{--</li>--}}
-                                {{--<li class="item">--}}
-                                    {{--<a href="#"><img class="img-responsive" src="assets/img/thumb/06.jpg" alt=""></a>--}}
-                                    {{--<div class="product-description-v2">--}}
-                                        {{--<div class="margin-bottom-5">--}}
-                                            {{--<h4 class="title-price"><a href="#">Double-breasted</a></h4>--}}
-                                            {{--<span class="title-price">$95.00</span>--}}
-                                        {{--</div>--}}
-                                        {{--<ul class="list-inline product-ratings">--}}
-                                            {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                                            {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                                            {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                                            {{--<li><i class="rating fa fa-star"></i></li>--}}
-                                            {{--<li><i class="rating fa fa-star"></i></li>--}}
-                                        {{--</ul>--}}
-                                    {{--</div>--}}
-                                {{--</li>--}}
-                                {{--<li class="item">--}}
-                                    {{--<a href="#"><img class="img-responsive" src="assets/img/thumb/04.jpg" alt=""></a>--}}
-                                    {{--<div class="product-description-v2">--}}
-                                        {{--<div class="margin-bottom-5">--}}
-                                            {{--<h4 class="title-price"><a href="#">Double-breasted</a></h4>--}}
-                                            {{--<span class="title-price">$95.00</span>--}}
-                                        {{--</div>--}}
-                                        {{--<ul class="list-inline product-ratings">--}}
-                                            {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                                            {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                                            {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                                            {{--<li><i class="rating fa fa-star"></i></li>--}}
-                                            {{--<li><i class="rating fa fa-star"></i></li>--}}
-                                        {{--</ul>--}}
-                                    {{--</div>--}}
-                                {{--</li>--}}
-                                {{--<li class="item">--}}
-                                    {{--<a href="#"><img class="img-responsive" src="assets/img/thumb/03.jpg" alt=""></a>--}}
-                                    {{--<div class="product-description-v2">--}}
-                                        {{--<div class="margin-bottom-5">--}}
-                                            {{--<h4 class="title-price"><a href="#">Double-breasted</a></h4>--}}
-                                            {{--<span class="title-price">$95.00</span>--}}
-                                        {{--</div>--}}
-                                        {{--<ul class="list-inline product-ratings">--}}
-                                            {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                                            {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                                            {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                                            {{--<li><i class="rating fa fa-star"></i></li>--}}
-                                            {{--<li><i class="rating fa fa-star"></i></li>--}}
-                                        {{--</ul>--}}
-                                    {{--</div>--}}
-                                {{--</li>--}}
-                            {{--</ul>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                    {{--<!--=== End Illustration v2 ===-->--}}
-                {{--</div>--}}
+                            <ul class="list-inline owl-slider-v4">
+                                @foreach($plant['related'] as $remedy)
+                                <li class="item">
+                                    <a href="{{route('remedy-detail', ['id'=> $remedy->id])}}"><img class="img-responsive" src="{{$remedy->thumbnailUrl}}" alt=""></a>
+                                    <div class="product-description-v2">
+                                        <div class="margin-bottom-5">
+                                            <h4 class="title-price"><a href="#">{{str_limit($remedy->title, 25)}}</a></h4>
+                                            {{--<span class="title-price"></span>--}}
+                                        </div>
+                                    </div>
+                                </li>
+                                @endforeach
+
+                            </ul>
+                        </div>
+                    </div>
+                    <!--=== End Illustration v2 ===-->
+                </div>
                 <!-- End related -->
             </div>
         </div>

@@ -22,16 +22,18 @@
                         </div>
                     </form>
                     <div class="margin-bottom-10">
-                        <a href="{{route('add-plant')}}" type="button" class="btn btn-success "><i class="fa fa-plus"></i> Đóng góp cây thuốc</a>
-                        <a href="{{route('advanced-search-plant')}}" type="button" class="btn btn-primary pull-right"><i class="fa fa-search-plus"></i> Hiển thị tìm kiếm nâng cao</a>
+                        <div class="col-sm-3 margin-top-20">
+                            <a href="{{route('add-plant')}}" type="button" class="btn btn-success full-width"><i class="fa fa-plus"></i> Đóng góp cây thuốc</a>
+                        </div>
+                        <div class="col-sm-6">&nbsp;</div>
+                        <div class="col-sm-3">
+                            <a href="{{route('advanced-search-plant')}}" type="button" class="btn btn-primary pull-right full-width"><i class="fa fa-search-plus"></i> Hiển thị tìm kiếm nâng cao</a>
+                        </div>
                     </div>
                 </div>
-                <?php
-                if ($listPlant)
-//                    $listPlantDisplay = array_chunk((array)$listPlant->items(),3)
-                ?>
+
                 <div class="filter-results">
-                    <div class="row illustration-v2 margin-bottom-30">
+                    <div class="row illustration-v2 margin-bottom-20">
                     @if($listPlant)
                     {{--@foreach($listPlantDisplay as $plantRow)--}}
                         @foreach($listPlant as $plant)
@@ -42,14 +44,13 @@
                                     <img class="full-width img-responsive plant-image" src="{{$plant->thumbnailUrl}}" alt="">
                                 </a>
                             </div>
-                            <div class="product-description product-description-brd margin-bottom-30">
+                            <div class="product-description product-description-brd ">
                                 <div class="overflow-h margin-bottom-5">
                                     <div class="pull-left">
                                         <h4 class="title-price"><a href=""></a>{{$plant->commonName}}</h4>
                                     </div>
                                     <div class="product-price">
-                                        <span class="title-price">Like</span>
-                                        <span class="title-price line-through">Share</span>
+                                        {{--<span class="title-price"><small></small>{{$plant->scienceName}}</span>--}}
                                     </div>
                                 </div>
                                 <ul class="list-inline product-ratings">

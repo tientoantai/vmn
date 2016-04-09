@@ -38,6 +38,7 @@
                             <div class="panel panel-profile">
                                 <div class="panel-heading overflow-h">
                                     <h2 class="panel-title heading-sm pull-left"><i class="fa fa-user"></i>Thông tin cá nhân</h2>
+                                    <button class="btn-u pull-right" data-toggle="modal" data-target="#memberInfoModal">Chỉnh sửa</button>
                                 </div>
                                 <div class="panel-body margin-bottom-50">
                                     <dl class="dl-horizontal">
@@ -157,5 +158,69 @@
         <!-- End Profile Content -->
     </div>
 </div>
+
+    <!-- Modal member -->
+    <div id="memberInfoModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Thông tin cá nhân</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="registerForm" class="form-horizontal" role="form" method="POST" action="" novalidate="novalidate">
+
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Tài khoản</label>
+                            <div class="col-sm-6 pd-top-7">
+                                <span id="">{{$info->accountName}}</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Email</label>
+
+                            <div class="col-sm-6 pd-top-7">
+                                <span id="member-email">{{$info->email}}</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Tên</label>
+
+                            <div class="col-sm-6 pd-top-7">
+                                <input type="text" class="form-control" value="{{$info->firstName}}">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Họ</label>
+                            <div class="col-sm-6 pd-top-7">
+                                <input type="text" class="form-control" value="{{$info->lastName}}">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Ngày sinh</label>
+
+                            <div class="col-sm-6 pd-top-7">
+                                <input type="text" class="form-control" value="{{$info->DoB}}">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-sm-12 text-center">
+                                <input type="button" value="Lưu" class="btn-u rounded" id="changeRole">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- end Modal member-->
     <!--=== End Profile ===-->
 @endsection

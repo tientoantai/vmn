@@ -43,7 +43,7 @@
             <div class="col-md-8">
                 <div class="row margin-bottom-5">
                     <div class="col-sm-8 result-category">
-                        <h2>DANH SÁCH CÂY THUỐC</h2>
+                        <h2><span class="hidden-xs">DANH SÁCH</span> CÂY THUỐC</h2>
                         <small class="shop-bg-red badge-results">{{$plants->total()}} Kết quả</small>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                                             </ul>
                                         </li>
                                     </ul>
-                                    <p class="margin-bottom-20">{{$plant->characteristic}}</p>
+                                    <p class="margin-bottom-20">{{str_limit($plant->characteristic, 250)}}</p>
 
                                 </div>
                             </div>

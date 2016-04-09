@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-    Đăng ký nhà thuốc
+    Đăng ký nhà thuốc 1
 @endsection
 @section('pageCss')
     <link rel="stylesheet" href="{{asset('assets/css/pages/log-reg-v3.css')}}">
@@ -67,7 +67,9 @@
         </div><!--/end container-->
     </div>
     <!--=== End Registre ===-->
+@endsection
 
+@section('pageJS')
     <script>
         jQuery(document).ready(function() {
             App.init();
