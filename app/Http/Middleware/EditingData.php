@@ -43,6 +43,7 @@ class EditingData
         }
 
         $article = $this->makeArticleInstance($request);
+
         app()->bind(get_class($article), function () use ($article) {
             return $article;
         });
