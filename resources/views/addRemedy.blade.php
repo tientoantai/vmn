@@ -147,7 +147,11 @@
                 var $createPlant = $.post($(this).attr('action'), remedyRaw);
 
                 $createPlant.then(function (response) {
-                    alert (response.message);
+                    var msg = '';
+                    $.each(response.message, function (key, value){
+                        msg += value + '\n';
+                    });
+                    alert (msg);
                     if (response.status != 'error'){
                         window.location.href = '/remedies';
                     }
