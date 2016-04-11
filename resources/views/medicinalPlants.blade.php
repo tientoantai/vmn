@@ -21,8 +21,9 @@
                             </span>
                         </div>
                     </form>
-                    <div class="margin-bottom-10">
-                        <div class="col-sm-3 margin-top-20">
+                    @if(Session::get('credential'))
+                    <div class="margin-bottom-20 margin-top-20">
+                        <div class="col-sm-3 ">
                             <a href="{{route('add-plant')}}" type="button" class="btn btn-success full-width"><i class="fa fa-plus"></i> Đóng góp cây thuốc</a>
                         </div>
                         <div class="col-sm-6">&nbsp;</div>
@@ -30,12 +31,12 @@
                             <a href="{{route('advanced-search-plant')}}" type="button" class="btn btn-primary pull-right full-width"><i class="fa fa-search-plus"></i> Hiển thị tìm kiếm nâng cao</a>
                         </div>
                     </div>
+                    @endif
                 </div>
 
                 <div class="filter-results">
                     <div class="row illustration-v2 margin-bottom-20">
-                    @if($listPlant)
-                    {{--@foreach($listPlantDisplay as $plantRow)--}}
+                    @if($listPlant->total() != 0)
                         @foreach($listPlant as $plant)
                         <div class="col-md-4 col-sm-6">
                             <div class="product-img product-img-brd">
@@ -63,10 +64,7 @@
                             </div>
                         </div>
                         @endforeach
-                    {{--</div>--}}
-                    {{--@endforeach--}}
                     @else
-
                         <h3 class="text-center">Không có kết quả cho cây thuốc bạn muốn tìm</h3>
                         <h4 class="text-center">Bạn có thể đóng góp cây thuốc này cho hệ thống</h4>
                     @endif

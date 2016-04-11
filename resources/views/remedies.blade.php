@@ -27,32 +27,33 @@
                             </span>
                         </div>
                     </form>
-                    <div class="margin-bottom-10">
-                        <a href="{{route('add-remedy')}}" type="button" class="btn btn-success "><i class="fa fa-plus"></i> Đóng góp bài thuốc</a>
-                        <a href="{{route('advanced-search-remedy')}}" type="button" class="btn btn-primary pull-right"><i class="fa fa-search-plus"></i> Hiển thị tìm kiếm nâng cao</a>
+                    @if(Session::get('credential'))
+                    <div class="margin-bottom-20 margin-top-20">
+                        <div class="col-sm-3 ">
+                            <a href="{{route('add-remedy')}}" type="button" class="btn btn-success "><i class="fa fa-plus"></i> Đóng góp bài thuốc</a>
+                        </div>
+                        <div class="col-sm-6">&nbsp;</div>
+                        <div class="col-sm-3">
+                            <a href="{{route('advanced-search-remedy')}}" type="button" class="btn btn-primary pull-right"><i class="fa fa-search-plus"></i> Hiển thị tìm kiếm nâng cao</a>
+                        </div>
                     </div>
+                    @endif
                 </div>
-                <?php
-                if ($listRemedy)
-//                    $listRemedyDisplay = array_chunk((array)$listRemedy->items(),3)
-                ?>
+
                 <div class="filter-results">
                     <div class="row illustration-v2 margin-bottom-30">
-                    @if($listRemedy)
+                    @if($listRemedy->total() != 0)
                         {{--@foreach($listRemedyDisplay as $remedyRow)--}}
                         @foreach($listRemedy as $remedy)
                             <div class="col-md-4">
                                 <div class="product-img product-img-brd">
                                     <!--Thay = link thumbnail cây thuốc-->
-                                    <a href="#"><img class="full-width img-responsive plant-image" src="{{$remedy->thumbnailUrl}}" alt=""></a>
-                                    <a class="add-to-cart" href="{{route('remedy-detail', ['id' => $remedy->id])}}">
-                                        <i class="fa fa-eye"></i>Xem chi tiết</a>
-                                    {{--<div class="shop-rgba-dark-green rgba-banner">New</div>--}}
+                                    <a href="{{route('remedy-detail', ['id' => $remedy->id])}}"><img class="full-width img-responsive plant-image" src="{{$remedy->thumbnailUrl}}" alt=""></a>
                                 </div>
                                 <div class="product-description product-description-brd margin-bottom-30">
                                     <div class="overflow-h margin-bottom-5">
                                         <div class="pull-left">
-                                            <h4 class="title-price"><a href=""></a>{{$remedy->title}}</h4>
+                                            <h4 class="title-price"><a href="{{route('remedy-detail', ['id' => $remedy->id])}}"></a>{{str_limit($remedy->title, 50)}}</h4>
                                         </div>
                                     </div>
                                     <ul class="list-inline product-ratings">
@@ -65,7 +66,6 @@
                                 </div>
                             </div>
                         @endforeach
-                        {{--@endforeach--}}
                     @else
 
                         <h3 class="text-center">Không có kết quả cho cây thuốc bạn muốn tìm</h3>
