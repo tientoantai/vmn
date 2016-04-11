@@ -88,10 +88,12 @@ class HSMFindingCondition implements MemberFindingCondition
     public function getQuery()
     {
         $query =  \DB::table('herbal_medicine_stores')
+            ->join('credentials','accountName', '=', 'credentials.name')
             ->where('storename', 'like', '%'.$this->getStoreName().'%')
             ->where('address', 'like', '%'.$this->getAddress().'%')
             ->where('phonenumber', 'like', '%'.$this->getPhoneNumber().'%')
             ->where('representative', 'like', '%'.$this->getRepresentative().'%')
+            ->where('credentials.status', '=', 'active')
         ;
         return $query->paginate(6)
             ->appends('storename', $this->getStoreName())

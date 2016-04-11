@@ -9,12 +9,12 @@ class ProfileFinder
 
     public function getMemberCredential($account)
     {
-        $role =  \DB::table('credentials')
+        return  \DB::table('credentials')
             ->select('role', 'avatar')
             ->where('name','=',$account)
+            ->whereNotIn('status', ['wait','denied', 'inactive'])
             ->first();
         ;
-        return $role;
     }
 
     public function getMemberProfile($account)

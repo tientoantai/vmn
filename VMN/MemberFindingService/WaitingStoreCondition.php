@@ -10,7 +10,7 @@ class WaitingStoreCondition implements MemberFindingCondition
     {
         return \DB::table('credentials')
 //            ->join('herbal_medicine_stores', 'credentials.name' , '=', 'herbal_medicine_stores.accountName')
-            ->where('status', '=', 'waiting')
+            ->where('status', '=', 'wait')
             ->get();
         ;
     }

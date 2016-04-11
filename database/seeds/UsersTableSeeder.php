@@ -62,7 +62,7 @@ class UsersTableSeeder extends Seeder
         $user4->password    = Hash::make('tiennm');
         $user4->role        = 'store';
         $user4->avatar      = 'assets/img/default/avatar.jpg';
-        $user4->status      = 'waiting';
+        $user4->status      = 'wait';
         $user4->save();
     }
 }

@@ -25,6 +25,7 @@ class PlantManagementCondition implements ArticleFindingCondition
 
         $plantManagement['reported'] = \DB::table('medicinal_plants')
             ->join('medicinal_plants_reports', 'reported', '=', 'medicinal_plants.id')
+            ->where('status','')
             ->get()
         ;
         return $plantManagement;
