@@ -14,6 +14,7 @@
 use App\Http\Middleware\UploadingFile;
 use VMN\Contracts\Auth\Authenticator;
 use VMN\UploadService\Uploader;
+use App\Http\Middleware\LoginRequired;
 
 /*
 |--------------------------------------------------------------------------
@@ -88,10 +89,12 @@ Route::group(['middleware' => ['web']], function () {
     ])->name('medicinal-plant');
 
     Route::get('/advanceSearchPlant', [
+        'middleware' => LoginRequired::class,
         'uses'=>'Article\ArticleFindingController@showAdvanceSearchPlant'
     ])->name('advanced-search-plant');
 
     Route::get('/searchStore', [
+        'middleware' => LoginRequired::class,
         'uses'=>'Auth\HerbalMedicineStoreController@search'
     ])->name('search-store');
 
@@ -99,9 +102,15 @@ Route::group(['middleware' => ['web']], function () {
         'uses' => 'Article\ArticleFindingController@medicinalPlantsDetail'
     ])->name('plant-detail');
 
-    Route::get('/addPlant', ['uses'=>'Article\PageShowingController@showAddPlant'])->name('add-plant');
+    Route::get('/addPlant', [
+        'middleware' => LoginRequired::class,
+        'uses'=>'Article\PageShowingController@showAddPlant'
+    ])->name('add-plant');
 
-    Route::get('/editPlant', ['uses'=>'Article\PageShowingController@showEditPlant'])->name('edit-plant');
+    Route::get('/editPlant', [
+
+        'uses'=>'Article\PageShowingController@showEditPlant'
+    ])->name('edit-plant');
 
     Route::get('/remedies',[
         'uses' => 'Article\ArticleFindingController@findRemedies',
@@ -112,10 +121,14 @@ Route::group(['middleware' => ['web']], function () {
     ])->name('remedy-detail');
 
     Route::get('/advanceSearchRemedy', [
+        'middleware' => LoginRequired::class,
         'uses'=>'Article\ArticleFindingController@showAdvanceSearchRemedy'
     ])->name('advanced-search-remedy');
 
-    Route::get('/addRemedy', ['uses'=>'Article\PageShowingController@showAddRemedy'])->name('add-remedy');
+    Route::get('/addRemedy', [
+        'middleware' => LoginRequired::class,
+        'uses'=>'Article\PageShowingController@showAddRemedy'
+    ])->name('add-remedy');
 
     Route::get('/editRemedy', ['uses'=>'Article\PageShowingController@showEditRemedy'])->name('edit-remedy');
 
@@ -150,7 +163,9 @@ Route::group(['middleware' => ['web']], function () {
         return $auth->byToken(Request::input('token'));
     });
 
-    Route::post('/contributePlants',['uses'=>'Article\ArticleEditingController@addPlants'])
+    Route::post('/contributePlants',[
+        'middleware' => LoginRequired::class,
+        'uses'=>'Article\ArticleEditingController@addPlants'])
     ->name('contribute-plant');
 
     Route::post('/updatePlants',['uses'=>'Article\ArticleEditingController@editPlants'])
@@ -163,21 +178,29 @@ Route::group(['middleware' => ['web']], function () {
         ->name('contribute-remedy');
 
 
-    Route::post('/review', ['uses' => 'Article\ArticleReviewingController@reviewPlants'])
+    Route::post('/review', [
+        'middleware' => LoginRequired::class,
+        'uses' => 'Article\ArticleReviewingController@reviewPlants'])
     ->name('postReview');
 
-    Route::post('/reviewRemedy', ['uses' => 'Article\ArticleReviewingController@reviewRemedy'])
+    Route::post('/reviewRemedy', [
+        'middleware' => LoginRequired::class,
+        'uses' => 'Article\ArticleReviewingController@reviewRemedy'])
         ->name('postReviewRemedy');
 
-    Route::post('/reportPlant', ['uses' => 'Article\ArticleReportingController@reportPlant'])
+    Route::post('/reportPlant', [
+        'middleware' => LoginRequired::class,
+        'uses' => 'Article\ArticleReportingController@reportPlant'])
         ->name('postReport');
 
-    Route::post('/reportRemedy', ['uses' => 'Article\ArticleReportingController@reportRemedy'])
+    Route::post('/reportRemedy', [
+        'middleware' => LoginRequired::class,
+        'uses' => 'Article\ArticleReportingController@reportRemedy'])
         ->name('postReport');
 
 
 
-    Route::post('/upload', ['middleware' => [UploadingFile::class], function (Uploader $uploader)
+    Route::post('/upload', ['middleware' => [UploadingFile::class, LoginRequired::class], function (Uploader $uploader)
     {
         return response()->json([
             'file' => $uploader->upload(request()->file('file'))
