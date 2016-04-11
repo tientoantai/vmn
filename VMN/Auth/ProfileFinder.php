@@ -13,7 +13,7 @@ class ProfileFinder
             ->select('role', 'avatar')
             ->where('name','=',$account)
             ->whereNotIn('status', ['wait','denied', 'inactive'])
-            ->first();
+            ->first()
         ;
     }
 
@@ -21,7 +21,7 @@ class ProfileFinder
     {
         return \DB::table('members')
             ->where('accountName','=',$account)
-            ->first();
+            ->first()
             ;
     }
 
@@ -29,7 +29,7 @@ class ProfileFinder
     {
         return \DB::table('herbal_medicine_stores')
             ->where('accountName','=',$account)
-            ->first();
+            ->first()
         ;
     }
 
@@ -37,7 +37,7 @@ class ProfileFinder
     {
         return \DB::table('medicinal_plants')
             ->where('author','=',$account)
-            ->get();
+            ->get()
         ;
 
     }
@@ -46,7 +46,7 @@ class ProfileFinder
     {
         return \DB::table('remedies')
             ->where('author','=',$account)
-            ->get();
+            ->get()
         ;
 
     }
