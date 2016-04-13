@@ -28,8 +28,8 @@ use App\Http\Middleware\LoginRequired;
 */
 
 
-//Route::group(['domain' => 'admin.vmn.local', 'middleware' => ['web']], function () {
-Route::group(['domain' => 'admin.vmn.vnvalley.com', 'middleware' => ['web']],function () {
+Route::group(['domain' => 'admin.vmn.local', 'middleware' => ['web']], function () {
+//Route::group(['domain' => 'admin.vmn.vnvalley.com', 'middleware' => ['web']],function () {
     Route::get('/', function(){
        return redirect('managementLogin');
     });

@@ -9,7 +9,7 @@ class AllUserCondition implements MemberFindingCondition
     public function getQuery()
     {
         return \DB::table('credentials')
-            ->whereNotIn('status', ['waiting','denied'])
+            ->whereNotIn('status', ['wait','denied'])
             ->where('role','<>', 'admin')
             ->get();
         ;

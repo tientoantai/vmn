@@ -18,12 +18,15 @@ class AdminProcessor
         if ($credential->getStatus() == 'active')
         {
             $credential->setStatus('inactive');
+            $msg = 'Đã khóa tài khoản';
         }
         elseif($credential->getStatus('inactive'))
         {
             $credential->setStatus('active');
+            $msg = 'Đã mở khóa tài khoản';
         }
         $credential->save();
+        return $msg;
     }
 
     public function changeRole(Credential $credential, $role)

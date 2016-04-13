@@ -37,8 +37,10 @@ class AdminProceedController extends Controller
 
     public function changeStatus(Credential $credential)
     {
-        $this->adminProcessor->changeStatus($credential);
-        return response()->json([]);
+        $msg = $this->adminProcessor->changeStatus($credential);
+        return response()->json([
+            'message' => $msg
+        ]);
     }
 
     public function changeRole(Credential $credential)
