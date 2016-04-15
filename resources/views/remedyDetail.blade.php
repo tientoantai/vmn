@@ -43,6 +43,10 @@
                                     <li><button class="btn-u btn-u-red" data-toggle="modal" data-target="#report-modal">
                                             Báo cáo</button></li>
                                 @endif
+                                @if(\Session::get('credential')['attributes']['role'] == 'store')
+                                    <li><button id="registerPrescription" data-resgister="{{$remedy->id}}" class="btn-u btn-u-green" title="Đưa bài thuốc vào danh mục của nhà thuốc">
+                                            <i class="fa fa-list-alt" aria-hidden="true"></i></button></li>
+                                @endif
                             </ul>
                         @endif
                     </div><!--/end shop product social-->
@@ -176,122 +180,36 @@
                 </div>
                 <!-- End Reviews -->
                 <!-- Related -->
-                {{--<div class="tab-pane fade " id="related">--}}
-                {{--<!--=== Illustration v2 ===-->--}}
-                {{--<div class="container">--}}
-                {{--<div class="heading heading-v1 margin-bottom-20">--}}
-                {{--<h2>Bài thuốc liên quan</h2>--}}
-                {{--</div>--}}
+                <div class="tab-pane fade " id="related">
+                <!--=== Illustration v2 ===-->
+                <div class="container">
+                    <div class="heading heading-v1 margin-bottom-20">
+                        <h2>Nhà thuốc liên quan</h2>
+                    </div>
 
-                {{--<div class="illustration-v2 margin-bottom-60">--}}
-                {{--<div class="customNavigation margin-bottom-25">--}}
-                {{--<a class="owl-btn prev rounded-x"><i class="fa fa-angle-left"></i></a>--}}
-                {{--<a class="owl-btn next rounded-x"><i class="fa fa-angle-right"></i></a>--}}
-                {{--</div>--}}
+                    <div class="illustration-v2 margin-bottom-60">
+                        <div class="customNavigation margin-bottom-25">
+                        <a class="owl-btn prev rounded-x"><i class="fa fa-angle-left"></i></a>
+                        <a class="owl-btn next rounded-x"><i class="fa fa-angle-right"></i></a>
+                    </div>
 
-                {{--<ul class="list-inline owl-slider-v4">--}}
-                {{--<li class="item">--}}
-                {{--<a href="#"><img class="img-responsive" src="assets/img/thumb/09.jpg" alt=""></a>--}}
-                {{--<div class="product-description-v2">--}}
-                {{--<div class="margin-bottom-5">--}}
-                {{--<h4 class="title-price"><a href="#">Double-breasted</a></h4>--}}
-                {{--<span class="title-price">$95.00</span>--}}
-                {{--</div>--}}
-                {{--<ul class="list-inline product-ratings">--}}
-                {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                {{--<li><i class="rating fa fa-star"></i></li>--}}
-                {{--<li><i class="rating fa fa-star"></i></li>--}}
-                {{--</ul>--}}
-                {{--</div>--}}
-                {{--</li>--}}
-                {{--<li class="item">--}}
-                {{--<a href="#"><img class="img-responsive" src="assets/img/thumb/07.jpg" alt=""></a>--}}
-                {{--<div class="product-description-v2">--}}
-                {{--<div class="margin-bottom-5">--}}
-                {{--<h4 class="title-price"><a href="#">Double-breasted</a></h4>--}}
-                {{--<span class="title-price">$60.00</span>--}}
-                {{--<span class="title-price line-through">$95.00</span>--}}
-                {{--</div>--}}
-                {{--<ul class="list-inline product-ratings">--}}
-                {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                {{--<li><i class="rating fa fa-star"></i></li>--}}
-                {{--<li><i class="rating fa fa-star"></i></li>--}}
-                {{--</ul>--}}
-                {{--</div>--}}
-                {{--</li>--}}
-                {{--<li class="item">--}}
-                {{--<a href="#"><img class="img-responsive" src="assets/img/thumb/08.jpg" alt=""></a>--}}
-                {{--<div class="product-description-v2">--}}
-                {{--<div class="margin-bottom-5">--}}
-                {{--<h4 class="title-price"><a href="#">Double-breasted</a></h4>--}}
-                {{--<span class="title-price">$95.00</span>--}}
-                {{--</div>--}}
-                {{--<ul class="list-inline product-ratings">--}}
-                {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                {{--<li><i class="rating fa fa-star"></i></li>--}}
-                {{--<li><i class="rating fa fa-star"></i></li>--}}
-                {{--</ul>--}}
-                {{--</div>--}}
-                {{--</li>--}}
-                {{--<li class="item">--}}
-                {{--<a href="#"><img class="img-responsive" src="assets/img/thumb/06.jpg" alt=""></a>--}}
-                {{--<div class="product-description-v2">--}}
-                {{--<div class="margin-bottom-5">--}}
-                {{--<h4 class="title-price"><a href="#">Double-breasted</a></h4>--}}
-                {{--<span class="title-price">$95.00</span>--}}
-                {{--</div>--}}
-                {{--<ul class="list-inline product-ratings">--}}
-                {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                {{--<li><i class="rating fa fa-star"></i></li>--}}
-                {{--<li><i class="rating fa fa-star"></i></li>--}}
-                {{--</ul>--}}
-                {{--</div>--}}
-                {{--</li>--}}
-                {{--<li class="item">--}}
-                {{--<a href="#"><img class="img-responsive" src="assets/img/thumb/04.jpg" alt=""></a>--}}
-                {{--<div class="product-description-v2">--}}
-                {{--<div class="margin-bottom-5">--}}
-                {{--<h4 class="title-price"><a href="#">Double-breasted</a></h4>--}}
-                {{--<span class="title-price">$95.00</span>--}}
-                {{--</div>--}}
-                {{--<ul class="list-inline product-ratings">--}}
-                {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                {{--<li><i class="rating fa fa-star"></i></li>--}}
-                {{--<li><i class="rating fa fa-star"></i></li>--}}
-                {{--</ul>--}}
-                {{--</div>--}}
-                {{--</li>--}}
-                {{--<li class="item">--}}
-                {{--<a href="#"><img class="img-responsive" src="assets/img/thumb/03.jpg" alt=""></a>--}}
-                {{--<div class="product-description-v2">--}}
-                {{--<div class="margin-bottom-5">--}}
-                {{--<h4 class="title-price"><a href="#">Double-breasted</a></h4>--}}
-                {{--<span class="title-price">$95.00</span>--}}
-                {{--</div>--}}
-                {{--<ul class="list-inline product-ratings">--}}
-                {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                {{--<li><i class="rating-selected fa fa-star"></i></li>--}}
-                {{--<li><i class="rating fa fa-star"></i></li>--}}
-                {{--<li><i class="rating fa fa-star"></i></li>--}}
-                {{--</ul>--}}
-                {{--</div>--}}
-                {{--</li>--}}
-                {{--</ul>--}}
-                {{--</div>--}}
-                {{--</div>--}}
-                {{--<!--=== End Illustration v2 ===-->--}}
-                {{--</div>--}}
+                <ul class="list-inline owl-slider-v4">
+                    @foreach($related as $store)
+                    <li class="item">
+                        <a href="#"><img class="img-responsive" src="{{$store->storeAvatar}}" alt=""></a>
+                        <div class="product-description-v2">
+                        <div class="margin-bottom-5">
+                        <h4 class="title-price"><a href="{{route('profile',['account' => $store->storeCredential])}}">{{$store->storeName}}</a></h4>
+                        </div>
+                        </div>
+                    </li>
+                    @endforeach
+
+                </ul>
+                </div>
+                </div>
+                <!--=== End Illustration v2 ===-->
+                </div>
                         <!-- End related -->
             </div>
         </div>
@@ -361,6 +279,19 @@
                 sendReport.then(function(response){
                     alert(response.msg);
                     $('#report-modal').modal('hide');
+                });
+            });
+
+            $('#registerPrescription').on('click', function(){
+                event.preventDefault();
+                var $approve = $.ajax({
+                    method: "PUT",
+                    url: "/registerPrescription",
+                    data: {id: $(this).attr('data-resgister')}
+                });
+                $approve.then(function(response){
+                    alert (response.message);
+//                    location.reload();
                 });
             });
 

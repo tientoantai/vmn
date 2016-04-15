@@ -10,6 +10,12 @@
     <link rel="stylesheet" href="{{asset('assets/plugins/master-slider/masterslider/skins/default/style.css')}}">
     <link rel="stylesheet" href="{{asset('assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css')}}">
     <link rel="stylesheet" href="{{asset('assets/plugins/dropzone/dist/dropzone.css')}}">
+    <style>
+        .image-edit{
+            width: 550px;
+            height: 550px;
+        }
+    </style>
     @endsection
 
     @section('content')
@@ -21,10 +27,35 @@
             <div class="row">
                 <div class="col-md-6 md-margin-bottom-50">
                     <div class="ms-showcase2-template">
-                        <form action="/index.php/upload"
-                              class="dropzone"
-                              id="image-dropzone">
-                        </form>
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                            <!-- Wrapper for slides -->
+                            <div class="carousel-inner">
+                                @foreach (json_decode($plant->imgUrl) as $k => $image)
+                                    @if($k == 0)
+                                    <div class="item active">
+                                    @else
+                                    <div class="item">
+                                    @endif
+                                    <img class="image-edit image-slide img-responsive" src="{{asset($image)}}" alt="">
+                                    </div>
+                                @endforeach
+                                    <div class="item">
+                                        <form action="/index.php/upload"
+                                              class="dropzone image-edit"
+                                              id="image-dropzone">
+                                        </form>
+                                    </div>
+                            </div>
+
+                            <!-- Controls -->
+                            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            </a>
+                        </div> <!-- Carousel -->
+
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -104,7 +135,6 @@
             MasterSliderShowcase2.initMasterSliderShowcase2();
 
             var imageDropzone = new Dropzone("#image-dropzone");
-            console.log(imageDropzone.prototype);
             imageDropzone.on("success", function(file, response) {
                 uploadedImages.push(response.file);
             });

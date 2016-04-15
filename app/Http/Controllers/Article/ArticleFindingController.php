@@ -91,6 +91,7 @@ class ArticleFindingController extends Controller
             ->with('remedy', $remedy['info'])
             ->with('ingredient', $remedy['ingredient'])
             ->with('comments', $remedy['comment'])
+            ->with('related', $remedy['related'])
             ->with('images', json_decode($remedy['info']->imgUrl))
             ;
     }

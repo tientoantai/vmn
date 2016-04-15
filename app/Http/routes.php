@@ -150,6 +150,11 @@ Route::group(['middleware' => ['web']], function () {
         return view('regisStore');
     })->name('regisStore');
 
+    Route::put('/registerPrescription', [
+        'middleware' => LoginRequired::class,
+        'uses'=>'Auth\PrescriptionRegisteringController@register'
+    ])->name('registerPrescription');
+
     Route::post('/login', ['uses'=>'Auth\LoginController@doLogin'])->name('auth.login');
 
     Route::post('/memberRegister',

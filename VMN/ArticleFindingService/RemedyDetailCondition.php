@@ -35,6 +35,15 @@ class RemedyDetailCondition implements ArticleFindingCondition
             ->get()
         ;
 
-        return ['info' => $remedy[0], 'ingredient' => $ingredient, 'comment' => $comment];
+        $related = \DB::table('store_prescriptions')
+            ->where('remedyId', '=', $this->id())
+            ->get()
+        ;
+
+        return ['info'          => $remedy[0],
+                'ingredient'    => $ingredient,
+                'comment'       => $comment,
+                'related'       => $related
+        ];
     }
 }

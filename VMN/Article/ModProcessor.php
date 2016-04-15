@@ -2,11 +2,10 @@
 
 namespace VMN\Article;
 
-use VMN\Article\MedicinalPlant;
-use VMN\Article\Remedy;
 use VMN\ArticleEditingService\Flow\RemedyIngredientService;
 use VMN\MessagingService\Message;
 use VMN\MessagingService\MessageManager;
+use VMN\PrescriptionService\PrescriptionService;
 
 class ModProcessor
 {
@@ -34,6 +33,9 @@ class ModProcessor
         $remedy->save();
         $ingredientService = new RemedyIngredientService();
         $ingredientService->insertIngredient(explode(',' ,$remedy->ingredients), $remedy->id());
+        $prescriptionService = new PrescriptionService();
+        $prescriptionService->addPrescriptionByContribute($remedy);
+
     }
 
     public function approveEditedRemedy(Remedy $remedy, $logId)

@@ -23,7 +23,10 @@ class ProfileController extends Controller
     public function showMemberProfile($account)
     {
         $credential = $this->memberFinder->getMemberCredential($account);
-        if($credential->role != 'store')
+        if ( ! $credential){
+            return 'Người dùng không tồn tại';
+        }
+        elseif($credential->role != 'store')
         {
             $member = $this->memberFinder->getMemberProfile($account);
             $view = 'profile';
