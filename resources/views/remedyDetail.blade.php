@@ -120,7 +120,7 @@
         <div class="tab-v6">
             <ul class="nav nav-tabs" role="tablist">
                 <li class="active"><a href="#reviews" role="tab" data-toggle="tab">Đánh giá (<span id="noOfcomment">{!! count($comments) !!}</span>)</a></li>
-                <li><a href="#related" role="tab" data-toggle="tab">Bài thuốc liên quan</a></li>
+                <li><a href="#related" role="tab" data-toggle="tab">Nhà thuốc liên quan</a></li>
             </ul>
 
             <div class="tab-content">

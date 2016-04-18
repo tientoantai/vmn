@@ -73,7 +73,7 @@ class Register
         ];
         if($request->path() == 'memberRegister')
         {
-            return Validator::make($request->all(), $rule);
+            return Validator::make($request->all(), $rule, $this->message());
         }
         elseif($request->path() == 'storeRegister')
         {
@@ -82,7 +82,24 @@ class Register
                 array_merge($rule, ["storename" => "required",
                                   "address" => "required",
                                   "phonenumber" => "required",
-                                  "representative" => "required"]));
+                                  "representative" => "required"]),$this->message());
         }
+    }
+
+    public function message()
+    {
+        return [
+            'name.required' => 'Hãy nhập tên đăng nhập',
+            'email.required' => 'Hãy nhập email',
+            'email.unique:credentials' => 'Email đã được đăng ký',
+            'name.unique:credentials' => 'Tài khoản đã tồn tại',
+            'password.required' => 'Hãy nhập mật khẩu',
+            'password.min:6' => 'Mật khẩu phải dài tối thiểu 6 ký tự',
+            'password.confirmed' => 'Mật khẩu không khớp',
+            'storename.required' => 'Hãy nhập tên nhà thuốc',
+            'address.required' => 'Hãy nhập địa chỉ nhà thuốc',
+            'phonenumber.required' => 'Hãy nhập tên số điện thoại',
+            'representative.required' => 'Hãy nhập tên người đại diện nhà thuốc',
+        ];
     }
 }

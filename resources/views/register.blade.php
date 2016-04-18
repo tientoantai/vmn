@@ -120,7 +120,11 @@
                 var registerInfo = $(this).serializeJson();
                 var register = $.post($(this).attr('action'), registerInfo);
                 register.then(function(response){
-                    alert (response.message);
+                    var msg = '';
+                    $.each(response.message, function(key, value){
+                        msg += value + '\n';
+                    });
+                    alert (msg);
                     if (response.status == 'OK'){
                         window.location.href = $('#logIn').attr('href');
                     }
