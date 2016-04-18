@@ -14,27 +14,26 @@
     <div class="container">
         <div class="row">
             <div class="col-md-7 md-margin-bottom-50">
-                <h2 class="welcome-title">Welcome to VMN</h2>
-                <p>Suspendisse et tincidunt ipsum, et dignissim urna. Vestibulum nisl tortor, gravida at magna et, suscipit vehicula massa.</p><br>
+                <h2 class="welcome-title">Mạng cây thuốc Nam</h2>
                 <div class="info-block-v2">
                     <i class="icon icon-layers"></i>
                     <div class="info-block-in">
-                        <h3>Pellentesque vulputate</h3>
-                        <p>Vestibulum non ex volutpat, sodales diam sit amet, semper nunc. Integer sed nibh commodo, tincidunt nisi.</p>
+                        <h3>Cây thuốc Nam</h3>
+                        <p>Nhiều cây thuốc nam quen thuộc, dễ tìm, dễ sử dụng và có hiệu quả chữa bệnh</p>
                     </div>
                 </div>
                 <div class="info-block-v2">
                     <i class="icon icon-settings"></i>
                     <div class="info-block-in">
-                        <h3>Curabitur tincidunt</h3>
-                        <p>Vestibulum non ex volutpat, sodales diam sit amet, semper nunc. Integer sed nibh commodo, tincidunt nisi.</p>
+                        <h3>Bài thuốc dân gian</h3>
+                        <p>Nhiều bài thuốc, mẹo chữa bệnh hay được đóng góp bởi các thầy thuốc, nhà thuốc đông y và cộng đồng</p>
                     </div>
                 </div>
                 <div class="info-block-v2">
                     <i class="icon icon-paper-plane"></i>
                     <div class="info-block-in">
-                        <h3>Aenean condimentum</h3>
-                        <p>Vestibulum non ex volutpat, sodales diam sit amet, semper nunc. Integer sed nibh commodo, tincidunt nisi.</p>
+                        <h3>Nhà thuốc Đông Y</h3>
+                        <p>Các nhà thuốc đông y uy tín  tham gia xây dựng và phát triển cộng đồng</p>
                     </div>
                 </div>
             </div>
@@ -42,7 +41,11 @@
             <div class="col-md-5">
                 <form id="sky-form1" class="log-reg-block sky-form" method="post" action="/login">
                     <h2>Đăng nhập vào hệ thống</h2>
-
+                    @if (isset($message))
+                    <div class="alert alert-danger" role="alert">
+                        {{$message}}
+                    </div>
+                    @endif
                     <section>
                         <label class="input login-input">
                             <div class="input-group">
@@ -73,18 +76,18 @@
                     </div>
                     <button class="btn-u btn-u-sea-shop btn-block margin-bottom-20" type="submit">Log in</button>
 
-                    <div class="border-wings">
-                        <span>hoặc</span>
-                    </div>
+                    {{--<div class="border-wings">--}}
+                        {{--<span>hoặc</span>--}}
+                    {{--</div>--}}
 
-                    <div class="row columns-space-removes">
-                        <div class="col-lg-6 margin-bottom-10">
-                            <button type="button" class="btn-u btn-u-md btn-u-fb btn-block"><i class="fa fa-facebook"></i> Facebook Log In</button>
-                        </div>
-                        <div class="col-lg-6">
-                            <button type="button" class="btn-u btn-u-md btn-u-tw btn-block"><i class="fa fa-twitter"></i> Twitter Log In</button>
-                        </div>
-                    </div>
+                    {{--<div class="row columns-space-removes">--}}
+                        {{--<div class="col-lg-6 margin-bottom-10">--}}
+                            {{--<button type="button" class="btn-u btn-u-md btn-u-fb btn-block"><i class="fa fa-facebook"></i> Facebook Log In</button>--}}
+                        {{--</div>--}}
+                        {{--<div class="col-lg-6">--}}
+                            {{--<button type="button" class="btn-u btn-u-md btn-u-tw btn-block"><i class="fa fa-twitter"></i> Twitter Log In</button>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
                 </form>
 
                 <div class="margin-bottom-20"></div>

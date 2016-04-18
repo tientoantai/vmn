@@ -4,6 +4,7 @@ namespace app\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Session\Store;
+use VMN\Auth\LoginFailMessage;
 use VMN\Contracts\Auth\Authenticator;
 
 class LoginController extends Controller
@@ -31,9 +32,11 @@ class LoginController extends Controller
     public function doLogin()
     {
         $credential = $this->auth->byPassword(\Request::input('username'), \Request::input('password'));
-        if ( ! $credential)
+        if ( $credential instanceof LoginFailMessage)
         {
-            return response()->redirectTo('login');
+            return view('login')
+                ->with('message', $credential->toString())
+                ;
         }
         request()->session()->put('credential', $credential);
         return response()->redirectToRoute('home');

@@ -51,15 +51,16 @@ class Authenticator implements AuthContract
     {
         $foundCredential = $this->credential->where('email', '=', $email)
             ->orWhere('name', '=', $email)
+            ->where('role', '<>', 'admin')
             ->first();
         if ( ! $foundCredential)
         {
-            return null;
+            return new LoginFailMessage('Tên đăng nhập không đúng');
         }
 
         if ( ! $this->hasher->check($password, $foundCredential->password))
         {
-            return null;
+            return new LoginFailMessage('Mật khẩu không đúng');
         }
 
         $token = $this->hasher->make($this->key);
