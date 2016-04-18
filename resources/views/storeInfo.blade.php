@@ -22,9 +22,11 @@
                     <li class="list-group-item">
                         <a data-toggle="tab" href="#posted"><i class="fa fa-file-text-o"></i> Bài đã đăng</a>
                     </li>
+                    @if($isMe)
                     <li class="list-group-item">
                         <a data-toggle="tab" href="#notice"><i class="fa fa-comment"></i>Thông báo</a>
                     </li>
+                    @endif
                 </ul>
             </div>
             <!--End Left Sidebar-->

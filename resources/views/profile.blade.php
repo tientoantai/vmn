@@ -22,9 +22,11 @@
                 <li class="list-group-item">
                     <a data-toggle="tab" href="#posted"><i class="fa fa-file-text-o"></i> Bài đã đăng</a>
                 </li>
+                @if($isMe)
                 <li class="list-group-item">
                     <a data-toggle="tab" href="#notice"><i class="fa fa-comment"></i>Thông báo</a>
                 </li>
+                @endif
             </ul>
         </div>
         <!--End Left Sidebar-->
@@ -38,7 +40,9 @@
                             <div class="panel panel-profile">
                                 <div class="panel-heading overflow-h">
                                     <h2 class="panel-title heading-sm pull-left"><i class="fa fa-user"></i>Thông tin cá nhân</h2>
+                                    @if($isMe)
                                     <button class="btn-u pull-right" data-toggle="modal" data-target="#memberInfoModal">Chỉnh sửa</button>
+                                    @endif
                                 </div>
                                 <div class="panel-body margin-bottom-50">
                                     <dl class="dl-horizontal">
