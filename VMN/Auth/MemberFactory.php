@@ -13,7 +13,7 @@ class MemberFactory
         $member->setAttribute('lastName', $memberRaw['lastname']);
         $member->setAttribute('DoB', $memberRaw['DoB']);
         $member->setAttribute('email', $memberRaw['email']);
-        $member->setAttribute('gender', $memberRaw['gender']);
+        $member->setAttribute('gender', isset($memberRaw['gender']) ? $memberRaw['gender'] : '');
         return $member;
     }
 
