@@ -63,6 +63,16 @@ class Authenticator implements AuthContract
             return new LoginFailMessage('Mật khẩu không đúng');
         }
 
+       if ($foundCredential->status == 'wait')
+       {
+           return new LoginFailMessage('Tài khoản chưa được duyệt');
+       }
+
+        if ($foundCredential->status == 'inactive')
+        {
+            return new LoginFailMessage('Tài khoản đang bị khóa');
+        }
+
         $token = $this->hasher->make($this->key);
         $foundCredential->remember_token = $token;
 
@@ -77,5 +87,24 @@ class Authenticator implements AuthContract
     public function byToken($token)
     {
         return $this->credential->where('remember_token', '=', $token)->first();
+    }
+
+    public function managerLogin($username, $password)
+    {
+        $foundCredential = $this->credential->where('name', '=', $username)
+            ->where('role', '=', 'admin')
+            ->orWhere('role', '=', 'mod')
+            ->first();
+        if ( ! $foundCredential)
+        {
+            return new LoginFailMessage('Tên đăng nhập không đúng');
+        }
+
+        if ( ! $this->hasher->check($password, $foundCredential->password))
+        {
+            return new LoginFailMessage('Mật khẩu không đúng');
+        }
+
+        return $foundCredential;
     }
 }

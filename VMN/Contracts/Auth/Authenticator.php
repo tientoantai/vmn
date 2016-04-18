@@ -20,4 +20,10 @@ interface Authenticator
      * @return Credential
      */
     public function byToken($token);
+
+    /**
+     * @param $username
+     * @param $password
+     */
+    public function managerLogin($username, $password);
 }

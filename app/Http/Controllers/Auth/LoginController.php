@@ -55,8 +55,8 @@ class LoginController extends Controller
 
     public function doManagementLogin()
     {
-        $credential = $this->auth->byPassword(\Request::input('username'), \Request::input('password'));
-        if ( ! $credential)
+        $credential = $this->auth->managerLogin(\Request::input('username'), \Request::input('password'));
+        if ( $credential instanceof LoginFailMessage)
         {
             return '';
         }

@@ -81,12 +81,15 @@
                 var registerInfo = $(this).serializeJson();
                 var register = $.post($(this).attr('action'), registerInfo);
                 register.then(function(response){
-                    var msg = ''
-                    $.each(response.message, function(key, value){
-                        msg += value + '\n';
-                    });
-                    alert (msg);
-                    if (response.status == 'OK'){
+                    if (response.status != 'OK'){
+                        var msg = ''
+                        $.each(response.message, function(key, value){
+                            msg += value + '\n';
+                        });
+                        alert (msg);
+                    }
+                   else{
+                        alert (response.message)
                         window.location.href = $('#logIn').attr('href');
                     }
                 });
