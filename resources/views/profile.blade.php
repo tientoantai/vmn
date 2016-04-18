@@ -134,6 +134,7 @@
 
                             </div>
                         </div>
+                        @if($isMe)
                         <div id="notice" class="profile-edit tab-pane fade in ">
                             <div class="panel panel-profile">
                                 <div class="panel-heading overflow-h">
@@ -154,6 +155,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
                     </div>
 
                 </div>
@@ -162,7 +164,7 @@
         <!-- End Profile Content -->
     </div>
 </div>
-
+    @if($isMe)
     <!-- Modal member -->
     <div id="memberInfoModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -226,5 +228,6 @@
         </div>
     </div>
     <!-- end Modal member-->
+    @endif
     <!--=== End Profile ===-->
 @endsection
