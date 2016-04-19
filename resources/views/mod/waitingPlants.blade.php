@@ -19,13 +19,39 @@
         <!-- /.row content -->
         <div class="row">
             <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#newArticle">Cây thuốc mới</a></li>
+                <li class="active"><a data-toggle="tab" href="#allArticle">Cây thuốc trong hệ thống</a></li>
+                <li><a data-toggle="tab" href="#newArticle">Cây thuốc mới</a></li>
                 <li><a data-toggle="tab" href="#editedArticle">Cây thuốc đã sửa</a></li>
-                <li><a data-toggle="tab" href="#reportedArticle">Cây thuốc bị vi phạm</a></li>
+                <li><a data-toggle="tab" href="#reportedArticle">Báo cáo cây thuốc</a></li>
 
             </ul>
             <div class="tab-content ">
-                <div id="newArticle" class="tab-pane fade in active content-manage">
+                <div id="allArticle" class="tab-pane fade in active content-manage">
+                    <br>
+                    <h3>Danh sách cây thuốc trong hệ thống</h3>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Tên cây thuốc</th>
+                            <th>Người đăng</th>
+                            <th>Ngày đăng</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($all as $plant)
+                            <tr>
+                                <td>{{$plant->commonName}}</td>
+                                <td>{{$plant->author}}</td>
+                                <td>{{$plant->created_at}}</td>
+                                <td><a class="btn btn-info current-plant" data-info="{{json_encode($plant)}}">Chi tiết</a></td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+
+                </div>
+                <div id="newArticle" class="tab-pane fade content-manage">
                     <br>
                     <h3>Danh sách cây thuốc mới</h3>
 
@@ -204,6 +230,11 @@
     <script>
         jQuery(document).ready(function() {
 
+            $('.current-plant').on('click', function(){
+                buildDialog($(this));
+
+            });
+
             $('.new-plant').on('click', function(){
                 buildDialog($(this));
 
@@ -251,6 +282,11 @@
             }
 
             $('.carousel-inner').html(imgHtml);
+            if (element.hasClass('current-plant')){
+                $('.report-only').hide();
+                $('.btn-footer').html(
+                        "<button id='delete' data-id='"+dataInfo.id+"' onclick='deletePlant($(this))' class='btn btn-danger'>Xóa</button>");
+            }
             if (element.hasClass('new-plant')){
                 $('.report-only').hide();
                 $('.btn-footer').html(
@@ -335,6 +371,9 @@
                 alert (response.message);
                 location.reload();
             });
+        }
+        function deletePlant(element){
+
         }
     </script>
 @endsection

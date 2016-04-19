@@ -33,6 +33,7 @@ class ModArticleDataFindingController extends Controller
         $list = $this->modFinder->find($condition);
 
         return view('mod/waitingPlants')
+            ->with('all', $list['all'])
             ->with('new', $list['new'])
             ->with('edit', $list['edit'])
             ->with('reported', $list['reported'])

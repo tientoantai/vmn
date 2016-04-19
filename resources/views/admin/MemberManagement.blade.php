@@ -3,21 +3,16 @@
 @section('adminContent')
     <style>
         .pd-top-7{padding-top: 7px;}
+        .mg-top-40{margin-top: -40px}
     </style>
 <!-- Page Content -->
 <div id="page-wrapper">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Quản lý người dùng</h1>
-
-                <div class="input-group custom-search-form" style="width:50%;">
-                    <input type="text" class="form-control" placeholder="Search user account and email ...">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </span>
+                <div class="page-header">
+                    <h2>Quản lý người dùng</h2>
+                    <button class="btn btn-primary pull-right mg-top-40" data-toggle="modal" data-target="#CredentialModal">Tạo tài khoản mới</button>
                 </div>
                 <table class="table">
                     <thead>
@@ -207,6 +202,53 @@
             </div>
         </div>
         <!-- end Modal member-->
+
+        <div id="CredentialModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Thông tin tài khoản</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="mod-create" action="/createMod" class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Email</label>
+
+                                <div class="col-sm-6 pd-top-7">
+                                    <input name="email" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Tài khoản</label>
+
+                                <div class="col-sm-6 pd-top-7">
+                                    <input name="name" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Mật Khẩu</label>
+                                <div class="col-sm-6 pd-top-7">
+                                    <input name="password" class="form-control" type="password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Xác nhận mật Khẩu</label>
+
+                                <div class="col-sm-6 pd-top-7">
+                                    <input name="password_confirmation" class="form-control" type="password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class=" col-sm-12 text-center">
+                                    <button class="btn btn-primary">Lưu</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- /.container-fluid -->
 </div>
@@ -280,6 +322,24 @@
 
             $('#deny-btn').on('click', function(){
 
+            });
+
+            $('#mod-create').on('submit', function(){
+                event.preventDefault();
+                var registerInfo = $(this).serialize();
+                var register = $.post($(this).attr('action'), registerInfo);
+                register.then(function(response){
+                    if (response.status != 'OK'){
+                        var msg = '';
+                        $.each(response.message, function(key, value){
+                            msg += value + '\n';
+                        });
+                        alert (msg);
+                    }else{
+                        alert (response.message);
+                        location.reload();
+                    }
+                });
             });
             function proceedCredential (url, data){
                 var $proceed = $.ajax({

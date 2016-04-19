@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use VMN\Auth\AdminProcessor;
+use VMN\Auth\Member;
 use VMN\Contracts\Auth\Credential;
 use App\Http\Middleware\AdminProceedMiddleWare;
 

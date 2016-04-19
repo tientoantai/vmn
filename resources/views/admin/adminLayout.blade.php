@@ -76,6 +76,7 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="{{asset('assets/js/sb-admin-2.js')}}"></script>
+
     @yield('adminJS')
 </body>
 

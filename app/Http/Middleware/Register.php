@@ -12,7 +12,6 @@ class Register
 {
     public function handle(Request $request, \Closure $next)
     {
-
         $validator = $this->makeValidator($request);
 
         if ($validator->fails()){
@@ -39,7 +38,7 @@ class Register
     public function makeMemberInstance(Request $request)
     {
         $memberFactory = new MemberFactory();
-        if ($request->path() == 'memberRegister')
+        if ($request->path() == 'memberRegister' || $request->path() == 'createMod')
             return $memberFactory->factoryMember($request->all());
         elseif($request->path() == 'storeRegister')
             return $memberFactory->factoryStore($request->all());
@@ -53,9 +52,14 @@ class Register
             $credential->setAttribute('role', 'store');
             $credential->setAttribute('status', 'wait');
         }
-        else
+        elseif($request->path() == 'memberRegister')
         {
             $credential->setAttribute('role', 'member');
+            $credential->setAttribute('status', 'active');
+        }
+        else
+        {
+            $credential->setAttribute('role', 'mod');
             $credential->setAttribute('status', 'active');
         }
         $credential->setAttribute('name', $request->get('name'));
@@ -71,7 +75,7 @@ class Register
             'email' => 'email|required|max:255|unique:credentials',
             'password' => 'required|confirmed|min:6',
         ];
-        if($request->path() == 'memberRegister')
+        if($request->path() == 'memberRegister' || $request->path() == 'createMod')
         {
             return Validator::make($request->all(), $rule, $this->message());
         }

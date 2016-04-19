@@ -9,9 +9,9 @@ class MemberFactory
     {
         $member = new Member();
         $member->setAttribute('accountName', $memberRaw['name']);
-        $member->setAttribute('firstName', $memberRaw['firstname']);
-        $member->setAttribute('lastName', $memberRaw['lastname']);
-        $member->setAttribute('DoB', $memberRaw['DoB']);
+        $member->setAttribute('firstName', isset($memberRaw['firstName']) ? $memberRaw['firstName'] : '');
+        $member->setAttribute('lastName', isset($memberRaw['lastName']) ? $memberRaw['lastName'] : '');
+        $member->setAttribute('DoB', isset($memberRaw['DoB']) ? $memberRaw['DoB'] : '');
         $member->setAttribute('email', $memberRaw['email']);
         $member->setAttribute('gender', isset($memberRaw['gender']) ? $memberRaw['gender'] : '');
         return $member;

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use VMN\Auth\ProfileFinder;
+use VMN\Contracts\Auth\Credential;
 
 
 class ProfileController extends Controller

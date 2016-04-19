@@ -92,8 +92,7 @@ class Authenticator implements AuthContract
     public function managerLogin($username, $password)
     {
         $foundCredential = $this->credential->where('name', '=', $username)
-            ->where('role', '=', 'admin')
-            ->orWhere('role', '=', 'mod')
+            ->whereIn('role', ['admin', 'mod'])
             ->first();
         if ( ! $foundCredential)
         {

@@ -127,7 +127,7 @@
                     });
                     alert (msg);
                     if (response.status != 'error'){
-//                        window.location.href = '/medicinalPlants'
+                        window.location.href = '/medicinalPlants'
                     }
                 });
             });

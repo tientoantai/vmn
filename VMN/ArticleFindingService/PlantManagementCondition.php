@@ -10,9 +10,15 @@ class PlantManagementCondition implements ArticleFindingCondition
     {
         $plantManagement = [];
 
+        $plantManagement['all'] = \DB::table('medicinal_plants')
+            ->whereNull('deleted_at')
+            ->get()
+        ;
+
         $plantManagement['new'] = \DB::table('medicinal_plants_history')
             ->where('status','wait')
             ->where('type', 'add')
+            ->whereNull('deleted_at')
             ->get()
         ;
 
@@ -20,12 +26,14 @@ class PlantManagementCondition implements ArticleFindingCondition
             ->where('status','wait')
             ->where('type','edit')
             ->groupBy('plantID')
+            ->whereNull('deleted_at')
             ->get()
             ;
 
         $plantManagement['reported'] = \DB::table('medicinal_plants')
             ->join('medicinal_plants_reports', 'reported', '=', 'medicinal_plants.id')
-            ->where('status','')
+            ->where('status','wait')
+            ->whereNull('deleted_at')
             ->get()
         ;
         return $plantManagement;

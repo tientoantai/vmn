@@ -50,7 +50,7 @@
                         <label class="input login-input">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                <input type="text" placeholder="Email hoặc tài khoản" name="username" class="form-control">
+                                <input type="text" placeholder="Email hoặc tài khoản" name="username" value="@if(isset($name)){{$name}}@endif" class="form-control">
                             </div>
                         </label>
                     </section>
@@ -58,7 +58,7 @@
                         <label class="input login-input no-border-top">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                                <input type="password" placeholder="Mật khẩu" name="password" class="form-control">
+                                <input type="password" placeholder="Mật khẩu" name="password" value="@if(isset($password)){{$password}}@endif" class="form-control">
                             </div>
                         </label>
                     </section>

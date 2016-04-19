@@ -66,7 +66,7 @@ class MemberInformationCondition implements MemberFindingCondition
         }
         return \DB::table($table)->leftJoin('credentials', $table.'.accountName', '=', 'credentials.name')
             ->where('accountName', $this->getCredentialName())
-            ->first($selectField);
+            ->first($selectField)
         ;
 
     }

@@ -29,19 +29,29 @@ class LoginController extends Controller
         return view('login');
     }
 
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function doLogin()
     {
-        $credential = $this->auth->byPassword(\Request::input('username'), \Request::input('password'));
+        $username = \Request::input('username');
+        $password = \Request::input('password');
+        $credential = $this->auth->byPassword($username, $password);
         if ( $credential instanceof LoginFailMessage)
         {
             return view('login')
                 ->with('message', $credential->toString())
+                ->with('name', $username)
+                ->with('password', $password)
                 ;
         }
         request()->session()->put('credential', $credential);
         return response()->redirectToRoute('home');
     }
 
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function doLogout()
     {
         request()->session()->pull('credential');
@@ -53,18 +63,22 @@ class LoginController extends Controller
         return view('managementLogin');
     }
 
+    /**
+     * @return \Illuminate\Http\RedirectResponse|string
+     */
     public function doManagementLogin()
     {
         $credential = $this->auth->managerLogin(\Request::input('username'), \Request::input('password'));
         if ( $credential instanceof LoginFailMessage)
         {
-            return '';
+            return view('managementLogin')
+                ->with('message', $credential->toString());
         }
-        if ($credential->getRole() == 'admin')
+        elseif ($credential->getRole() == 'admin')
         {
             $redirectName = 'adminHome';
         }
-        if ($credential->getRole() == 'mod')
+        elseif ($credential->getRole() == 'mod')
         {
             $redirectName = 'modHome';
         }

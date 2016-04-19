@@ -26,6 +26,9 @@
                 <li class="list-group-item">
                     <a data-toggle="tab" href="#notice"><i class="fa fa-comment"></i>Thông báo</a>
                 </li>
+                <li class="list-group-item">
+                    <a data-toggle="tab" href="#changePassword"><i class="fa fa-key"></i>Đổi mật khẩu</a>
+                </li>
                 @endif
             </ul>
         </div>
@@ -154,6 +157,30 @@
                                     </div><!--/end media media v2-->
                                 </div>
                             </div>
+                        </div>
+                        <div id="changePassword" class="profile-edit tab-pane fade in ">
+                            <form action="">
+                                <div class="panel panel-profile">
+                                    <div class="panel-heading overflow-h">
+                                        <h2 class="panel-title heading-sm pull-left"><i class="fa fa-user"></i>Đổi Mật Khẩu</h2>
+                                    </div>
+                                    <div class="panel-body margin-bottom-50">
+                                        <dl class="dl-horizontal">
+                                            <dt><strong>Mật Khẩu cũ:</strong></dt>
+                                            <dd><input type="password" class="form-control"></dd>
+                                            <hr>
+                                            <dt><strong>Mật Khẩu mới: </strong></dt>
+                                            <dd><input type="password" class="form-control"></dd>
+                                            <hr>
+                                            <dt><strong>Nhập lại mật khẩu: </strong></dt>
+                                            <dd><input type="password" class="form-control"></dd>
+                                            <hr>
+                                        </dl>
+                                        <button class="btn-u" type="submit">Lưu</button>
+                                    </div>
+
+                                </div>
+                            </form>
                         </div>
                         @endif
                     </div>

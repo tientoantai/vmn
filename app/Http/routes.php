@@ -54,6 +54,8 @@ Route::group(['domain' => 'admin.vmn.vnvalley.com', 'middleware' => ['web']],fun
 
     Route::put('/changeRole', ['uses' => 'Admin\AdminProceedController@changeRole'])->name('admin.changeRole');
 
+    Route::post('/createMod', ['uses' => 'Auth\RegisterController@memberRegister'])->name('admin.createMod');
+
     Route::get('/userDetail', ['uses' => 'Admin\AdminUsersDataController@adminUserDetail'])->name('admin.userDetail');
 
     Route::get('/modDashboard', ['uses' => 'Mod\ModArticleDataFindingController@modHome'])->name('modHome');
