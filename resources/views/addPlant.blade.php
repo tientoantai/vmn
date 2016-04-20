@@ -121,12 +121,14 @@
                 var $createPlant = $.post($(this).attr('action'), plantRaw);
 
                 $createPlant.then(function (response) {
-                    var msg = ''
-                    $.each(response.message, function(key, value){
-                        msg += value + '\n';
-                    });
-                    alert (msg);
-                    if (response.status != 'error'){
+                    if(response.status == 'error'){
+                        var msg = '';
+                        $.each(response.message, function(key, value){
+                            msg += value + '\n';
+                        });
+                        alert (msg);
+                    }else{
+                        alert (response.message);
                         window.location.href = '/medicinalPlants'
                     }
                 });
