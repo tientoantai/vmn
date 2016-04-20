@@ -5,6 +5,8 @@
 @endsection
 @section('pageCss')
     <link rel="stylesheet" href="{{asset('assets/css/pages/log-reg-v3.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/plugins/bootstrap-datepicker-1.5.1-dist/css/bootstrap-datepicker3.min.css')}}">
+
 @endsection
 @section('content')
     <!--=== Registre ===-->
@@ -71,7 +73,7 @@
                             </label>
                             <section>
                                 <label class="input">
-                                    <input type="text" name="DoB" placeholder="Ngày sinh" class="form-control">
+                                    <input type="text" name="DoB" onkeydown="return false" placeholder="Ngày sinh" class="form-control">
                                 </label>
                             </section>
                             <section>
@@ -108,13 +110,21 @@
 @endsection
 
 @section('pageJS')
-    <script src={{asset('assets/js/plugins/serializeJson.js')}}></script>
+    <script src="{{asset('assets/js/plugins/serializeJson.js')}}"></script>
+    <script src="{{asset('assets/plugins/bootstrap-datepicker-1.5.1-dist/js/bootstrap-datepicker.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/bootstrap-datepicker-1.5.1-dist/locales/bootstrap-datepicker.vi.min.js')}}"></script>
+
     <script>
         jQuery(document).ready(function() {
             App.init();
             App.initScrollBar();
             OwlCarousel.initOwlCarousel();
+            $('[name=DoB]').datepicker({
+                autoclose: true,
+                language: 'vi',
+                todayHighlight: true,
 
+            });
             $('#registerForm').on('submit', function(event){
                 event.preventDefault();
                 var registerInfo = $(this).serializeJson();
