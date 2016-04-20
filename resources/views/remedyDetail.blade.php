@@ -21,12 +21,18 @@
                     <div class="ms-showcase2-template">
                         <!-- Master Slider -->
                         <div class="master-slider ms-skin-default" id="masterslider">
-                            @foreach($images as $image)
+                            @if($images != null && $images != '')
+                                @foreach($images as $image)
+                                    <div class="ms-slide">
+                                        <img class="ms-brd" src="assets/img/blank.gif" data-src="{{$image}}" alt="">
+                                        <img class="ms-thumb" src="{{$image}}" alt="thumb">
+                                    </div>
+                                @endforeach
+                            @else
                                 <div class="ms-slide">
-                                    <img class="ms-brd" src="assets/img/blank.gif" data-src="{{$image}}" alt="">
-                                    <img class="ms-thumb" src="{{$image}}" alt="thumb">
+                                    <img class="ms-brd" src="assets/img/blank.gif" data-src="assets/img/default/noImage.jpg" alt="">
                                 </div>
-                            @endforeach
+                            @endif
                         </div>
                         <!-- End Master Slider -->
                     </div>
