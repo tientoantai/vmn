@@ -13,10 +13,13 @@ class PrescriptionService
 
     public function addPrescriptionByContribute(Remedy $remedy)
     {
+        $hsm = HerbalMedicineStore::where('accountName', $remedy->getAuthor())->first();
         if ($this->isStore($remedy->getAuthor()))
         {
-            \DB::table('remedy_ingredients')->insert([
+            \DB::table('store_prescriptions')->insert([
                 'storeCredential' => $remedy->getAuthor(),
+                'storeName'       => $hsm->storename,
+                'storeAvatar'     => $hsm->avatar,
                 'remedyId'        => $remedy->id(),
                 'remedyTitle'     => $remedy->getTitle(),
             ]);
@@ -25,7 +28,7 @@ class PrescriptionService
 
     private function isStore($credentialName)
     {
-        $credential = Credential::where('name', $credentialName);
+        $credential = Credential::where('name', $credentialName)->first();
         if ($credential->role == 'store')
             return true;
         else
