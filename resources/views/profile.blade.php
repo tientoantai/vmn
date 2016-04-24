@@ -159,7 +159,7 @@
                             </div>
                         </div>
                         <div id="changePassword" class="profile-edit tab-pane fade in ">
-                            <form action="">
+                            <form method="post" id="password-change" action="/changePassword" data-credential="{{$info->accountName}}">
                                 <div class="panel panel-profile">
                                     <div class="panel-heading overflow-h">
                                         <h2 class="panel-title heading-sm pull-left"><i class="fa fa-user"></i>Đổi Mật Khẩu</h2>
@@ -167,16 +167,17 @@
                                     <div class="panel-body margin-bottom-50">
                                         <dl class="dl-horizontal">
                                             <dt><strong>Mật Khẩu cũ:</strong></dt>
-                                            <dd><input type="password" class="form-control"></dd>
+                                            <dd><input name="password" type="password" class="form-control"></dd>
                                             <hr>
                                             <dt><strong>Mật Khẩu mới: </strong></dt>
-                                            <dd><input type="password" class="form-control"></dd>
+                                            <dd><input name="newPassword" type="password" class="form-control"></dd>
                                             <hr>
                                             <dt><strong>Nhập lại mật khẩu: </strong></dt>
-                                            <dd><input type="password" class="form-control"></dd>
+                                            <dd><input name="newPassword_confirmation" type="password" class="form-control"></dd>
                                             <hr>
                                         </dl>
-                                        <button class="btn-u" type="submit">Lưu</button>
+                                        <button class="btn-u btn-u" type="submit">Lưu</button>
+                                        <button class="btn-u btn-u-default" type="reset">Nhập lại</button>
                                     </div>
 
                                 </div>
@@ -257,4 +258,28 @@
     <!-- end Modal member-->
     @endif
     <!--=== End Profile ===-->
+@endsection
+
+@section('pageJS')
+    <script>
+        $('#password-change').on('submit', function(event){
+            event.preventDefault();
+            var credential = $(this).serializeJson();
+            credential.credential = $(this).attr('data-credential');
+            var $change = $.post($(this).attr('action'), credential)
+            $change.then(function(response){
+                if (response.status == 'error'){
+                    var msg = '';
+                    $.each(response.message, function(key, value){
+                        msg += value + '\n';
+                    });
+                    alert (msg);
+                }else if(response.status == 'OK'){
+                    alert ('Đổi mật khẩu thành công');
+                }
+                $('.btn-u-default').click();
+
+            });
+        });
+    </script>
 @endsection

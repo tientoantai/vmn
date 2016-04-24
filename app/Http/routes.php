@@ -28,8 +28,8 @@ use App\Http\Middleware\LoginRequired;
 */
 
 
-//Route::group(['domain' => 'admin.vmn.local', 'middleware' => ['web']], function () {
-Route::group(['domain' => 'admin.vmn.vnvalley.com', 'middleware' => ['web']],function () {
+Route::group(['domain' => 'admin.vmn.local', 'middleware' => ['web']], function () {
+//Route::group(['domain' => 'admin.vmn.vnvalley.com', 'middleware' => ['web']],function () {
     Route::get('/', function(){
        return redirect('managementLogin');
     });
@@ -83,7 +83,7 @@ Route::group(['domain' => 'admin.vmn.vnvalley.com', 'middleware' => ['web']],fun
 });
 
 Route::group(['middleware' => ['web']], function () {
-    //
+
     Route::get('/', ['uses'=>'Article\PageShowingController@home'])->name('home');
 
     Route::get('/medicinalPlants', [
@@ -165,6 +165,9 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::post('/storeRegister', ['uses' => 'Auth\RegisterController@storeRegister'])
         ->name('auth.storeRegister');
+
+    Route::post('/changePassword', ['uses' => 'Auth\PasswordController@changePassword'])
+        ->name('changePassword');
 
     Route::get('/me', function(Authenticator $auth){
         return $auth->byToken(Request::input('token'));
