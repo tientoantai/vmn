@@ -26,6 +26,9 @@
                     <li class="list-group-item">
                         <a data-toggle="tab" href="#notice"><i class="fa fa-comment"></i>Thông báo</a>
                     </li>
+                    <li class="list-group-item">
+                        <a data-toggle="tab" href="#changePassword"><i class="fa fa-key"></i>Đổi mật khẩu</a>
+                    </li>
                     @endif
                 </ul>
             </div>
@@ -134,27 +137,53 @@
 
                                 </div>
                             </div>
-                            <div id="notice" class="profile-edit tab-pane fade in ">
-                                <div class="panel panel-profile">
-                                    <div class="panel-heading overflow-h">
-                                        <h2 class="panel-title heading-sm pull-left"><i class="fa fa-comments"></i>Thông báo</h2>
-                                    </div>
-                                    <div class="panel-body margin-bottom-50">
-                                        <div class="media media-v2">
-                                            <a class="pull-left" href="#">
-                                                <img class="media-object rounded-x" src="assets/img/testimonials/img2.jpg" alt="">
-                                            </a>
-                                            <div class="media-body">
-                                                <h4 class="media-heading">
-                                                    <strong><a href="#">Eva Nelson</a></strong>
-                                                    <small>About an hour ago</small>
-                                                </h4>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada rhoncus tellus blandit facilisis. Morbi faucibus eros facilisis vulputate mollis. Mauris sodales ante lorem, sed fringilla orci rhoncus ac. Donec sit amet eros at libero egestas interdum non quis libero.</p>
-                                            </div>
-                                        </div><!--/end media media v2-->
+                            @if($isMe)
+                                <div id="notice" class="profile-edit tab-pane fade in ">
+                                    <div class="panel panel-profile">
+                                        <div class="panel-heading overflow-h">
+                                            <h2 class="panel-title heading-sm pull-left"><i class="fa fa-comments"></i>Thông báo</h2>
+                                        </div>
+                                        <div class="panel-body margin-bottom-50">
+                                            <div class="media media-v2">
+                                                @foreach ($message as $msg)
+                                                    <div class="media-body">
+                                                        <h4 class="media-heading">
+                                                            <strong><a href="#">{{$msg->from}}</a></strong>
+                                                            <small>{{$msg->created_at}}</small>
+                                                        </h4>
+                                                        <p>{!! $msg->content !!}</p>
+                                                    </div></br>
+                                                @endforeach
+                                            </div><!--/end media media v2-->
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                                <div id="changePassword" class="profile-edit tab-pane fade in ">
+                                    <form method="post" id="password-change" action="/changePassword" data-credential="{{$info->accountName}}">
+                                        <div class="panel panel-profile">
+                                            <div class="panel-heading overflow-h">
+                                                <h2 class="panel-title heading-sm pull-left"><i class="fa fa-user"></i>Đổi Mật Khẩu</h2>
+                                            </div>
+                                            <div class="panel-body margin-bottom-50">
+                                                <dl class="dl-horizontal">
+                                                    <dt><strong>Mật Khẩu cũ:</strong></dt>
+                                                    <dd><input name="password" type="password" class="form-control"></dd>
+                                                    <hr>
+                                                    <dt><strong>Mật Khẩu mới: </strong></dt>
+                                                    <dd><input name="newPassword" type="password" class="form-control"></dd>
+                                                    <hr>
+                                                    <dt><strong>Nhập lại mật khẩu: </strong></dt>
+                                                    <dd><input name="newPassword_confirmation" type="password" class="form-control"></dd>
+                                                    <hr>
+                                                </dl>
+                                                <button class="btn-u btn-u" type="submit">Lưu</button>
+                                                <button class="btn-u btn-u-default" type="reset">Nhập lại</button>
+                                            </div>
+
+                                        </div>
+                                    </form>
+                                </div>
+                            @endif
                         </div>
 
                     </div>
@@ -164,4 +193,28 @@
         </div>
     </div>
     <!--=== End Profile ===-->
+@endsection
+
+@section('pageJS')
+    <script>
+        $('#password-change').on('submit', function(event){
+            event.preventDefault();
+            var credential = $(this).serializeJson();
+            credential.credential = $(this).attr('data-credential');
+            var $change = $.post($(this).attr('action'), credential)
+            $change.then(function(response){
+                if (response.status == 'error'){
+                    var msg = '';
+                    $.each(response.message, function(key, value){
+                        msg += value + '\n';
+                    });
+                    alert (msg);
+                }else if(response.status == 'OK'){
+                    alert ('Đổi mật khẩu thành công');
+                }
+                $('.btn-u-default').click();
+
+            });
+        });
+    </script>
 @endsection

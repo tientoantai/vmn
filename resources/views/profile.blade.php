@@ -242,8 +242,6 @@
                                 <input type="text" class="form-control" value="{{$info->DoB}}">
                             </div>
                         </div>
-
-
                         <div class="form-group">
                             <div class="col-sm-12 text-center">
                                 <input type="button" value="Lưu" class="btn-u rounded" id="changeRole">
