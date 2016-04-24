@@ -23,7 +23,7 @@
                                 @if($img != null && $img != '')
                                     @foreach($img as $image)
                                     <div class="ms-slide">
-                                        <img class="ms-brd" src="assets/img/blank.gif" data-src="{{$image}}" alt="">
+                                            <img class="ms-brd" src="assets/img/blank.gif" data-src="{{$image}}" alt="">
                                         <img class="ms-thumb" src="{{$image}}" alt="thumb">
                                     </div>
                                     @endforeach
@@ -95,7 +95,7 @@
                             </tr>
                             <tr>
                                 <td><b>Đánh giá</b></td>
-                                <td><div class="stars-ratings">
+                                <td><div class="stars-ratings" data-rate="{{$plant['info']->id}}">
                                         <input type="radio" name="stars-rating" id="stars-rating-5">
                                         <label for="stars-rating-5"><i class="fa fa-star fa-lg"></i></label>
                                         <input type="radio" name="stars-rating" id="stars-rating-4">
@@ -237,15 +237,21 @@
             StyleSwitcher.initStyleSwitcher();
             MasterSliderShowcase2.initMasterSliderShowcase2();
 
-            var ratingPoint = 0;
             $(":radio").on('click', function(){
-                ratingPoint = this.id.substr(-1);
+                var rating = {
+                    ratingPoint : this.id.substr(-1),
+                    Id          : $(this).parent().attr('data-rate')
+                }
+                var $rating = $.post('/ratingPlant', rating);
+                $rating.then(function(response){
+                    alert (response.message)
+                    $(":radio").prop('disabled', true);
+                })
             });
 
             $('#review').on('submit', function(event){
                 event.preventDefault();
                 var review = $(this).serializeJson();
-                review.ratingPoint =  ratingPoint;
                 review.Id = $(this).attr("data-review");
                 var sendReview = $.post($(this).attr('action'), review);
                 sendReview.then(function(){

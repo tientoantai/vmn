@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Article;
 
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\ReviewingArticle;
+use VMN\Article\MedicinalPlant;
 use VMN\ArticleReviewService\ArticleReviewService;
 use VMN\ArticleReviewService\Review;
 
@@ -42,5 +43,23 @@ class ArticleReviewingController extends Controller
     public function reviewRemedy(Review $review)
     {
         $this->reviewingService->reviewRemedy($review);
+    }
+
+    public function ratingPlant(Review $review)
+    {
+        $this->reviewingService->ratingPlant($review);
+        return response([
+            'status' => 'OK',
+            'message' => 'Cảm ơn bạn đã gửi đánh giá'
+        ]);
+    }
+
+    public function ratingRemedy(Review $review)
+    {
+        $this->reviewingService->ratingRemedy($review);
+        return response([
+            'status' => 'OK',
+            'message' => 'Cảm ơn bạn đã gửi đánh giá'
+        ]);
     }
 }

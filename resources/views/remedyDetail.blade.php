@@ -113,6 +113,21 @@
                             <td><a href="{{route('profile',['account' => $remedy->author])}}">
                                     {{$remedy->author}}</a></td>
                         </tr>
+                        <tr>
+                            <td><b>Đánh giá</b></td>
+                            <td><div class="stars-ratings" data-rate="{{$remedy->id}}">
+                                    <input type="radio" name="stars-rating" id="stars-rating-5">
+                                    <label for="stars-rating-5"><i class="fa fa-star fa-lg"></i></label>
+                                    <input type="radio" name="stars-rating" id="stars-rating-4">
+                                    <label for="stars-rating-4"><i class="fa fa-star fa-lg"></i></label>
+                                    <input type="radio" name="stars-rating" id="stars-rating-3">
+                                    <label for="stars-rating-3"><i class="fa fa-star fa-lg"></i></label>
+                                    <input type="radio" name="stars-rating" id="stars-rating-2">
+                                    <label for="stars-rating-2"><i class="fa fa-star fa-lg"></i></label>
+                                    <input type="radio" name="stars-rating" id="stars-rating-1">
+                                    <label for="stars-rating-1"><i class="fa fa-star fa-lg"></i></label>
+                                </div></td>
+                        </tr>
                         </tbody></table>
                 </div>
             </div><!--/end row-->
@@ -140,15 +155,6 @@
                                     <div class="product-comment-dtl">
                                         <h4><a>{{$comment->reviewer}}</a> <small>{{$comment->created_at}}</small></h4>
                                         <div>{!! nl2br($comment->comment) !!}</div>
-                                        <ul class="list-inline product-ratings pull-right">
-                                            @for($j = 1; $j <= 5; $j++)
-                                                @if($j <= $comment->ratingPoint)
-                                                    <li><i class="rating-selected fa fa-star"></i></li>
-                                                @else
-                                                    <li><i class="rating fa fa-star"></i></li>
-                                                @endif
-                                            @endfor
-                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -167,18 +173,7 @@
 
                             <footer class="review-submit">
                                 <label class="label-v2">Review</label>
-                                <div class="stars-ratings">
-                                    <input type="radio" name="stars-rating" id="stars-rating-5">
-                                    <label for="stars-rating-5"><i class="fa fa-star"></i></label>
-                                    <input type="radio" name="stars-rating" id="stars-rating-4">
-                                    <label for="stars-rating-4"><i class="fa fa-star"></i></label>
-                                    <input type="radio" name="stars-rating" id="stars-rating-3">
-                                    <label for="stars-rating-3"><i class="fa fa-star"></i></label>
-                                    <input type="radio" name="stars-rating" id="stars-rating-2">
-                                    <label for="stars-rating-2"><i class="fa fa-star"></i></label>
-                                    <input type="radio" name="stars-rating" id="stars-rating-1">
-                                    <label for="stars-rating-1"><i class="fa fa-star"></i></label>
-                                </div>
+
                                 <button type="submit" class="btn-u btn-u-sea-shop btn-u-sm pull-right">Gửi</button>
                             </footer>
                         </form>
@@ -261,9 +256,16 @@
             StyleSwitcher.initStyleSwitcher();
             MasterSliderShowcase2.initMasterSliderShowcase2();
 
-            var ratingPoint = 0;
             $(":radio").on('click', function(){
-                ratingPoint = this.id.substr(-1);
+                var rating = {
+                    ratingPoint : this.id.substr(-1),
+                    Id          : $(this).parent().attr('data-rate')
+                }
+                var $rating = $.post('/ratingRemedy', rating);
+                $rating.then(function(response){
+                    alert (response.message)
+                    $(":radio").prop('disabled', true);
+                })
             });
 
             $('#review').on('submit', function(event){

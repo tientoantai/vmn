@@ -2,8 +2,6 @@
 
 namespace VMN\ArticleReviewService;
 
-use VMN\Contracts\Article\Article;
-use VMN\Contracts\Auth\Authenticable;
 
 class ArticleReviewService
 {
@@ -30,21 +28,21 @@ class ArticleReviewService
         ]);
     }
 
-    /**
-     * @param Article $article
-     * @return Review[]
-     */
-    public function latestReviewsFor(Article $article)
+    public function ratingPlant(Review $review)
     {
-
+        \DB::table('medicinal_plants')->where('id', $review->getReviewed())
+            ->update([
+                'ratingPoint' => \DB::raw('ratingPoint +' . $review->getRating()),
+                'ratingTime' => \DB::raw('ratingTime + 1'),
+            ]);
     }
 
-    /**
-     * @param Authenticable $reviewer
-     * @return Review[]
-     */
-    public function latestReviewsBy(Authenticable $reviewer)
+    public function ratingRemedy(Review $review)
     {
-
+        \DB::table('remedies')->where('id', $review->getReviewed())
+            ->update([
+                'ratingPoint' => \DB::raw('ratingPoint +' . $review->getRating()),
+                'ratingTime' => \DB::raw('ratingTime + 1'),
+            ]);
     }
 }
