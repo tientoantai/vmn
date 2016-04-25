@@ -15,30 +15,27 @@
             <div class="row">
                 <div class="col-md-7 md-margin-bottom-50">
                     <h2 class="welcome-title">Chào mừng gia nhập VMN</h2>
-                    <p>Mạng chia sẽ thông tin thuốc nam </p><br>
-                    <div class="row margin-bottom-50">
-                        <div class="col-sm-4 md-margin-bottom-20">
-                            <div class="site-statistics">
-                                <span>20,039</span>
-                                <small>Products</small>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 md-margin-bottom-20">
-                            <div class="site-statistics">
-                                <span>54,283</span>
-                                <small>Reviews</small>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="site-statistics">
-                                <span>376k</span>
-                                <small>Sale</small>
-                            </div>
+                    <h3 class="welcome-title">Nơi chia sẻ thông tin về</h3>
+                    <div class="info-block-v2">
+                        <i class="fa fa-pagelines"></i>
+                        <div class="info-block-in">
+                            <h3>Cây thuốc Nam</h3>
+                            <p>Nhiều cây thuốc nam quen thuộc, dễ tìm, dễ sử dụng và có hiệu quả chữa bệnh</p>
                         </div>
                     </div>
-                    <div class="members-number">
-                        <h3>Join more than <span class="shop-green">13,000</span> members worldwide</h3>
-                        <img class="img-responsive" src="assets/img/map.png" alt="">
+                    <div class="info-block-v2">
+                        <i class="icon icon-layers"></i>
+                        <div class="info-block-in">
+                            <h3>Bài thuốc dân gian</h3>
+                            <p>Nhiều bài thuốc, mẹo chữa bệnh hay được đóng góp bởi các thầy thuốc, nhà thuốc đông y và cộng đồng</p>
+                        </div>
+                    </div>
+                    <div class="info-block-v2">
+                        <i class="fa fa-h-square"></i>
+                        <div class="info-block-in">
+                            <h3>Nhà thuốc Đông Y</h3>
+                            <p>Các nhà thuốc đông y uy tín  tham gia xây dựng và phát triển cộng đồng</p>
+                        </div>
                     </div>
                 </div>
 
