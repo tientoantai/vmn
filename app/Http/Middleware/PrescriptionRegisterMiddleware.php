@@ -27,6 +27,11 @@ class PrescriptionRegisterMiddleware
         $remedy = $this->makeRemedy($request->get('id'));
 
         $hms = $this->makeStore(\Session::get('credential')['attributes']['name']);
+        if ( ! $hms instanceof HerbalMedicineStore){
+            return response()->json([
+                'message' => 'Tài khoản của bạn không thể thực hiện chức năng này'
+            ]);
+        }
         app()->bind(get_class($remedy), function () use ($remedy) {
             return $remedy;
         });
@@ -48,6 +53,9 @@ class PrescriptionRegisterMiddleware
 
     private function isIExisted($request)
     {
+        if ( $request->path() != 'registerPrescription'){
+            return false;
+        }
         $pre = \DB::table('store_prescriptions')
             ->where('storeCredential', \Session::get('credential')['attributes']['name'])
             ->where('remedyId', $request->get('id'))

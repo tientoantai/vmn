@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use VMN\Auth\ProfileFinder;
-use VMN\Contracts\Auth\Credential;
+
 
 
 class ProfileController extends Controller
@@ -25,7 +25,7 @@ class ProfileController extends Controller
     {
         $credential = $this->memberFinder->getMemberCredential($account);
         if ( ! $credential){
-            return 'Người dùng không tồn tại';
+            return 'Người dùng không tồn tại hoặc đang bị khóa';
         }
         elseif($credential->role != 'store')
         {
@@ -36,17 +36,22 @@ class ProfileController extends Controller
         {
             $member = $this->memberFinder->getStoreInfo($account);
             $view = 'storeInfo';
+            $prescription = $this->memberFinder->getPrescription($account);
         }
         $member->avatar = $credential->avatar ? $credential->avatar : 'assets/img/team/01.jpg';
         $plantsPosted = $this->memberFinder->getMemberMedicinalPlantsArticle($account);
         $remediesPosted = $this->memberFinder->getMemberRemediesArticle($account);
         $message = $this->memberFinder->getMemberMessage($account);
-        return view($view)
+        $result = view($view)
             ->with('info', $member)
             ->with('plantsPosted', $plantsPosted)
             ->with('remediesPosted', $remediesPosted)
             ->with('message', $message)
             ->with('isMe', $account == Session::get('credential')['attributes']['name'])
             ;
+        if($credential->role == 'store'){
+            $result->with('prescription', $prescription);
+        }
+        return $result;
     }
 }

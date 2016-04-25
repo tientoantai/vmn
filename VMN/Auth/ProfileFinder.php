@@ -21,6 +21,7 @@ class ProfileFinder
     {
         return \DB::table('members')
             ->where('accountName','=',$account)
+            ->whereNull('deleted_at')
             ->first()
             ;
     }
@@ -29,6 +30,7 @@ class ProfileFinder
     {
         return \DB::table('herbal_medicine_stores')
             ->where('accountName','=',$account)
+            ->whereNull('deleted_at')
             ->first()
         ;
     }
@@ -37,6 +39,7 @@ class ProfileFinder
     {
         return \DB::table('medicinal_plants')
             ->where('author','=',$account)
+            ->whereNull('deleted_at')
             ->get()
         ;
 
@@ -46,15 +49,24 @@ class ProfileFinder
     {
         return \DB::table('remedies')
             ->where('author','=',$account)
+            ->whereNull('deleted_at')
             ->get()
         ;
-
     }
 
     public function getMemberMessage($account)
     {
         return \DB::table('messages')
             ->where('to', $account)
+            ->get()
+            ;
+    }
+
+    public function getPrescription($account)
+    {
+        return \DB::table('store_prescriptions')
+            ->where('storeCredential', $account)
+            ->whereNull('deleted_at')
             ->get()
             ;
     }

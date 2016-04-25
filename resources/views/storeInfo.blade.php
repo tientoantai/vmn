@@ -22,6 +22,9 @@
                     <li class="list-group-item">
                         <a data-toggle="tab" href="#posted"><i class="fa fa-file-text-o"></i> Bài đã đăng</a>
                     </li>
+                    <li class="list-group-item">
+                        <a data-toggle="tab" href="#prescription"><i class="fa fa-list-alt"></i>Danh sách bài thuốc</a>
+                    </li>
                     @if($isMe)
                     <li class="list-group-item">
                         <a data-toggle="tab" href="#notice"><i class="fa fa-comment"></i>Thông báo</a>
@@ -137,6 +140,46 @@
 
                                 </div>
                             </div>
+                            <div id="prescription" class="profile-edit tab-pane fade in ">
+                                <div class="panel panel-profile">
+                                    <div class="panel-heading overflow-h">
+                                        <h2 class="panel-title heading-sm pull-left"><i class="fa fa-th-list"></i>Danh mục bài thuốc</h2>
+                                    </div>
+                                    <div class="panel-body margin-bottom-50">
+                                        <div class="media media-v2">
+                                            @foreach ($prescription as $pre)
+                                                <div class="row">
+                                                    <div class="easy-block-v1 col-md-2">
+                                                    <img class="img-responsive" src="{{asset($pre->remedyThumbnail)}}" alt="">
+                                                    </div>
+                                                    <div class="col-md-10">
+                                                        <div class="projects">
+                                                            <h2><a class="color-dark" href="{{route('remedy-detail',['id' => $pre->remedyId])}}">
+                                                                    {{$pre->remedyTitle}}</a></h2>
+                                                        </div>
+                                                        <div class="project-share">
+                                                            <ul class="list-inline comment-list-v2 pull-left">
+                                                                @if($isMe)
+                                                                <li><button class="btn btn-default delete-prescription"
+                                                                    data-remedy="{{$pre->remedyId}}" data-hsm="{{Session::get('credential')['attributes']['name']}}" type="button" title="Xóa khỏ danh sách">
+                                                                        <i class="fa fa-trash-o"></i></button></li>
+                                                                @endif
+                                                            </ul>
+                                                            <ul class="list-inline star-vote pull-right">
+                                                                <li><i class="color-green fa fa-star"></i></li>
+                                                                <li><i class="color-green fa fa-star"></i></li>
+                                                                <li><i class="color-green fa fa-star"></i></li>
+                                                                <li><i class="color-green fa fa-star"></i></li>
+                                                                <li><i class="color-green fa fa-star-o"></i></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div><!--/end media media v2-->
+                                    </div>
+                                </div>
+                            </div>
                             @if($isMe)
                                 <div id="notice" class="profile-edit tab-pane fade in ">
                                     <div class="panel panel-profile">
@@ -213,8 +256,22 @@
                     alert ('Đổi mật khẩu thành công');
                 }
                 $('.btn-u-default').click();
-
             });
         });
+
+        $('.delete-prescription').on('click', function(){
+            var data = {
+
+            }
+            var $change = $.ajax({
+                method: "PUT",
+                url: "/removePrescription",
+                data: {id : $(this).attr('data-remedy')}
+            });
+            $change.then(function(response){
+                alert (response.message)
+//                    location.reload();
+            })
+        })
     </script>
 @endsection

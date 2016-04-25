@@ -27,8 +27,11 @@ class PrescriptionRegisteringController extends Controller
         ]);
     }
 
-    public function remove(Remedy $remedy)
+    public function remove(Remedy $remedy, HerbalMedicineStore $herbalMedicineStore)
     {
-        
+        $this-> prescriptionService->removeFromPrescriptionList($remedy, $herbalMedicineStore);
+        return response()->json([
+            'message' => 'Bài thuốc đã được đưa ra khỏi danh sách của nhà thuốc'
+        ]);
     }
 }

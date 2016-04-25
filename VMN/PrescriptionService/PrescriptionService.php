@@ -22,6 +22,7 @@ class PrescriptionService
                 'storeAvatar'     => $hsm->avatar,
                 'remedyId'        => $remedy->id(),
                 'remedyTitle'     => $remedy->getTitle(),
+                'remedyThumbnail' => $remedy->getThumbnailUrl()
             ]);
         }
     }
@@ -42,8 +43,17 @@ class PrescriptionService
             'storeName'       => $herbalMedicineStore->storename,
             'storeAvatar'     => $herbalMedicineStore->avatar,
             'remedyId'        => $remedy->id(),
-            'remedyTitle'     => $remedy->getTitle()
+            'remedyTitle'     => $remedy->getTitle(),
+            'remedyThumbnail' => $remedy->getThumbnailUrl()
         ]);
+    }
+
+    public function removeFromPrescriptionList(Remedy $remedy, HerbalMedicineStore $herbalMedicineStore)
+    {
+        \DB::table('store_prescriptions')
+            ->where('storeCredential', $herbalMedicineStore->accountName)
+            ->where('remedyId', $remedy->id())
+            ->update(['deleted_at' => date('Y-m-d H:i:s')]);
     }
 
 }

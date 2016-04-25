@@ -157,6 +157,11 @@ Route::group(['middleware' => ['web']], function () {
         'uses'=>'Auth\PrescriptionRegisteringController@register'
     ])->name('registerPrescription');
 
+    Route::put('/removePrescription', [
+        'middleware' => LoginRequired::class,
+        'uses'=>'Auth\PrescriptionRegisteringController@remove'
+    ])->name('removePrescription');
+
     Route::post('/login', ['uses'=>'Auth\LoginController@doLogin'])->name('auth.login');
 
     Route::post('/memberRegister',
