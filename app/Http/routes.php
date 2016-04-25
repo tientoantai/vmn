@@ -12,9 +12,9 @@
 */
 
 use App\Http\Middleware\UploadingFile;
-use VMN\Contracts\Auth\Authenticator;
 use VMN\UploadService\Uploader;
 use App\Http\Middleware\LoginRequired;
+use App\Http\Middleware\ProfileMiddleWare;
 
 /*
 |--------------------------------------------------------------------------
@@ -174,9 +174,10 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/changePassword', ['uses' => 'Auth\PasswordController@changePassword'])
         ->name('changePassword');
 
-    Route::get('/me', function(Authenticator $auth){
-        return $auth->byToken(Request::input('token'));
-    });
+    Route::post('/updateProfile', [
+        'middleware' => ProfileMiddleWare::class,
+        'uses' => 'Auth\ProfileController@updateProfile'])
+        ->name('updateProfile');
 
     Route::post('/contributePlants',[
         'middleware' => LoginRequired::class,
@@ -229,7 +230,6 @@ Route::group(['middleware' => ['web']], function () {
             'file' => $uploader->upload(request()->file('file'))
         ], 200, [], JSON_UNESCAPED_SLASHES);
     }]);
-
 
 });
 

@@ -203,7 +203,8 @@
                     <h4 class="modal-title">Thông tin cá nhân</h4>
                 </div>
                 <div class="modal-body">
-                    <form id="registerForm" class="form-horizontal" role="form" method="POST" action="" novalidate="novalidate">
+                    <form id="update-profile" class="form-horizontal" data-credential="{{$info->accountName}}"
+                          role="form" method="POST" action="/updateProfile" novalidate="novalidate">
 
                         <div class="form-group">
                             <label class="col-sm-4 control-label">Tài khoản</label>
@@ -224,14 +225,14 @@
                             <label class="col-sm-4 control-label">Tên</label>
 
                             <div class="col-sm-6 pd-top-7">
-                                <input type="text" class="form-control" value="{{$info->firstName}}">
+                                <input type="text" name="firstName" class="form-control" value="{{$info->firstName}}">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-sm-4 control-label">Họ</label>
                             <div class="col-sm-6 pd-top-7">
-                                <input type="text" class="form-control" value="{{$info->lastName}}">
+                                <input type="text" name="lastName" class="form-control" value="{{$info->lastName}}">
                             </div>
                         </div>
 
@@ -239,12 +240,12 @@
                             <label class="col-sm-4 control-label">Ngày sinh</label>
 
                             <div class="col-sm-6 pd-top-7">
-                                <input type="text" class="form-control" value="{{$info->DoB}}">
+                                <input type="text" name="DoB" class="form-control" value="{{$info->DoB}}">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-12 text-center">
-                                <input type="button" value="Lưu" class="btn-u rounded" id="changeRole">
+                                <button type="submit" class="btn-u rounded" id="update-profile">Lưu</button>
                             </div>
                         </div>
                     </form>
@@ -277,6 +278,16 @@
                 }
                 $('.btn-u-default').click();
 
+            });
+        });
+        $('#update-profile').on('submit', function(){
+            event.preventDefault();
+            var credential = $(this).serializeJson();
+            credential.credential = $(this).attr('data-credential');
+            var $change = $.post($(this).attr('action'), credential)
+            $change.then(function(response){
+                alert (response.message);
+                location.reload();
             });
         });
     </script>

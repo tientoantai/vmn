@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
+use VMN\Auth\Member;
 use VMN\Auth\ProfileFinder;
-
 
 
 class ProfileController extends Controller
@@ -53,5 +53,13 @@ class ProfileController extends Controller
             $result->with('prescription', $prescription);
         }
         return $result;
+    }
+
+    public function updateProfile(Member $member)
+    {
+        $member->save();
+        return response()->json([
+            'message' => 'Đã lưu thay đổi'
+        ]);
     }
 }
