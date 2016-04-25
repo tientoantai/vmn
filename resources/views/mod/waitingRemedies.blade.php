@@ -19,7 +19,7 @@
         <!-- /.row -->
         <div class="row">
             <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#">Bài thuốc trong hệ thống</a></li>
+                <li class="active"><a data-toggle="tab" href="#allRemedy">Bài thuốc trong hệ thống</a></li>
                 <li id="new-tab"><a data-toggle="tab" href="#newArticle">Bài thuốc viết mới</a></li>
                 <li id="edit-tab"><a data-toggle="tab" href="#edit">Yêu cầu chỉnh sửa bài thuốc</a></li>
                 <li id="report-tab"><a data-toggle="tab" href="#report">Danh sách báo cáo</a></li>
