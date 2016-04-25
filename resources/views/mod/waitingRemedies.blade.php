@@ -19,13 +19,39 @@
         <!-- /.row -->
         <div class="row">
             <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#newArticle">Bài thuốc viết mới</a></li>
+                <li class="active"><a data-toggle="tab" href="#">Bài thuốc trong hệ thống</a></li>
+                <li id="new-tab"><a data-toggle="tab" href="#newArticle">Bài thuốc viết mới</a></li>
                 <li id="edit-tab"><a data-toggle="tab" href="#edit">Yêu cầu chỉnh sửa bài thuốc</a></li>
                 <li id="report-tab"><a data-toggle="tab" href="#report">Danh sách báo cáo</a></li>
 
             </ul>
             <div class="tab-content ">
-                <div id="newArticle" class="tab-pane fade in active content-manage">
+                <div id="allRemedy" class="tab-pane fade in active content-manage">
+                    <br>
+                    <h3>Danh sách bài thuốc</h3>
+
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Tên bài thuốc</th>
+                            <th>Người đăng</th>
+                            <th>Ngày đăng</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($all as $remedy)
+                            <tr>
+                                <td>{{str_limit($remedy->title,50)}}</td>
+                                <td>{{$remedy->author}}</td>
+                                <td>{{$remedy->created_at}}</td>
+                                <td><a class="btn btn-info all-remedy" data-toggle="modal" data-info="{{json_encode($remedy)}}">Chi tiết</a></td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <div id="newArticle" class="tab-pane fade content-manage">
                     <br>
                     <h3>Danh sách bài thuốc mới</h3>
 
@@ -201,6 +227,11 @@
     <script>
         jQuery(document).ready(function() {
 
+            $('.all-remedy').on('click', function(){
+                buildDialog($(this));
+
+            });
+
             $('.new-remedy').on('click', function(){
                 buildDialog($(this));
             });
@@ -240,7 +271,11 @@
             }
 
             $('.carousel-inner').html(imgHtml);
-            if (element.hasClass('new-remedy')){
+            if (element.hasClass('all-remedy')){
+                $('.report-only').hide();
+                $('.btn-footer').html(
+                        "<button id='delete' data-id='"+dataInfo.id+"' onclick='deleteRemedy($(this))' class='btn btn-danger'>Xóa</button>");
+            }else if (element.hasClass('new-remedy')){
                 $('.report-only').hide();
                 $('.btn-footer').html(
                         "<button id='approve-new' data-id='"+dataInfo.id+"' class='btn btn-success' onclick='approveNewRemedy($(this))'>Duyệt</button>"
@@ -321,6 +356,10 @@
                 alert (response.message);
                 location.reload();
             });
+        }
+
+        function deleteRemedy(){
+
         }
 
     </script>

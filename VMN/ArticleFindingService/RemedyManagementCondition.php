@@ -10,6 +10,15 @@ class RemedyManagementCondition implements ArticleFindingCondition
     {
         $remedyManagement = [];
 
+        $remedyManagement['all'] = \DB::table('remedies')
+            ->whereNull('deleted_at')
+            ->get();
+
+        foreach( $remedyManagement['all'] as $k => $remedy)
+        {
+            $remedyManagement['all'][$k]->ingredients = $this->buildIngredient($remedy->ingredients);
+        }
+
         $remedyManagement['new'] = \DB::table('remedies_history')
             ->where('type', 'add')
             ->where('status','wait')
