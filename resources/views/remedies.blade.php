@@ -53,7 +53,7 @@
                                 <div class="product-description product-description-brd margin-bottom-30">
                                     <div class="overflow-h margin-bottom-5">
                                         <div class="pull-left">
-                                            <h4 class="title-price"><a href="{{route('remedy-detail', ['id' => $remedy->id])}}"></a>{{str_limit($remedy->title, 50)}}</h4>
+                                            <h4 class="title-price" title="{{$remedy->title}}"><a href="{{route('remedy-detail', ['id' => $remedy->id])}}"></a>{{str_limit($remedy->title, 25)}}</h4>
                                         </div>
                                     </div>
                                     <ul class="list-inline product-ratings">

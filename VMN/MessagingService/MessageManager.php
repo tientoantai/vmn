@@ -2,7 +2,6 @@
 
 namespace VMN\MessagingService;
 
-use VMN\MessagingService\Message;
 
 
 class MessageManager
