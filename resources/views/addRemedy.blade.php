@@ -51,7 +51,7 @@
                                 <td><input name="title" class="form-control"/> </td>
                             </tr>
                             <tr>
-                                <td><b>Thành phần:</b></td>
+                                <td><b>Thành phần:<span class="text-danger">*</span></b></td>
                                 <td><input type="text" id="ingredient" name="ingredient" class="form-control" ></td>
                             </tr>
                             <tr>
