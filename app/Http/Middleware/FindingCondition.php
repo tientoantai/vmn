@@ -44,7 +44,6 @@ class FindingCondition
                         ->setScienceName($request->get('scienceName'))
                         ->setCharacteristic($request->get('characteristic'))
                         ->setUtility($request->get('utility'))
-                        ->setRatingPoint($request->get('ratingPoint'))
                     ;
                 break;
             case 'remedies':

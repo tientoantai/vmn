@@ -23,16 +23,6 @@
                                 <label for="characteristic">Công dụng:</label>
                                 <input type="text" class="form-control" id="utility" name="utility" value="{{$condition->utility()}}">
                             </div>
-                            <label for="ratingPoint">Điểm đánh giá</label>
-                            <select class="form-control" id="ratingPoint" name="ratingPoint">
-                                @for($i = 0; $i<=5; $i ++)
-                                    @if($i == $condition->ratingPoint())
-                                    <option value="{{$i}}" selected>{{$i}}</option>
-                                    @else
-                                    <option value="{{$i}}">{{$i}}</option>
-                                    @endif
-                                @endfor
-                            </select>
                             <button type="submit" class="btn-u margin-top-20">Tìm kiếm</button>
 
                         </form>

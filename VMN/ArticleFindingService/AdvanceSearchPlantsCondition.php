@@ -49,21 +49,6 @@ class AdvanceSearchPlantsCondition extends MedicinalPlantNameCondition
     }
 
     /**
-     * @param int $ratingPoint
-     * @return $this
-     */
-    public function setRatingPoint($ratingPoint)
-    {
-        $this->ratingPoint = $ratingPoint;
-        return $this;
-    }
-
-    public function ratingPoint()
-    {
-        return $this->ratingPoint;
-    }
-
-    /**
      * @param $characteristic
      * @return $this
      */
@@ -84,11 +69,7 @@ class AdvanceSearchPlantsCondition extends MedicinalPlantNameCondition
             ->where('scienceName','like','%'.$this->scienceName.'%')
             ->where('characteristic', 'like', '%'.$this->characteristic.'%')
             ->where('utility', 'like', '%'.$this->utility.'%');
-        if ($this->ratingPoint)
-        {
-            $listPlant = $listPlant->where('ratingPoint', '=', $this->ratingPoint);
-        }
-        return $listPlant->paginate(6)
+        return $listPlant->paginate(4)
             ->appends('scienceName', $this->scienceName)
             ->appends('characteristic', $this->characteristic)
             ->appends('utility', $this->utility)
