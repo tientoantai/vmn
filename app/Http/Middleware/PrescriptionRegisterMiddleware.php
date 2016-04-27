@@ -59,6 +59,7 @@ class PrescriptionRegisterMiddleware
         $pre = \DB::table('store_prescriptions')
             ->where('storeCredential', \Session::get('credential')['attributes']['name'])
             ->where('remedyId', $request->get('id'))
+            ->whereNull('deleted_at')
             ->get();
         if ( ! $pre){
             return false;
