@@ -49,7 +49,7 @@
                             <td><input name="otherName" class="form-control"/> </td>
                         </tr>
                         <tr>
-                            <td><b>Tên khoa học:</b><span class="text-danger">*</span></td>
+                            <td><b>Tên khoa học:</td>
                             <td><input name="scienceName" class="form-control"/> </td>
                         </tr>
                         <tr>
