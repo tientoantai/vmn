@@ -21,7 +21,6 @@ class ReviewingArticle
     {
         $review = new Review();
         $review->setComment($request->get('commentContent'));
-        $review->setRating($request->get('ratingPoint'));
         $review->setReviewed($request->get('Id'));
         $review->setReviewer(\Session::get('credential')['attributes']['name']);
         return $review;

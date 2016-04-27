@@ -14,7 +14,6 @@ class ArticleReviewService
             'comment' =>$review->getComment(),
             'reviewer' =>$review->getReviewer(),
             'reviewed' =>$review->getReviewed(),
-            'ratingPoint' =>$review->getRating(),
             ]);
     }
 
@@ -24,7 +23,6 @@ class ArticleReviewService
             'comment' =>$review->getComment(),
             'reviewer' =>$review->getReviewer(),
             'reviewed' =>$review->getReviewed(),
-            'ratingPoint' =>$review->getRating(),
         ]);
     }
 

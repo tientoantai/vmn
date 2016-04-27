@@ -271,7 +271,6 @@
             $('#review').on('submit', function(event){
                 event.preventDefault();
                 var review = $(this).serializeJson();
-                review.ratingPoint =  ratingPoint;
                 review.Id = $(this).attr("data-review");
                 var sendReview = $.post($(this).attr('action'), review);
                 sendReview.then(function(response){
