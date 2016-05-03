@@ -42,7 +42,7 @@
                     <div class="list-product-description product-description-brd margin-bottom-30">
                         <div class="row">
                             <div class="col-sm-4">
-                                <a href="shop-ui-inner.html"><img class="img-responsive sm-margin-bottom-20" src="{!! $plant->thumbnailUrl ? $plant->thumbnailUrl : 'assets/img/team/01.jpg'!!}"  alt=""></a>
+                                <a href="{{route('plant-detail',['id' => $plant->id])}}"><img class="img-responsive sm-margin-bottom-20" src="{!! $plant->thumbnailUrl ? $plant->thumbnailUrl : 'assets/img/team/01.jpg'!!}"  alt=""></a>
                             </div>
                             <div class="col-sm-8 product-description">
                                 <div class="overflow-h margin-bottom-5">
@@ -50,11 +50,13 @@
                                         <li><h1 class="title-price"><a href="{{route('plant-detail',['id' => $plant->id])}}">{{$plant->commonName}}</a></h1></li>
                                         <li class="pull-right">
                                             <ul class="list-inline product-ratings">
+                                            @for ($i = 1; $i<=5; $i++)
+                                                @if($i <= $plant->rating)
                                                 <li><i class="rating-selected fa fa-star"></i></li>
-                                                <li><i class="rating-selected fa fa-star"></i></li>
-                                                <li><i class="rating-selected fa fa-star"></i></li>
+                                                @else
                                                 <li><i class="rating fa fa-star"></i></li>
-                                                <li><i class="rating fa fa-star"></i></li>
+                                                @endif
+                                            @endfor
                                             </ul>
                                         </li>
                                     </ul>
