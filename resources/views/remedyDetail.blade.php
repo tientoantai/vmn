@@ -82,8 +82,8 @@
                             <td><b>Thành phần</b></td>
                             <td>
                                 @foreach($ingredient as $plant)
-                                    @if(isset($plant->id))
-                                        [<a href="{{route('plant-detail',['id' => $plant->id])}}">
+                                    @if($plant->medicinalPlantId)
+                                        [<a href="{{route('plant-detail',['id' => $plant->medicinalPlantId])}}">
                                             {{$plant->medicinalPlantName}}</a>]
                                     @else
                                         [<a href="{{route('medicinal-plant',['keyword' => $plant->medicinalPlantName])}}">
