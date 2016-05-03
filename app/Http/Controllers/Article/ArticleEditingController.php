@@ -47,6 +47,12 @@ class ArticleEditingController extends Controller
 
     public function editPlants(MedicinalPlant $plant, EditorFlowManager $editorFlowManager)
     {
+        if ($plant->getAuthor() != \Session::get('credential')['attributes']['name'])
+        {
+            return response()->json([
+                'message' => 'Bạn không thể thực hiện hành động này'
+            ]);
+        }
         $this->editingService->edit($editorFlowManager, \Session::get('credential')['attributes']['role'])
             ->proceed($plant, 'edit');
         return response()

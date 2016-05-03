@@ -50,6 +50,10 @@ class PageShowingController extends Controller
     {
         $plantCondition = new MedicinalPlantsIdCondition();
         $plant = $this->finder->find($plantCondition->setId(\Request::input('id')));
+        if ($plant['info']->author != \Session::get('credential')['attributes']['name'])
+        {
+            return 'Bạn không thể thực hiện chức năng này';
+        }
         return view('editPlant')
             ->with('plant', $plant['info'])
             ->with('image', json_decode($plant['info']->imgUrl));

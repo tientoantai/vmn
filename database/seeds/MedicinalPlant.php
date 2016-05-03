@@ -21,7 +21,6 @@ class MedicinalPlant extends Seeder
         $plant->location        = 'châu Âu, châu Á, bắc Phi, Alaska và bắc Mỹ';
         $plant->utility         = 'Cầm máu, Giảm đau nhức, Sát trùng, kháng khuẩn, Điều hòa khí huyết';
         $plant->ratingPoint     = 3;
-        $plant->ratingTime      = 1;
         $plant->thumbnailUrl    = 'ImgSample/ngai-cuu1.jpg';
         $plant->imgUrl          = json_encode(['ImgSample/ngai-cuu1.jpg','ImgSample/ngai-cuu-2.jpg','ImgSample/ngai-cuu-12.jpg']);
         $plant->author          = 'shinji';
@@ -35,7 +34,6 @@ class MedicinalPlant extends Seeder
         $plant1->location        = 'Ấn Độ sang Đông Á';
         $plant1->utility         = 'Tạo hưng phấn, trị cảm, nhức mỏi, ho suyễn';
         $plant1->ratingPoint     = 3;
-        $plant1->ratingTime      = 1;
         $plant1->thumbnailUrl    = 'ImgSample/tiato2.jpg';
         $plant1->imgUrl          = json_encode(['ImgSample/tiato2.jpg','ImgSample/tiato1.jpg','ImgSample/Cay-tia-to.jpg']);
         $plant1->author          = 'shinji';
@@ -54,7 +52,6 @@ class MedicinalPlant extends Seeder
         $plant2->utility         = 'Chữa chảy máu bên trong và bên ngoài, rong kinh, băng huyết, chảy máu cam, trĩ, đại tiểu tiện ra máu, nôn và ho ra máu, chảy máu dưới da;
                                     ban sởi, ho, hen, viêm họng, bỏng, nấm da, tưa lưỡi.';
         $plant2->ratingPoint     = 3;
-        $plant2->ratingTime      = 1;
         $plant2->thumbnailUrl    = 'ImgSample/nhonoi12.png';
         $plant2->imgUrl          = json_encode(['ImgSample/nhonoi12.png','ImgSample/nhonoi2.jpg','ImgSample/nhonoi3.jpg']);
         $plant2->author          = 'shinji';
@@ -73,7 +70,6 @@ class MedicinalPlant extends Seeder
         $plant3->location        = 'châu Âu, châu Á, bắc Phi, Alaska và bắc Mỹ';
         $plant3->utility         = 'Chữa các bệnh về dạ dày và gan, chữa bệnh về da: chàm, thủy đậu, bệnh zona, dị ứng, và ghẻ.';
         $plant3->ratingPoint     = 3;
-        $plant3->ratingTime      = 1;
         $plant3->thumbnailUrl    = 'ImgSample/nghe.jpg';
         $plant3->imgUrl          = json_encode(['ImgSample/nghe.jpg','ImgSample/nghe1.jpg','ImgSample/nghe12.png']);
         $plant3->author          = 'shinji';
@@ -87,7 +83,6 @@ class MedicinalPlant extends Seeder
         $plant4->location        = 'châu Âu, châu Á, bắc Phi, Alaska và bắc Mỹ';
         $plant4->utility         = 'Giải độc, bổ thận, bổ huyết, chữa được cước khí, bồi bổ cơ thể.';
         $plant4->ratingPoint     = 3;
-        $plant4->ratingTime      = 1;
         $plant4->thumbnailUrl    = 'ImgSample/doden.jpg';
         $plant4->imgUrl          = json_encode(['ImgSample/doden.jpg','ImgSample/doden11.jpg','ImgSample/doden21.jpg']);
         $plant4->author          = 'shinji';
@@ -101,7 +96,6 @@ class MedicinalPlant extends Seeder
         $plant5->location        = '';
         $plant5->utility         = 'Giải độc, giải rượu,chữa lở loét, làm sáng mắt, nhuận họng, hạ huyết áp, mát buồng mật, bổ dạ dày';
         $plant5->ratingPoint     = 3;
-        $plant5->ratingTime      = 1;
         $plant5->thumbnailUrl    = 'ImgSample/doxanh.jpg';
         $plant5->imgUrl          = json_encode(['ImgSample/doxanh.jpg','ImgSample/doxanh12.jpg','ImgSample/doxanh1234.jpg']);
         $plant5->author          = 'shinji';
@@ -115,7 +109,6 @@ class MedicinalPlant extends Seeder
         $plant6->location        = '';
         $plant6->utility         = 'Giảm đau, an thần, kháng viêm, hoạt huyết, ngăn ngừa sự phát triển của nhiều loại tế bào ung thư';
         $plant6->ratingPoint     = 3;
-        $plant6->ratingTime      = 1;
         $plant6->thumbnailUrl    = 'ImgSample/luocvang.jpg';
         $plant6->imgUrl          = json_encode(['ImgSample/luocvang.jpg','ImgSample/luocvang1.jpg','ImgSample/luocvang121.jpg']);
         $plant6->author          = 'shinji';
@@ -131,11 +124,90 @@ class MedicinalPlant extends Seeder
         $plant7->location        = '';
         $plant7->utility         = 'bổ phế trừ đàm, giải cảm, làm ra mồ hôi, thông khí, giải độc; trị các chứng: ho, viêm hầu họng, nghẹt mũi, cảm cúm, cổ họng khô rát, mất tiếng, nói khàn';
         $plant7->ratingPoint     = 3;
-        $plant7->ratingTime      = 1;
         $plant7->thumbnailUrl    = 'ImgSample/hungchanh12321.jpg';
         $plant7->imgUrl          = json_encode(['ImgSample/hungchanh12321.jpg','ImgSample/hungchanh1212.jpg','ImgSample/hungchanh12.jpg']);
         $plant7->author          = 'shinji';
         $plant7->save();
+//------------------------
+        $plant8 = new \VMN\Article\MedicinalPlant();
+        $plant8->commonName = 'Mướp';
+        $plant8->otherName = 'Mướp hương, ty qua, thiên ty qua, bố ty, ty lạc';
+        $plant8->scienceName = 'Luffa cylindrica (L.) Roem';
+        $plant8->characteristic = 'là một loại dây leo, thân có goc cạnh, màu lục nhạt. Lá to, đường kính 15-25cm, phiến chia thùy hình 3 cạnh hay hình mác, mép có răng cưa, cuống dài 10-12cm, nháp, tua cuốn phân nhánh. Hoa màu vàng, hoa đực mọc thành chumg, hoa cái mọc đơn độc. Quả hình thoi hay hình trụ, lúc đầu mẫm sau khô, không mở, dài 0,25-1m, có khi hơn, mặt ngoài màu lục nhạt, trên có những đường màu đen chạy dọc theo quả. Hạt rất nhiều, hình trứng, màu nâu nhạt, dài 12mm, rộng 8-9mm, hơi có dìa. Khi quả đã chín, vỏ ngoài, hạt, cũng như chất nhầy đã tróc hết, còn lại khối xơ cứng dai, không bị nước làm mục hỏng, khi ngâm nước sẽ phồng lên và thành mềm, có thể dùng cọ, tắm rất tốt';
+        $plant8->location = 'Được trồng khắp nơi trong nước ta';
+        $plant8->utility = 'Lợi sữa cho phụ nữa mới đẻ và là cho huyết lưu thông. Xơ mướp là vị thuốc thanh lương, hoạt huyết, thông kinh, giải độc, giảm đau, cầm máu dùng trong những trường hợp chảy máu ruột, băng huyết, lỵ ra máu. Lá mướp vò nát dùng chữa bệnh zona';
+        $plant8->ratingPoint = 3;
+        $plant8->ratingTime = 1;
+        $plant8->thumbnailUrl = 'ImgSample/muop1.png';
+        $plant8->imgUrl =json_encode(['ImgSample/muop1.png','ImgSample/muop2.jpg','ImgSample/muop3.jpg']);
+        $plant8->author = 'shinji';
+        $plant8->save();
+
+        $plant9 = new \VMN\Article\MedicinalPlant();
+        $plant9->commonName = 'Huyết Giác';
+        $plant9->otherName = 'cây xó nhà, cây dứa dại, cây giáng ông';
+        $plant9->scienceName = 'Pleomele cochichinensis Mer';
+        $plant9->characteristic = 'cây nhỏ cao chừng 1-1,5m có thể tới 2-3m, sống lâu năm. Thân phân thành nhiều nhánh. Cây nhỏ có đường kính chừng 1,9-2cm, cây to có đường kính 20-25cm. Lá hình lưỡi kiếm, trung bình dài 25-80cm, rộng 3-4cm tới 9-7cm, cứng, màu xanh  tươi, mọc cách, không có cuống. Lá trụng để lại trên thân một sẹo. Cụm hoa mọc thành chùm dài tới 1m, đường kính phía cuống tới 1,5-2cm trên có lá nhỏ dài 15cm rộng 2cm, phân cành nhỏ dài tới 30cm. Hoa tụ từng 2-4 hoa gần nhau. Hoa nhỏ, đường kính 7-8mm, màu lục vàng nhạt. Quả mọng hình cầu, đường kính chừng 1cm. Khi khô có màu đen, hạt hình câu, đường kính 9-7cm';
+        $plant9->location = 'mọc hoang tại các vùng núi đá xanh vùng quảng ninh, nam định, hà nam, hà tây, hòa bình, nghệ an, hà tĩnh.';
+        $plant9->utility = 'chữa những trường hợp ứ huyết, bị thương, máu tím bầm không lưu thông.';
+        $plant9->ratingPoint = 2;
+        $plant9->ratingTime = 1;
+        $plant9->thumbnailUrl = 'ImgSample/huyetgiac1.jpg';
+        $plant9->imgUrl =json_encode(['ImgSample/huyetgiac1.jpg','ImgSample/huyetgiac2.jpg','ImgSample/huyetgiac3.jpg']);
+        $plant9->author = 'shinji';
+        $plant9->save();
+
+        $plant6->commonName = 'Cây ké đầu ngựa';
+        $plant6->otherName = 'thương nhĩ, phắt ma';
+        $plant6->scienceName = 'Xanthium strumarium L.';
+        $plant6->characteristic = 'là một cây nhỏ, cao độ 2m thân có khía rãnh. Lá mọc so le, phiến lá hơi 3 cạnh, mép có răng cưa có chỗ khía hơi sâu thành 3-5 thùy, có lông ngắn cứng. Cụm hoa hình đầu có thứ lưỡng tính ở phía trên, có thử chỉ gồm có hai hoa cái nằm trong hai lá bắc dày và có gai. quả giả hình thoi, có móc, có thể móc vào lông động vật.';
+        $plant6->location ='mọc hoang ở khắp nơi trong nước ta';
+        $plant6->utility = 'tác dụng làm ra mồ hôi, tán phòn, dùng trong các chứng phong hàn, đau nhức, phong thấp, tê dại, mờ mắt, chân tay co dật, uống lâu ích khí';
+        $plant6->ratingPoint = 4;
+        $plant6->ratingTime = 1;
+        $plant6->thumbnailUrl = 'ImgSample/kedaungua1.jpg';
+        $plant6->imgUrl =json_encode(['ImgSample/kedaungua1.jpg','ImgSample/kedaungua2.jpg','ImgSample/kedaungua3.jpg']);
+        $plant6->author = 'thoxuanduong';
+        $plant6->save();
+
+        $plant6->commonName = 'Thiên Lý';
+        $plant6->otherName = 'Cây hoa lý, hoa thiên lý, dạ lài hương';
+        $plant6->scienceName = 'Telosma cordata';
+        $plant6->characteristic ='cây nhỏ, mọc leo, thân hơi có lông, nhất là ở những bộ phân còn non. Lá hình tim, thuôn, khía mép ở khoản 5-8mm về phía cuống, đầu lá nhọn, có lông trên các gân lá; phiến lá dài 6-11cm, rộng 4-7,5c, cuốn cũng có lông, dài 12-20mm. Hoa khá to, nhiều, màu vàng xanh lục nhạt, rất thơi, thành xim tán, có cuống to, hơi có lông dài 10-22m, mang nhiều tán mọc mau liền với nhau. Quả là những đại dài 6,5-9,5cm, rộng 12-14mm';
+        $plant6->location ='cây thiên lý được trồng ở khắp nơi ở việt nam, nhiều nhất tại miền bắc ';
+        $plant6->utility = 'Thường dùng hoa và lá thiên lý non để nấu chanh ăn cho mát và bổ, chữa lòi dom.';
+        $plant6->ratingPoint = 4;
+        $plant6->ratingTime = 1;
+        $plant6->thumbnailUrl = 'ImgSample/thienly1.jpg';
+        $plant6->imgUrl =json_encode(['ImgSample/thienly1.jpg','ImgSample/thienly2.jpg','ImgSample/thienly3.jpg']);
+        $plant6->author = 'shinji';
+        $plant6->save();
+
+        $plant6->commonName = 'Cây rau ngót';
+        $plant6->otherName = 'bồ ngót, bù ngót, hắc diện thần';
+        $plant6->scienceName = 'Sauropus androgynus (L) Merr';
+        $plant6->characteristic ='cây nhỏ, nhẵn, có thể cao tới 1,5-2m. Có nhiều cành mọc thẳng. Vì người ta hái lá luôn nên thường chỉ thấp 0,9-1m. Vỏ cây màu xanh lục, sau này màu nâu nhạt. Lá mọc so le dài 4-6cm, rộng 15-30mm cuống rất ngắn 1-2mm có 2 lá kèm nhỏ, phiến lá nguyên hình trứng dài hoặc bầu dục, mép nguyên. Hoa đực mọc ở kẽ lá thành xim đơn ở phía dưới,hoa cái ở trên. Quả nang hình cầu, hạt có vân nhỏ';
+        $plant6->location = 'Mọc hoang và được trồng khắc nơi ở Việt Nam để lấy lá nấu canh.';
+        $plant6->utility = 'chữa sót nhau, tưa lưỡi.';
+        $plant6->ratingPoint = 3;
+        $plant6->ratingTime = 1;
+        $plant6->thumbnailUrl = 'ImgSample/raungot1.jpg';
+        $plant6->imgUrl =json_encode(['ImgSample/raungot1.jpg','ImgSample/raungot2.jpg','ImgSample/raungot3.jpg']);
+        $plant6->author = 'shinji';
+        $plant6->save();
+
+        $plant6->commonName = 'Cây Diếp Cá'; 
+        $plant6->otherName = 'cây lá giấp, ngư tinh thảo'; 
+        $plant6->scienceName = 'Houttuynia cordata Thunb.'; 
+        $plant6->characteristic =' là một loại cỏ nhỏ, mọc lâu năm, ưa chỗ ẩm ướt có than rễ mọc ngầm dưới đất. Rễ nhỏ mọc ở các đốt, thân mọc đứng cao 40cm, có lông hoặc ít lông. Lá mọc ách, hình tim, đầu lá hơi nhọn hay nhọn hẳn. Hoa nhỏ màu vàng nhạt, không có bao hoam mọc thành bông, có 4 lá bắc mùa trắng; trông toàn bộ bề ngoài của cụm hoa và lá bắc giống như một cây hoa đơn độc, toàn cây vò có mùi tanh như các. hoa nở về mùa hạ vào các tháng 5-8';
+        $plant6->location ='Mọc hoang ở khắp nơi ẩm thấp trong nước ta.'; 
+        $plant6->utility = 'dùng trong những trường hợp tụ máu như đau ắt hoặc trong bệnh trĩ lòi dom. Ngoài ra còn có tác dụng thông tiểu, chữa bệnh mụn nhọt, kinh nguyệt không đều.';
+        $plant6->ratingPoint = 4; 
+        $plant6->ratingTime = 1; 
+        $plant6->thumbnailUrl = 'ImgSample/diepca1.jpg';
+        $plant6->imgUrl =json_encode(['ImgSample/diepca1.jpg','ImgSample/diepca2.jpg','ImgSample/diepca3.jpg']); 
+        $plant6->author = 'thoxuanduong';
+        $plant6->save();
 
     }
 }
