@@ -12,14 +12,14 @@ class   MedicinalPlantNameCondition implements ArticleFindingCondition, Paginata
 
     public function setKeyword($keyword)
     {
-        $this->keyword = $keyword;
+        $this->keyword = trim($keyword);
 
         return $this;
     }
 
     public function keyword()
     {
-        return $this->keyword;
+        return trim($this->keyword);
     }
 
     public function setPage($page)
@@ -41,7 +41,7 @@ class   MedicinalPlantNameCondition implements ArticleFindingCondition, Paginata
     public function getQuery()
     {
         $listPlant =  \DB::table('medicinal_plants');
-        foreach (preg_split('/\s+/', $this->keyword) as $keyword) {
+        foreach (preg_split('/\s+/', $this->keyword()) as $keyword) {
             $listPlant->orwhere('commonName','like','%'.$keyword.'%')
                 ->orWhere('otherName','like','%'.$keyword.'%');
         }
