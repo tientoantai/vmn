@@ -28,8 +28,8 @@ use App\Http\Middleware\ProfileMiddleWare;
 */
 
 
-//Route::group(['domain' => 'admin.vmn.local', 'middleware' => ['web']], function () {
-Route::group(['domain' => 'admin.vmn.vnvalley.com', 'middleware' => ['web']],function () {
+Route::group(['domain' => 'admin.vmn.local', 'middleware' => ['web']], function () {
+//Route::group(['domain' => 'admin.vmn.vnvalley.com', 'middleware' => ['web']],function () {
     Route::get('/', function(){
        return redirect('managementLogin');
     });
@@ -79,6 +79,10 @@ Route::group(['domain' => 'admin.vmn.vnvalley.com', 'middleware' => ['web']],fun
     Route::post('/remindPlantAuthor', ['uses' => 'Mod\ModProceedController@remindPlantAuthor'])->name('mod.remindPlantAuthor');
 
     Route::post('/remindRemedyAuthor', ['uses' => 'Mod\ModProceedController@remindRemedyAuthor'])->name('mod.remindRemedyAuthor');
+
+    Route::put('/deletePlant', ['uses' => 'Mod\ModProceedController@deletePlant'])->name('mod.deletePlant');
+
+    Route::put('/deleteRemedy', ['uses' => 'Mod\ModProceedController@deleteRemedy'])->name('mod.deleteRemedy');
 
 });
 

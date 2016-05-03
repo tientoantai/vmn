@@ -358,8 +358,15 @@
             });
         }
 
-        function deleteRemedy(){
-
+        function deleteRemedy(element){
+            var $delete = $.ajax({
+                method: "PUT",
+                url: "/deleteRemedy",
+                data: {id: element.attr('data-id')}
+            });
+            $delete.then(function(response){
+                alert (response.message);
+            });
         }
 
     </script>

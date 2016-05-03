@@ -61,4 +61,24 @@ class ModProcessor
         $sender = new MessageManager();
         $sender->send($message);
     }
+
+    public function deletePlant(MedicinalPlant $medicinalPlant)
+    {
+        $medicinalPlant->delete();
+        \DB::table('remedy_ingredients')
+            ->where('medicinalPlantId', $medicinalPlant->id())
+            ->update(['medicinalPlantId' => 0])
+            ;
+    }
+
+    public function deleteRemedy(Remedy $remedy)
+    {
+        $remedy->delete();
+        \DB::table('remedy_ingredients')
+            ->where('remedyId', $remedy->id())
+            ->update(['deleted_at' => date('y-m-d h:i:s')]);
+        \DB::table('store_prescriptions')
+            ->where('remedyId', $remedy->id())
+            ->update(['deleted_at' => date('y-m-d h:i:s')]);
+    }
 }

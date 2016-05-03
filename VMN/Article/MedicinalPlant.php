@@ -4,6 +4,7 @@ namespace VMN\Article;
 
 use Illuminate\Database\Eloquent\Model;
 use VMN\Contracts\Article\Article;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property string commonName
@@ -20,6 +21,8 @@ use VMN\Contracts\Article\Article;
  */
 class MedicinalPlant extends Model implements Article
 {
+    use SoftDeletes;
+
     public function id()
     {
         return $this->id;

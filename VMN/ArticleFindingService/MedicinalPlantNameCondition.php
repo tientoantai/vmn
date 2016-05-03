@@ -40,11 +40,15 @@ class   MedicinalPlantNameCondition implements ArticleFindingCondition, Paginata
 
     public function getQuery()
     {
-        return \DB::table('medicinal_plants')
-            ->where('commonName','like','%'.$this->keyword.'%')
+        $listPlant =  \DB::table('medicinal_plants');
+        foreach (preg_split('/\s+/', $this->keyword) as $keyword) {
+            $listPlant->orwhere('commonName','like','%'.$keyword.'%')
+                ->orWhere('otherName','like','%'.$keyword.'%');
+        }
+        return $listPlant
             ->paginate(6)
             ->appends('keyword', $this->keyword)
-        ;
+            ;
     }
 
 }

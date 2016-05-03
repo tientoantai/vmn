@@ -3,6 +3,7 @@
 namespace VMN\Article;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use VMN\Contracts\Article\Article;
 
 /**
@@ -11,6 +12,7 @@ use VMN\Contracts\Article\Article;
  * @property string note
  * @property string usage
  * @property int ratingPoint
+ * @property int ratingTime
  * @property string utility
  * @property string thumbnailUrl
  * @property string author
@@ -21,6 +23,7 @@ use VMN\Contracts\Article\Article;
 
 class Remedy extends Model implements Article
 {
+    use SoftDeletes;
     public function id()
     {
         return $this->id;

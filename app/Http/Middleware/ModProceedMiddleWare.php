@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
 use VMN\Article\ArticleFactory;
+use VMN\Article\MedicinalPlant;
 use VMN\MessagingService\Message;
 use VMN\MessagingService\MessageManager;
 
@@ -75,6 +76,9 @@ class ModProceedMiddleWare
                     $request->get('articleName'),
                     $request->get('reason')))
                 ;
+        }elseif($request->path() == 'deletePlant')
+        {
+            return MedicinalPlant::find($request->get('id'));
         }
     }
 

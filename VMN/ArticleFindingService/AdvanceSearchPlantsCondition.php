@@ -62,18 +62,18 @@ class AdvanceSearchPlantsCondition extends MedicinalPlantNameCondition
     {
         return $this->characteristic;
     }
-
     public function getQuery()
     {
         $listPlant = \DB::table('medicinal_plants')
             ->where('scienceName','like','%'.$this->scienceName.'%')
             ->where('characteristic', 'like', '%'.$this->characteristic.'%')
-            ->where('utility', 'like', '%'.$this->utility.'%');
+            ->where('utility', 'like', '%'.$this->utility.'%')
+            ->whereNotNull('deleted_at')
+        ;
         return $listPlant->paginate(4)
             ->appends('scienceName', $this->scienceName)
             ->appends('characteristic', $this->characteristic)
             ->appends('utility', $this->utility)
-            ->appends('ratingPoint', $this->ratingPoint)
         ;
     }
 }

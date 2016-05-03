@@ -86,4 +86,12 @@ class ModProceedController extends Controller
             'message' => 'Đã gửi nhắc nhở đến tác giả bài viết'
         ]);
     }
+
+    public function deletePlant(MedicinalPlant $plant)
+    {
+        $this->processor->deletePlant($plant);
+        return response()->json([
+            'message' => 'Xóa cây thuốc thành công'
+        ]);
+    }
 }
