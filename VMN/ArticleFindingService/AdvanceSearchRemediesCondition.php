@@ -32,6 +32,7 @@ class   AdvanceSearchRemediesCondition extends RemediesKeywordCondition
     {
         $listRemedies = \DB::table('remedies')
             ->join('remedy_ingredients', 'remedies.id' , '=', 'remedy_ingredients.remedyId')
+            ->select(\DB::raw('*', 'ratingPoint/ratingTime as rating'))
             ->where('remedies.utility', 'like', '%' . $this->utility . '%')
             ->groupBy('remedies.id');
         ;

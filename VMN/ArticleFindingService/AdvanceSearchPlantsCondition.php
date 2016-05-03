@@ -65,10 +65,11 @@ class AdvanceSearchPlantsCondition extends MedicinalPlantNameCondition
     public function getQuery()
     {
         $listPlant = \DB::table('medicinal_plants')
+            ->select(\DB::raw('*, ratingPoint/ratingTime as rating'))
             ->where('scienceName','like','%'.$this->scienceName.'%')
             ->where('characteristic', 'like', '%'.$this->characteristic.'%')
             ->where('utility', 'like', '%'.$this->utility.'%')
-            ->whereNotNull('deleted_at')
+            ->whereNull('deleted_at')
         ;
         return $listPlant->paginate(4)
             ->appends('scienceName', $this->scienceName)

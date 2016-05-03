@@ -55,11 +55,13 @@
                                     </div>
                                 </div>
                                 <ul class="list-inline product-ratings">
-                                    <li><i class="rating-selected fa fa-star"></i></li>
-                                    <li><i class="rating-selected fa fa-star"></i></li>
-                                    <li><i class="rating-selected fa fa-star"></i></li>
-                                    <li><i class="rating fa fa-star"></i></li>
-                                    <li><i class="rating fa fa-star"></i></li>
+                                    @for ($i = 1; $i<=5; $i++)
+                                        @if($i <= $plant->rating)
+                                            <li><i class="rating-selected fa fa-star"></i></li>
+                                        @else
+                                            <li><i class="rating fa fa-star"></i></li>
+                                        @endif
+                                    @endfor
                                 </ul>
                             </div>
                         </div>
