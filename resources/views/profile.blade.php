@@ -44,7 +44,7 @@
                                 <div class="panel-heading overflow-h">
                                     <h2 class="panel-title heading-sm pull-left"><i class="fa fa-user"></i>Thông tin cá nhân</h2>
                                     @if($isMe)
-                                    <button class="btn-u pull-right" data-toggle="modal" data-target="#memberInfoModal">Chỉnh sửa</button>
+                                    <button class="btn-u pull-right showModal" data-toggle="modal" data-target="#memberInfoModal">Chỉnh sửa</button>
                                     @endif
                                 </div>
                                 <div class="panel-body margin-bottom-50">
@@ -237,6 +237,18 @@
                         </div>
 
                         <div class="form-group">
+                            <label class="col-sm-4 control-label">Giới tính</label>
+                            <div class="col-sm-6 pd-top-7">
+                                <select id="gender" name="gender" class="form-control" data-gender="{{$info->gender}}">
+                                    <option value="0" selected disabled>Giới tính</option>
+                                    <option value="Nam">Nam</option>
+                                    <option value="Nữ">Nữ</option>
+                                    <option value="Khác">Khác</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <label class="col-sm-4 control-label">Ngày sinh</label>
 
                             <div class="col-sm-6 pd-top-7">
@@ -261,6 +273,9 @@
 
 @section('pageJS')
     <script>
+        $('.showModal').on('click', function(){
+           $('#gender').val($('#gender').attr('data-gender'));
+        });
         $('#password-change').on('submit', function(event){
             event.preventDefault();
             var credential = $(this).serializeJson();

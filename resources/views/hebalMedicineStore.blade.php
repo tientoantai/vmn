@@ -48,7 +48,8 @@
                         <div class="list-product-description product-description-brd margin-bottom-30">
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <a href="shop-ui-inner.html">
+                                    <a href="{{route('profile',
+                                            ['account' => $store->accountName])}}">
                                         <img class="img-responsive sm-margin-bottom-20" src="{!! $store->avatar ? $store->avatar : 'assets/img/team/01.jpg'!!}" alt=""></a>
                                 </div>
                                 <div class="col-sm-9 product-description">

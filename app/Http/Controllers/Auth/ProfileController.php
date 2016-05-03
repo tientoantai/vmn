@@ -47,7 +47,7 @@ class ProfileController extends Controller
             ->with('plantsPosted', $plantsPosted)
             ->with('remediesPosted', $remediesPosted)
             ->with('message', $message)
-            ->with('isMe', $account == Session::get('credential')['attributes']['name'])
+            ->with('isMe', strtolower($account) == strtolower(Session::get('credential')['attributes']['name']))
             ;
         if($credential->role == 'store'){
             $result->with('prescription', $prescription);
