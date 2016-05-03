@@ -44,7 +44,9 @@ class RemediesKeywordCondition implements ArticleFindingCondition
     public function getQuery()
     {
         return DB::table('remedies')
+            ->select(\DB::raw('*, ratingPoint/ratingTime as rating'))
             ->where('title','like','%'.$this->keyword.'%')
+            ->whereNull('deleted_at')
             ->paginate(6)
             ->appends('keyword', $this->keyword)
             ;

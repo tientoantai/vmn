@@ -34,6 +34,7 @@ class   AdvanceSearchRemediesCondition extends RemediesKeywordCondition
             ->join('remedy_ingredients', 'remedies.id' , '=', 'remedy_ingredients.remedyId')
             ->select(\DB::raw('*', 'ratingPoint/ratingTime as rating'))
             ->where('remedies.utility', 'like', '%' . $this->utility . '%')
+            ->whereNull('remedies.deleted_at')
             ->groupBy('remedies.id');
         ;
         return $listRemedies->paginate(6)
