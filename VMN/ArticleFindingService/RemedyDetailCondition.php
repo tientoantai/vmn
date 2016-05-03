@@ -23,8 +23,10 @@ class RemedyDetailCondition implements ArticleFindingCondition
     {
         $remedy =\DB::table('remedies')
             ->where('id','=', $this->id())
+            ->whereNull('deleted_at')
             ->get()
         ;
+        if ( ! $remedy) return null;
         $ingredient = \DB::table('remedy_ingredients')
             ->where('remedyId', '=', $this->id())
             ->get()
@@ -37,6 +39,7 @@ class RemedyDetailCondition implements ArticleFindingCondition
 
         $related = \DB::table('store_prescriptions')
             ->where('remedyId', '=', $this->id())
+            ->whereNull('deleted_at')
             ->get()
         ;
 

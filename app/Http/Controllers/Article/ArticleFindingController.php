@@ -53,6 +53,8 @@ class ArticleFindingController extends Controller
     public function medicinalPlantsDetail(MedicinalPlantsIdCondition $condition)
     {
         $plant = $this->finder->find($condition);
+        if (!$plant)
+            return back();
         return view('plantsDetail')
             ->with('plant',$plant)
             ->with('img', json_decode($plant['info']->imgUrl))
@@ -87,6 +89,8 @@ class ArticleFindingController extends Controller
     public function detailRemedy(RemedyDetailCondition $condition)
     {
         $remedy = $this->finder->find($condition);
+        if ( ! $remedy)
+            return back();
         return view('remedyDetail')
             ->with('remedy', $remedy['info'])
             ->with('ingredient', $remedy['ingredient'])
