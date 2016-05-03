@@ -96,7 +96,6 @@
         };
         Dropzone.prototype.defaultOptions.dictDefaultMessage = "Kéo thả file hoặc click để upload";
         var uploadedImages = [];
-
         jQuery(document).ready(function() {
             App.init();
             App.initScrollBar();
@@ -107,7 +106,12 @@
             var imageDropzone = new Dropzone("#image-dropzone");
             imageDropzone.on("success", function(file, response) {
                 uploadedImages.push(response.file);
+                file.previewElement.addEventListener("click", function() {
+                    imageDropzone.removeFile(file);
+                    uploadedImages.splice(uploadedImages.indexOf(response.file),1);
+                });
             });
+
             $('#plant-adding-form').on('submit', function(event){
                 event.preventDefault();
                 var plantRaw = $(this).serializeJson();

@@ -130,6 +130,10 @@
             var imageDropzone = new Dropzone("#image-dropzone");
             imageDropzone.on("success", function(file, response) {
                 uploadedImages.push(response.file);
+                file.previewElement.addEventListener("click", function() {
+                    imageDropzone.removeFile(file);
+                    uploadedImages.splice(uploadedImages.indexOf(response.file),1);
+                });
             });
 
             $('#remedy-adding').on('submit', function(event){
