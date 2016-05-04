@@ -43,4 +43,20 @@ class ArticleReviewService
                 'ratingTime' => \DB::raw('ratingTime + 1'),
             ]);
     }
+
+    public function deleteCommentRemedy(Review $review)
+    {
+        \DB::table('remedies_reviews')->where('id', $review->id())
+            ->update([
+                'deleted_at' => date('Y-m-d H:i:s'),
+            ]);
+    }
+
+    public function deleteCommentPlant(Review $review)
+    {
+        \DB::table('medicinal_plants_reviews')->where('id', $review->id())
+            ->update([
+                'deleted_at' => date('Y-m-d H:i:s'),
+            ]);
+    }
 }

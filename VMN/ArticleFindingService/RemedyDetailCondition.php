@@ -29,11 +29,13 @@ class RemedyDetailCondition implements ArticleFindingCondition
         if ( ! $remedy) return null;
         $ingredient = \DB::table('remedy_ingredients')
             ->where('remedyId', '=', $this->id())
+            ->whereNull('deleted_at')
             ->get()
         ;
 
         $comment = \DB::table('remedies_reviews')
             ->where('reviewed', '=', $this->id())
+            ->whereNull('deleted_at')
             ->get()
         ;
 

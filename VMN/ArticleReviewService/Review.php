@@ -5,6 +5,8 @@ namespace VMN\ArticleReviewService;
 class Review
 {
 
+    protected $id;
+
     protected $comment;
 
     protected $rating;
@@ -81,16 +83,16 @@ class Review
     /**
      * @return Rating
      */
-    public function rating()
+    public function setId($id)
     {
-
+        $this->id = $id;
     }
 
     /**
      * @return Comment
      */
-    public function comment()
+    public function id()
     {
-
+        return $this->id;
     }
 }

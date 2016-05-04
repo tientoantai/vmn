@@ -62,4 +62,14 @@ class ArticleReviewingController extends Controller
             'message' => 'Cảm ơn bạn đã gửi đánh giá'
         ]);
     }
+
+    public function deleteCommentRemedy(Review $review)
+    {
+        $this->reviewingService->deleteCommentRemedy($review);
+    }
+
+    public function deleteCommentPlant(Review $review)
+    {
+        $this->reviewingService->deleteCommentPlant($review);
+    }
 }

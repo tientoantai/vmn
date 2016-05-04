@@ -226,6 +226,13 @@ Route::group(['middleware' => ['web']], function () {
         'uses' => 'Article\ArticleReportingController@reportRemedy'])
         ->name('postReport');
 
+    Route::put('/deleteCommentRemedy', [
+        'uses'=>'Article\ArticleReviewingController@deleteCommentRemedy'
+    ])->name('deleteCommentRemedy');
+
+    Route::put('/deleteCommentPlant', [
+        'uses'=>'Article\ArticleReviewingController@deleteCommentPlant'
+    ])->name('deleteCommentPlant');
 
 
     Route::post('/upload', ['middleware' => [UploadingFile::class, LoginRequired::class], function (Uploader $uploader)

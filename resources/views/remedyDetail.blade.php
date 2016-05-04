@@ -79,7 +79,7 @@
                             <td>{{$remedy->title}}</td>
                         </tr>
                         <tr>
-                            <td><b>Thành phần</b></td>
+                            <td><b>Các vị thuốc:</b></td>
                             <td>
                                 @foreach($ingredient as $plant)
                                     @if($plant->medicinalPlantId)
@@ -113,6 +113,7 @@
                             <td><a href="{{route('profile',['account' => $remedy->author])}}">
                                     {{$remedy->author}}</a></td>
                         </tr>
+                        @if (\Session::get('credential'))
                         <tr>
                             <td><b>Đánh giá</b></td>
                             <td><div class="stars-ratings" data-rate="{{$remedy->id}}">
@@ -127,6 +128,10 @@
                                     <input type="radio" name="stars-rating" id="stars-rating-1">
                                     <label for="stars-rating-1"><i class="fa fa-star fa-lg"></i></label>
                                 </div></td>
+                        </tr>
+                        @endif
+                        <tr>
+                            <td colspan="2" class="text-warning">*<i>Thông tin chỉ mang tính chất tham khảo, hãy tìm hiểu kỹ trước khi áp dụng</i></td>
                         </tr>
                         </tbody></table>
                 </div>
@@ -153,8 +158,13 @@
                                 <div class="product-comment-in">
                                     <img class="product-comment-img rounded-x" src="assets/img/team/01.jpg" alt="">
                                     <div class="product-comment-dtl">
-                                        <h4><a>{{$comment->reviewer}}</a> <small>{{$comment->created_at}}</small></h4>
+                                        <h4><a href="{{route('profile',['account' => $comment->reviewer])}}">
+                                                {{$comment->reviewer}}</a> <small>{{$comment->created_at}}</small></h4>
                                         <div>{!! nl2br($comment->comment) !!}</div>
+                                        @if(\Session::get('credential')['attributes']['role'] == 'mod')
+                                        <button class="btn btn-default delete-comment pull-right" data-review="{{$comment->id}}" type="button" title="Xóa bình luận">
+                                            <i class="fa fa-trash-o"></i></button>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -278,6 +288,19 @@
                 });
             });
 
+            $('.delete-comment').on('click', function(){
+                event.preventDefault();
+                var $approve = $.ajax({
+                    method: "PUT",
+                    url: "/deleteCommentRemedy",
+                    data: {Id: $(this).attr('data-review')}
+                });
+                $approve.then(function(response){
+                    alert (response.message);
+                    location.reload();
+                });
+            });
+
             $('#report').on('submit', function(event){
                 event.preventDefault();
                 var report = $(this).serializeJson();
@@ -294,11 +317,11 @@
                 var $approve = $.ajax({
                     method: "PUT",
                     url: "/registerPrescription",
-                    data: {id: $(this).attr('data-resgister')}
+                    data: {id: $(this).attr('data-review')}
                 });
                 $approve.then(function(response){
                     alert (response.message);
-//                    location.reload();
+                    location.reload();
                 });
             });
 

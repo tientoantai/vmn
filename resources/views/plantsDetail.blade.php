@@ -93,6 +93,7 @@
                                 <td><a href="{{route('profile',['account' => $plant['info']->author])}}">
                                         {{$plant['info']->author}}</a></td>
                             </tr>
+                            @if (\Session::get('credential'))
                             <tr>
                                 <td><b>Đánh giá</b></td>
                                 <td><div class="stars-ratings" data-rate="{{$plant['info']->id}}">
@@ -108,6 +109,7 @@
                                         <label for="stars-rating-1"><i class="fa fa-star fa-lg"></i></label>
                                     </div></td>
                             </tr>
+                            @endif
                         </tbody></table>
                     </div>
                 </div><!--/end row-->
@@ -135,6 +137,10 @@
                             <div class="product-comment-dtl">
                                 <h4><a>{{$comment->reviewer}}</a> <small>{{$comment->created_at}}</small></h4>
                                 <div>{!! nl2br($comment->comment) !!}</div>
+                                @if(\Session::get('credential')['attributes']['role'] == 'mod')
+                                    <button class="btn btn-default delete-comment pull-right" data-review="{{$comment->id}}" type="button" title="Xóa bình luận">
+                                        <i class="fa fa-trash-o"></i></button>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -256,6 +262,19 @@
                 var sendReview = $.post($(this).attr('action'), review);
                 sendReview.then(function(){
                     window.location.reload();
+                });
+            });
+
+            $('.delete-comment').on('click', function(){
+                event.preventDefault();
+                var $approve = $.ajax({
+                    method: "PUT",
+                    url: "/deleteCommentPlant",
+                    data: {Id: $(this).attr('data-review')}
+                });
+                $approve.then(function(response){
+                    alert (response.message);
+//                    location.reload();
                 });
             });
 
