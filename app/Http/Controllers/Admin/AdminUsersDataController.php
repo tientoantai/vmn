@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\AdminUserDataMiddleWare;
+use VMN\MemberFindingService\AdminDashBoardCondition;
 use VMN\MemberFindingService\WaitingStoreCondition;
 use VMN\MemberFindingService\AllUserCondition;
 use VMN\MemberFindingService\MemberFinder;
@@ -22,7 +23,9 @@ class AdminUsersDataController extends Controller
     
     public function adminHome()
     {
-        return view('admin/dashboard');
+        $info = $this->adminFinder->find(new AdminDashBoardCondition());
+        return view('admin/dashboard')
+            ->with('info', $info);
     }
 
     public function adminGetApprove(WaitingStoreCondition $condition)

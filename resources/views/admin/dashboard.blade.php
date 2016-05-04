@@ -19,7 +19,7 @@
                                 <i class="fa fa fa-users fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <div class="huge">26</div>
+                                <div class="huge">{{$info['user']}}</div>
                                 <div>Tổng số user</div>
                             </div>
                         </div>
@@ -34,7 +34,7 @@
                                 <i class="fa fa-tasks fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <div class="huge">12</div>
+                                <div class="huge">{{$info['store']}}</div>
                                 <div>Tổng số nhà thuốc</div>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                                 <i class="fa fa-shopping-cart fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <div class="huge">124</div>
+                                <div class="huge">{{$info['waiting']}}</div>
                                 <div>Số lượng chờ approve</div>
                             </div>
                         </div>

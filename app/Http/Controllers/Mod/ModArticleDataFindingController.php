@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use VMN\ArticleFindingService\ArticleFinder;
 use VMN\ArticleFindingService\PlantManagementCondition;
 use VMN\ArticleFindingService\RemedyManagementCondition;
+use VMN\ArticleFindingService\ModDashBoardCondition;
 
 
 class ModArticleDataFindingController extends Controller
@@ -25,7 +26,9 @@ class ModArticleDataFindingController extends Controller
 
     public function modHome()
     {
-        return view('mod/dashboard');
+        $info = $this->modFinder->find(new ModDashBoardCondition);
+        return view('mod/dashboard')
+            ->with('info', $info);
     }
 
     public function getWaitingPlants(PlantManagementCondition $condition)

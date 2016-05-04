@@ -41,11 +41,15 @@ class   MedicinalPlantNameCondition implements ArticleFindingCondition, Paginata
     public function getQuery()
     {
         $listPlant =  \DB::table('medicinal_plants')
-            ->select(\DB::raw('*, ratingPoint/ratingTime as rating'));
-        foreach (preg_split('/\s+/', $this->keyword()) as $keyword) {
-            $listPlant->orwhere('commonName','like','%'.$keyword.'%')
-                ->orWhere('otherName','like','%'.$keyword.'%');
-        }
+            ->select(\DB::raw('*, ratingPoint/ratingTime as rating'))
+            ->whereNull('deleted_at');
+
+        $listPlant->where(function ($query) {
+            foreach (preg_split('/\s+/', $this->keyword()) as $keyword) {
+                $query->orwhere('commonName','like','%'.$keyword.'%')
+                    ->orWhere('otherName','like','%'.$keyword.'%');
+            }
+        });
         return $listPlant
             ->paginate(6)
             ->appends('keyword', $this->keyword)

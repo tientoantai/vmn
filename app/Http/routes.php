@@ -15,7 +15,8 @@ use App\Http\Middleware\UploadingFile;
 use VMN\UploadService\Uploader;
 use App\Http\Middleware\LoginRequired;
 use App\Http\Middleware\ProfileMiddleWare;
-
+use App\Http\Middleware\AdminRequired;
+use App\Http\Middleware\ModLoginRequired;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -40,49 +41,93 @@ Route::group(['domain' => 'admin.vmn.vnvalley.com', 'middleware' => ['web']],fun
 
     Route::post('/managementLogin', ['uses' => 'Auth\LoginController@doManagementLogin']);
 
-    Route::get('/adminDashboard', ['uses' => 'Admin\AdminUsersDataController@adminHome'])->name('adminHome');
+    Route::get('/adminDashboard', [
+        'middleware' => AdminRequired::class,
+        'uses' => 'Admin\AdminUsersDataController@adminHome'])->name('adminHome');
 
-    Route::get('/waitingStore', ['uses' => 'Admin\AdminUsersDataController@adminGetApprove'])->name('admin.waitingStore');
+    Route::get('/waitingStore', [
+        'middleware' => AdminRequired::class,
+        'uses' => 'Admin\AdminUsersDataController@adminGetApprove'])->name('admin.waitingStore');
 
-    Route::get('/allUsers', ['uses' => 'Admin\AdminUsersDataController@adminAllUsers'])->name('admin.all-user');
+    Route::get('/allUsers', [
+        'middleware' => AdminRequired::class,
+        'uses' => 'Admin\AdminUsersDataController@adminAllUsers'])->name('admin.all-user');
 
-    Route::get('/storeInfo', ['uses' => 'Admin\AdminUsersDataController@adminStoreInfo'])->name('admin.storeInfo');
+    Route::get('/storeInfo', [
+        'middleware' => AdminRequired::class,
+        'uses' => 'Admin\AdminUsersDataController@adminStoreInfo'])->name('admin.storeInfo');
 
-    Route::put('/approveRegister', ['uses' => 'Admin\AdminProceedController@approveRegister'])->name('admin.proceedRegister');
+    Route::put('/approveRegister', [
+        'middleware' => AdminRequired::class,
+        'uses' => 'Admin\AdminProceedController@approveRegister'])->name('admin.proceedRegister');
 
-    Route::put('/changeStatus', ['uses' => 'Admin\AdminProceedController@changeStatus'])->name('admin.changeStatus');
+    Route::put('/changeStatus', [
+        'middleware' => AdminRequired::class,
+        'uses' => 'Admin\AdminProceedController@changeStatus'])->name('admin.changeStatus');
 
-    Route::put('/changeRole', ['uses' => 'Admin\AdminProceedController@changeRole'])->name('admin.changeRole');
+    Route::put('/changeRole', [
+        'middleware' => AdminRequired::class,
+        'uses' => 'Admin\AdminProceedController@changeRole'])->name('admin.changeRole');
 
-    Route::post('/createMod', ['uses' => 'Auth\RegisterController@memberRegister'])->name('admin.createMod');
+    Route::post('/createMod', [
+        'middleware' => AdminRequired::class,
+        'uses' => 'Auth\RegisterController@memberRegister'])->name('admin.createMod');
 
-    Route::get('/userDetail', ['uses' => 'Admin\AdminUsersDataController@adminUserDetail'])->name('admin.userDetail');
+    Route::get('/userDetail', [
+        'middleware' => AdminRequired::class,
+        'uses' => 'Admin\AdminUsersDataController@adminUserDetail'])->name('admin.userDetail');
 
-    Route::get('/modDashboard', ['uses' => 'Mod\ModArticleDataFindingController@modHome'])->name('modHome');
+    Route::get('/modDashboard', [
+        'middleware' => ModLoginRequired::class,
+        'uses' => 'Mod\ModArticleDataFindingController@modHome'])->name('modHome');
 
-    Route::get('/plantManagement', ['uses' => 'Mod\ModArticleDataFindingController@getWaitingPlants'])->name('plantManagement');
+    Route::get('/plantManagement', [
+        'middleware' => ModLoginRequired::class,
+        'uses' => 'Mod\ModArticleDataFindingController@getWaitingPlants'])->name('plantManagement');
 
-    Route::get('/remedyManagement', ['uses' => 'Mod\ModArticleDataFindingController@getWaitingRemedies'])->name('remedyManagement');
+    Route::get('/remedyManagement', [
+        'middleware' => ModLoginRequired::class,
+        'uses' => 'Mod\ModArticleDataFindingController@getWaitingRemedies'])->name('remedyManagement');
 
-    Route::put('/approveNewPlant', ['uses' => 'Mod\ModProceedController@approveNewPlant'])->name('mod.approveNewPlant');
+    Route::put('/approveNewPlant', [
+        'middleware' => ModLoginRequired::class,
+        'uses' => 'Mod\ModProceedController@approveNewPlant'])->name('mod.approveNewPlant');
 
-    Route::put('/approveEditPlant', ['uses' => 'Mod\ModProceedController@approveEditedPlant'])->name('mod.approveEditedPlant');
+    Route::put('/approveEditPlant', [
+        'middleware' => ModLoginRequired::class,
+        'uses' => 'Mod\ModProceedController@approveEditedPlant'])->name('mod.approveEditedPlant');
 
-    Route::put('/denyPlant', ['uses' => 'Mod\ModProceedController@denyPlant'])->name('mod.denyNewPlant');
+    Route::put('/denyPlant', [
+        'middleware' => ModLoginRequired::class,
+        'uses' => 'Mod\ModProceedController@denyPlant'])->name('mod.denyNewPlant');
 
-    Route::put('/approveNewRemedy', ['uses' => 'Mod\ModProceedController@approveNewRemedy'])->name('mod.approveNewRemedy');
+    Route::put('/approveNewRemedy', [
+        'middleware' => ModLoginRequired::class,
+        'uses' => 'Mod\ModProceedController@approveNewRemedy'])->name('mod.approveNewRemedy');
 
-    Route::put('/approveEditRemedy', ['uses' => 'Mod\ModProceedController@approveEditRemedy'])->name('mod.approveEditRemedy');
+    Route::put('/approveEditRemedy', [
+        'middleware' => ModLoginRequired::class,
+        'uses' => 'Mod\ModProceedController@approveEditRemedy'])->name('mod.approveEditRemedy');
 
-    Route::put('/rejectRemedy', ['uses' => 'Mod\ModProceedController@rejectRemedy'])->name('mod.rejectRemedy');
+    Route::put('/rejectRemedy', [
+        'middleware' => ModLoginRequired::class,
+        'uses' => 'Mod\ModProceedController@rejectRemedy'])->name('mod.rejectRemedy');
 
-    Route::post('/remindPlantAuthor', ['uses' => 'Mod\ModProceedController@remindPlantAuthor'])->name('mod.remindPlantAuthor');
+    Route::post('/remindPlantAuthor', [
+        'middleware' => ModLoginRequired::class,
+        'uses' => 'Mod\ModProceedController@remindPlantAuthor'])->name('mod.remindPlantAuthor');
 
-    Route::post('/remindRemedyAuthor', ['uses' => 'Mod\ModProceedController@remindRemedyAuthor'])->name('mod.remindRemedyAuthor');
+    Route::post('/remindRemedyAuthor', [
+        'middleware' => ModLoginRequired::class,
+        'uses' => 'Mod\ModProceedController@remindRemedyAuthor'])->name('mod.remindRemedyAuthor');
 
-    Route::put('/deletePlant', ['uses' => 'Mod\ModProceedController@deletePlant'])->name('mod.deletePlant');
+    Route::put('/deletePlant', [
+        'middleware' => ModLoginRequired::class,
+        'uses' => 'Mod\ModProceedController@deletePlant'])->name('mod.deletePlant');
 
-    Route::put('/deleteRemedy', ['uses' => 'Mod\ModProceedController@deleteRemedy'])->name('mod.deleteRemedy');
+    Route::put('/deleteRemedy', [
+        'middleware' => ModLoginRequired::class,
+        'uses' => 'Mod\ModProceedController@deleteRemedy'])->name('mod.deleteRemedy');
 
 });
 

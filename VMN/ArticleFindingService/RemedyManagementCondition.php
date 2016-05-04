@@ -42,6 +42,7 @@ class RemedyManagementCondition implements ArticleFindingCondition
 
         $remedyManagement['reported'] = \DB::table('remedies')
             ->join('remedies_reports', 'reported', '=', 'remedies.id')
+            ->where('remedies_reports.status', 'wait')
             ->get()
         ;
 

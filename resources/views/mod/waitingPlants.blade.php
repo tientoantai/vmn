@@ -380,6 +380,7 @@
             });
             $delete.then(function(response){
                 alert (response.message);
+                location.reload();
             });
 
         }
