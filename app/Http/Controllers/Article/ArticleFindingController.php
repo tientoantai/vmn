@@ -54,7 +54,7 @@ class ArticleFindingController extends Controller
     {
         $plant = $this->finder->find($condition);
         if (!$plant)
-            return back();
+            return redirect('medicinalPlants');
         return view('plantsDetail')
             ->with('plant',$plant)
             ->with('img', json_decode($plant['info']->imgUrl))
@@ -90,7 +90,7 @@ class ArticleFindingController extends Controller
     {
         $remedy = $this->finder->find($condition);
         if ( ! $remedy)
-            return back();
+            return redirect('remedies');
         return view('remedyDetail')
             ->with('remedy', $remedy['info'])
             ->with('ingredient', $remedy['ingredient'])

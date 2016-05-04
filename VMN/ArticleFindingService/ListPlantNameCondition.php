@@ -9,6 +9,7 @@ class ListPlantNameCondition implements ArticleFindingCondition
     public function getQuery()
     {
         $listPlant = \DB::table('medicinal_plants')->select('id','commonName')
+            ->whereNull('deleted_at')
             ->orderBy('id', 'asc')->get();
         foreach($listPlant as $k => $plant)
         {

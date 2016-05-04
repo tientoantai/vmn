@@ -173,7 +173,7 @@
 
                 $createPlant.then(function (response) {
                     alert(response.message);
-//                    window.location.replace('/medicinalPlants');
+                    window.location.replace('/medicinalPlants');
                 });
             });
 

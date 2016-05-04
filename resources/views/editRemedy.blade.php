@@ -15,6 +15,12 @@
     <link rel="stylesheet" href="{{asset('assets/plugins/sliptree-bootstrap/dist/css/bootstrap-tokenfield.css')}}">
     <link rel="stylesheet" href="{{asset('assets/plugins/sliptree-bootstrap/docs-assets/css/pygments-manni.css')}}">
     <link rel="stylesheet" href="{{asset('assets/plugins/sliptree-bootstrap/docs-assets/css/docs.css')}}">
+    <style>
+        .image-edit{
+            width: 550px;
+            height: 550px !important;
+        }
+    </style>
     @endsection
 
 
@@ -25,15 +31,42 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 md-margin-bottom-50">
                     <div class="ms-showcase2-template">
-                        <form action="/index.php/upload"
-                              class="dropzone"
-                              id="image-dropzone">
-                        </form>
-                    </div>
+                        <div id="carousel-example-generic" data-image="{{$remedy->imgUrl}}" class="carousel slide" data-ride="carousel">
+                            <!-- Wrapper for slides -->
+                            <div class="carousel-inner">
+                                @foreach (json_decode($remedy->imgUrl) as $k => $image)
+                                    @if($k == 0)
+                                        <div class="item active">
+                                            @else
+                                                <div class="item">
+                                                    @endif
+                                                    <img class="image-slide img-responsive image-edit " src="{{asset($image)}}" alt="">
+                                                    <div class=" carousel-caption">
+                                                        <label><input type="checkbox" value="{{$k}}">Xóa ảnh này</label>
+                                                    </div>
+                                                </div>
+                                                @endforeach
+                                                <div class="item">
+                                                    <form action="/index.php/upload"
+                                                          class="dropzone image-edit"
+                                                          id="image-dropzone">
+                                                    </form>
+                                                </div>
+                                        </div>
 
-                </div>
+                                        <!-- Controls -->
+                                        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                                            <span class="glyphicon glyphicon-chevron-left"></span>
+                                        </a>
+                                        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                                            <span class="glyphicon glyphicon-chevron-right"></span>
+                                        </a>
+                            </div> <!-- Carousel -->
+
+                        </div>
+                    </div>
                 <div class="col-md-6 md-margin-bottom-50">
                     <div class="shop-product-heading">
                         <h2>Nhập thông tin bài thuốc</h2>
@@ -103,25 +136,41 @@
             maxFilesize: 1 //MB
         };
         Dropzone.prototype.defaultOptions.dictDefaultMessage = "Kéo thả file hoặc click để upload ảnh";
-        var uploadedImages = [];
+        var uploadedImages = JSON.parse($('#carousel-example-generic').attr('data-image'));
         jQuery(document).ready(function() {
             App.init();
 
+            var deteleImage = []
+            $(':checkbox').on('click', function(){
+                if($(this).is(':checked')){
+                    deteleImage.push($(this).val());
+                }
+                else{
+                    deteleImage.splice(deteleImage.indexOf($(this).val()),1)
+                }
+            });
             var imageDropzone = new Dropzone("#image-dropzone");
             imageDropzone.on("success", function(file, response) {
                 uploadedImages.push(response.file);
+                file.previewElement.addEventListener("click", function() {
+                    imageDropzone.removeFile(file);
+                    uploadedImages.splice(uploadedImages.indexOf(response.file),1);
+                });
             });
 
             $('#remedy-adding').on('submit', function(event){
                 event.preventDefault();
                 var remedyRaw = $(this).serializeJson();
                 remedyRaw.remedyId = $(this).attr('data-update');
+                $.each(deteleImage, function(index, value){
+                    uploadedImages.splice(value,1)
+                });
                 if(uploadedImages.length > 0){
-                    remedyRaw.images = JSON.stringify(uploadedImages);
-                    remedyRaw.thumbnail = uploadedImages[0];
+                    remedyRaw.imgUrl = JSON.stringify(uploadedImages);
+                    remedyRaw.thumbnailUrl = uploadedImages[0];
                 }
                 else{
-                    remedyRaw.images = remedyRaw.thumbnail = '';
+                    remedyRaw.imgUrl = remedyRaw.thumbnailUrl = '';
                 }
 
                 var $createPlant = $.post($(this).attr('action'), remedyRaw);
@@ -129,7 +178,7 @@
                 $createPlant.then(function (response) {
                     alert (response.message);
                     if (response.status != 'error'){
-                        window.location.href = '/remedies';
+//                        window.location.href = '/remedies';
                     }
                 });
             });
