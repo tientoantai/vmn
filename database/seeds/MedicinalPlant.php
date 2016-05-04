@@ -235,5 +235,19 @@ class MedicinalPlant extends Seeder
         $plant14->author = 'thoxuanduong';
         $plant14->save();
 
+        $plant15 = new \VMN\Article\MedicinalPlant();
+        $plant15->commonName = 'Rau má';
+        $plant15->otherName = 'Tích tuyết thảo, Lôi công thảo';
+        $plant15->scienceName = 'Centella asiatica';
+        $plant15->characteristic ='Thân cây rau má gầy và nhẵn, là loại thân bò lan, màu xanh lục hay lục ánh đỏ, có rễ ở các mấu. Hoa rau má có màu trắng hoặc phớt đỏ, mọc thành các tán nhỏ, tròn gần mặt đất';
+        $plant15->location ='mọc ở những nơi ẩm ướt như thung lủng, bờ mương thuộc những vùng nhiệt đới ';
+        $plant15->utility = 'hạ sốt, làm đẹp, tăng cường sức khỏe, giải độc; trị mụn nhọt, táo bón, bệnh tim mạch…';
+        $plant15->ratingPoint = 4;
+        $plant15->ratingTime = 1;
+        $plant15->thumbnailUrl = 'ImgSample/rauma.jpg';
+        $plant15->imgUrl =json_encode(['ImgSample/rauma11.jpg','ImgSample/rauma.jpg','ImgSample/rauma3.jpg']);
+        $plant15->author = 'quynhht';
+        $plant15->save();
+
     }
 }
