@@ -221,5 +221,19 @@ class MedicinalPlant extends Seeder
         $plant13->author = 'thoxuanduong';
         $plant13->save();
 
+        $plant14 = new \VMN\Article\MedicinalPlant();
+        $plant14->commonName = 'Mã đề';
+        $plant14->otherName = 'Xa tiền';
+        $plant14->scienceName = 'Plantago asiatia L.';
+        $plant14->characteristic ='loại cỏ sống lâu năm, thân nhẵn. Lá mọc thành cụm ở gốc, phiến lá hình thìa hay hình trứng, có gân dọc theo sống lá và đồng quy ở ngọn và gốc lá. Hoa mọc thành bông, có cán dài, xuất phát từ kẽ lá. Hoa lưỡng tính. Quả hộp, trong chứa nhiều hạt màu nâu đen bóng.';
+        $plant14->location ='Cây mọc hoang và được trồng ở nhiều nơi trên khắp nước ta.';
+        $plant14->utility = 'long đờm và trị ho, trị mụn nhọt và bỏng, lợi tiểu';
+        $plant14->ratingPoint = 4;
+        $plant14->ratingTime = 1;
+        $plant14->thumbnailUrl = 'ImgSample/made1.jpg';
+        $plant14->imgUrl =json_encode(['ImgSample/made1.jpg','ImgSample/made2.jpg','ImgSample/made.jpg']);
+        $plant14->author = 'thoxuanduong';
+        $plant14->save();
+
     }
 }

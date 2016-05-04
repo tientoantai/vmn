@@ -38,6 +38,7 @@ class UsersTableSeeder extends Seeder
         $user1->status      = 'active';
         $user1->avatar      = 'assets/img/default/avatar.jpg';
         $user1->save();
+        
         $user2 = new \VMN\Contracts\Auth\Credential();
         $user2->name        = 'shinji';
         $user2->email       = 'waynerooney_hotboysanco@yahoo.com';
@@ -64,5 +65,32 @@ class UsersTableSeeder extends Seeder
         $user4->avatar      = 'assets/img/default/avatar.jpg';
         $user4->status      = 'wait';
         $user4->save();
+
+        $user5 = new \VMN\Contracts\Auth\Credential();
+        $user5->name        = 'quynhht';
+        $user5->email       = 'quynhhtse02639@fpt.edu.vn';
+        $user5->password    = Hash::make('quynhht');
+        $user5->role        = 'member';
+        $user5->status      = 'active';
+        $user5->avatar      = 'assets/img/default/avatar.jpg';
+        $user5->save();
+
+        $user6 = new \VMN\Contracts\Auth\Credential();
+        $user6->name        = 'khanhtb';
+        $user6->email       = 'khanhtbse02764@fpt.edu.vn';
+        $user6->password    = Hash::make('khanhtb');
+        $user6->role        = 'member';
+        $user6->status      = 'active';
+        $user6->avatar      = 'assets/img/default/avatar.jpg';
+        $user6->save();
+
+        $user7 = new \VMN\Contracts\Auth\Credential();
+        $user7->name        = 'dangnh';
+        $user7->email       = 'dangnhse02992@fpt.edu.vn';
+        $user7->password    = Hash::make('dangnh');
+        $user7->role        = 'member';
+        $user7->status      = 'active';
+        $user7->avatar      = 'assets/img/default/avatar.jpg';
+        $user7->save();
     }
 }

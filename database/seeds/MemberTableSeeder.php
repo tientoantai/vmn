@@ -43,5 +43,36 @@ class MemberTableSeeder extends Seeder
         $member2->DoB            = '11/10/1989';
 
         $member2->save();
+
+
+        $member3 = new \VMN\Auth\Member();
+        $member3->accountName    = 'quynhht';
+        $member3->email          = 'quynhhtse02639@fpt.edu.vn';
+        $member3->gender         = 'Nữ';
+        $member3->firstName      = 'Quynh';
+        $member3->lastName       = 'Hoang';
+        $member3->DoB            = '04/03/1993';
+
+        $member3->save();
+
+        $member4 = new \VMN\Auth\Member();
+        $member4->accountName    = 'khanhtb';
+        $member4->email          = 'khanhtbse02764@fpt.edu.vn';
+        $member4->gender         = 'Nam';
+        $member4->firstName      = 'Khanh';
+        $member4->lastName       = 'Tran';
+        $member4->DoB            = '03/04/1993';
+
+        $member4->save();
+
+        $member5 = new \VMN\Auth\Member();
+        $member5->accountName    = 'dangnh';
+        $member5->email          = 'dangnhse02992@fpt.edu.vn';
+        $member5->gender         = 'Nam';
+        $member5->firstName      = 'Dang';
+        $member5->lastName       = 'Trần';
+        $member5->DoB            = '15/04/1994';
+
+        $member5->save();
     }
 }
