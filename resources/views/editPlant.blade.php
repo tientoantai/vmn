@@ -13,7 +13,7 @@
     <style>
         .image-edit{
             width: 550px;
-            height: 550px;
+            height: 550px !important;
         }
     </style>
     @endsection
@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="col-md-6 md-margin-bottom-50">
                     <div class="ms-showcase2-template">
-                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <div id="carousel-example-generic" data-image="{{$plant->imgUrl}}" class="carousel slide" data-ride="carousel">
                             <!-- Wrapper for slides -->
                             <div class="carousel-inner">
                                 @foreach (json_decode($plant->imgUrl) as $k => $image)
@@ -36,7 +36,10 @@
                                     @else
                                     <div class="item">
                                     @endif
-                                    <img class="image-edit image-slide img-responsive" src="{{asset($image)}}" alt="">
+                                    <img class="image-slide img-responsive image-edit " src="{{asset($image)}}" alt="">
+                                        <div class=" carousel-caption">
+                                            <label><input type="checkbox" value="{{$k}}">Xóa ảnh này</label>
+                                        </div>
                                     </div>
                                 @endforeach
                                     <div class="item">
@@ -125,7 +128,7 @@
             maxFilesize: 1 //MB
         };
         Dropzone.prototype.defaultOptions.dictDefaultMessage = "Kéo thả file hoặc click để upload";
-        var uploadedImages = [];
+        var uploadedImages = JSON.parse($('#carousel-example-generic').attr('data-image'));
 
         jQuery(document).ready(function() {
             App.init();
@@ -133,28 +136,44 @@
             OwlCarousel.initOwlCarousel();
             StyleSwitcher.initStyleSwitcher();
             MasterSliderShowcase2.initMasterSliderShowcase2();
-
+            var deteleImage = []
+            $(':checkbox').on('click', function(){
+                if($(this).is(':checked')){
+                    deteleImage.push($(this).val());
+                }
+                else{
+                    deteleImage.splice(deteleImage.indexOf($(this).val()),1)
+                }
+            });
             var imageDropzone = new Dropzone("#image-dropzone");
             imageDropzone.on("success", function(file, response) {
                 uploadedImages.push(response.file);
+                file.previewElement.addEventListener("click", function() {
+                    imageDropzone.removeFile(file);
+                    uploadedImages.splice(uploadedImages.indexOf(response.file),1);
+                });
             });
+
             $('#plant-editing-form').on('submit', function(event){
                 event.preventDefault();
                 var plantRaw = $(this).serializeJson();
                 plantRaw.plantId = $(this).attr('data-update');
+                $.each(deteleImage, function(index, value){
+                    uploadedImages.splice(value,1)
+                });
                 if(uploadedImages.length > 0){
-                    plantRaw.images = JSON.stringify(uploadedImages);
-                    plantRaw.thumbnail = uploadedImages[0];
+                    plantRaw.imgUrl = JSON.stringify(uploadedImages);
+                    plantRaw.thumbnailUrl = uploadedImages[0];
                 }
                 else{
-                    plantRaw.images = plantRaw.thumbnail = '';
+                    plantRaw.imgUrl = plantRaw.thumbnailUrl = '';
                 }
                 var $createPlant = $.post($(this).attr('action'), plantRaw);
 
 
                 $createPlant.then(function (response) {
                     alert(response.message);
-                    window.location.replace('/medicinalPlants');
+//                    window.location.replace('/medicinalPlants');
                 });
             });
 

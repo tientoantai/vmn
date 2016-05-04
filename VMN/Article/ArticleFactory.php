@@ -12,7 +12,6 @@ class ArticleFactory
      */
     public function makeNewPlant($plantInfo)
     {
-
         $plant = new MedicinalPlant();
         $plant->setCommonName($plantInfo['commonName']);
         $plant->setOtherName($plantInfo['otherName']);
@@ -32,7 +31,8 @@ class ArticleFactory
     {
         $plant = new MedicinalPlant();
         $plant = $plant->find($newInfo['plantId']);
-        //update info (without image)
+        $plant->thumbnailUrl    = $newInfo['thumbnailUrl'];
+        $plant->imgUrl          = $newInfo['imgUrl'];
         $plant->otherName       = $newInfo['otherName'];
         $plant->characteristic  = $newInfo['characteristic'];
         $plant->location        = $newInfo['location'];
