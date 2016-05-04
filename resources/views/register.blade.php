@@ -70,7 +70,7 @@
                             </label>
                             <section>
                                 <label class="input">
-                                    <input type="text" name="DoB" onkeydown="return false" placeholder="Ngày sinh" class="form-control">
+                                    <input type="text" name="DoB" data-provide="datepicker" data-date-end-date="0d" onkeydown="return false" placeholder="Ngày sinh" class="form-control">
                                 </label>
                             </section>
                             <section>

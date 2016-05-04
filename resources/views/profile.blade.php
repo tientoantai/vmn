@@ -252,7 +252,7 @@
                             <label class="col-sm-4 control-label">Ngày sinh</label>
 
                             <div class="col-sm-6 pd-top-7">
-                                <input type="text" name="DoB" class="form-control" value="{{$info->DoB}}">
+                                <input type="text" name="DoB" onkeydown="return false" data-provide="datepicker" data-date-end-date="0d" class="form-control" value="{{$info->DoB}}">
                             </div>
                         </div>
                         <div class="form-group">
@@ -272,7 +272,15 @@
 @endsection
 
 @section('pageJS')
+    <script src="{{asset('assets/plugins/bootstrap-datepicker-1.5.1-dist/js/bootstrap-datepicker.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/bootstrap-datepicker-1.5.1-dist/locales/bootstrap-datepicker.vi.min.js')}}"></script>
     <script>
+        $('[name=DoB]').datepicker({
+            autoclose: true,
+            language: 'vi',
+            todayHighlight: true,
+
+        });
         $('.showModal').on('click', function(){
            $('#gender').val($('#gender').attr('data-gender'));
         });
