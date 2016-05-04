@@ -97,5 +97,19 @@ class RemedyTableSeeder extends Seeder
         $remedy5->author         = 'tiennm';
         $remedy5->save();
 
+        $remedy6 = new \VMN\Article\Remedy();
+        $remedy6->title          = 'Chữa tiêu chảy với mã đề và rau má';
+        $remedy6->description    = 'Mã đề tươi 1-2 nắm, rau má tươi 1 nắm, cỏ nhọ nồi tươi 1 nắm. Sắc đặc';
+        $remedy6->note           = '';
+        $remedy6->usage          = 'uống ngày một thang';
+        $remedy6->utility        = 'chữa tiêu chảy';
+        $remedy6->ratingPoint    = 6;
+        $remedy6->ratingTime     = 2;
+        $remedy6->ingredients    = "Mã đề:15, Rau má:16, Nhọ nồi:3";
+        $remedy6->thumbnailUrl   = 'ImgSample/made_rauma.jpg';
+        $remedy6->imgUrl         = json_encode(['ImgSample/made_rauma.jpg','ImgSample/made.jpg', 'ImgSample/rauma.jpg']);
+        $remedy6->author         = 'tiennm';
+        $remedy6->save();
+
     }
 }

@@ -58,5 +58,26 @@ class remedyIngredientsSeeder extends Seeder
             'medicinalPlantName' => 'Đỗ xanh',
             'dosage'=> ''
         ]);
+
+        DB::table('remedy_ingredients')->insert([
+            'remedyId' => 7,
+            'medicinalPlantId' => 15,
+            'medicinalPlantName' => 'Mã đề',
+            'dosage'=> ''
+        ]);
+
+        DB::table('remedy_ingredients')->insert([
+            'remedyId' => 7,
+            'medicinalPlantId' => 16,
+            'medicinalPlantName' => 'Rau má',
+            'dosage'=> ''
+        ]);
+
+        DB::table('remedy_ingredients')->insert([
+            'remedyId' => 7,
+            'medicinalPlantId' => 3,
+            'medicinalPlantName' => 'Nhọ nồi',
+            'dosage'=> ''
+        ]);
     }
 }
