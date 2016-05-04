@@ -25,7 +25,6 @@ class PlantManagementCondition implements ArticleFindingCondition
         $plantManagement['edit'] = \DB::table('medicinal_plants_history')
             ->where('status','wait')
             ->where('type','edit')
-            ->groupBy('plantID')
             ->whereNull('deleted_at')
             ->get()
             ;
