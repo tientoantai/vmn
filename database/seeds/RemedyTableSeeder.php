@@ -27,5 +27,19 @@ class RemedyTableSeeder extends Seeder
         $remedy->author         = 'shinji';
         $remedy->save();
 
+        $remedy1 = new \VMN\Article\Remedy();
+        $remedy1->title          = 'Chữa tiểu ra máu bằng nhọ nồi';
+        $remedy1->description    = 'Cỏ nhọ nồi nướng trên miếng ngói sạch cho khô, tán bột';
+        $remedy1->note           = 'Dùng 2 chỉ (8g) với nước cơm';
+        $remedy1->usage          = 'Chia làm nhiều lần dùng trong ngày';
+        $remedy1->utility        = 'Chữa tiểu ra máu';
+        $remedy1->ratingPoint    = 3;
+        $remedy1->ratingTime     = 1;
+        $remedy1->ingredients    = "Nhọ nồi:3";
+        $remedy1->thumbnailUrl   = 'ImgSample/nhonoi2.jpg';
+        $remedy1->imgUrl         = json_encode(['ImgSample/nhonoi2.jpg','ImgSample/nuocCom.jpg']);
+        $remedy1->author         = 'shinji';
+        $remedy1->save();
+
     }
 }

@@ -24,5 +24,11 @@ class remedyIngredientsSeeder extends Seeder
             'medicinalPlantName' => 'Tía tô',
             'dosage'=> '16g'
         ]);
+        DB::table('remedy_ingredients')->insert([
+            'remedyId' => 2,
+            'medicinalPlantId' => 3,
+            'medicinalPlantName' => 'Nhọ Nồi',
+            'dosage'=> ''
+        ]);
     }
 }
