@@ -7,6 +7,7 @@ use VMN\Article\ArticleFactory;
 use VMN\Article\MedicinalPlant;
 use VMN\MessagingService\Message;
 use VMN\MessagingService\MessageManager;
+use VMN\Article\Remedy;
 
 class ModProceedMiddleWare
 {
@@ -79,6 +80,9 @@ class ModProceedMiddleWare
         }elseif($request->path() == 'deletePlant')
         {
             return MedicinalPlant::find($request->get('id'));
+        }elseif($request->path() == 'deleteRemedy')
+        {
+            return Remedy::find($request->get('id'));
         }
     }
 

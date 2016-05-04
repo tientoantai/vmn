@@ -63,7 +63,8 @@ class ArticleFactory
     {
         $remedy = new Remedy();
         $remedy = $remedy->find($remedyInfo['remedyId']);
-        //update info (without image)
+        $remedy->setThumbnailUrl($remedyInfo['thumbnailUrl']);
+        $remedy->setImgUrl($remedyInfo['imgUrl']);
         $remedy->setDescription($remedyInfo['description']);
         $remedy->setNote($remedyInfo['note']);
         $remedy->setUsage($remedyInfo['usage']);

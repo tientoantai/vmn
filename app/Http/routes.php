@@ -129,6 +129,14 @@ Route::group(['domain' => 'admin.vmn.vnvalley.com', 'middleware' => ['web']],fun
         'middleware' => ModLoginRequired::class,
         'uses' => 'Mod\ModProceedController@deleteRemedy'])->name('mod.deleteRemedy');
 
+    Route::put('/ignoreReportPlant', [
+        'middleware' => ModLoginRequired::class,
+        'uses' => 'Mod\ModProceedController@ignoreReportPlant'])->name('mod.ignoreReportPlant');
+
+    Route::put('/ignoreReportRemedy', [
+        'middleware' => ModLoginRequired::class,
+        'uses' => 'Mod\ModProceedController@ignoreReportRemedy'])->name('mod.ignoreReportRemedy');
+
 });
 
 Route::group(['middleware' => ['web']], function () {

@@ -81,4 +81,14 @@ class ModProcessor
             ->where('remedyId', $remedy->id())
             ->update(['deleted_at' => date('y-m-d h:i:s')]);
     }
+
+    public function ignoreReportRemedy($id)
+    {
+        \DB::table('remedies_reports')->where('id',$id)->update(['status'=> 'ignored']);
+    }
+
+    public function ignoreReportPlant($id)
+    {
+        \DB::table('medicinal_plants_reports')->where('id',$id)->update(['status'=> 'ignored']);
+    }
 }

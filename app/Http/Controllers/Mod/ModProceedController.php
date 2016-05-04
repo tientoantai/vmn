@@ -94,4 +94,29 @@ class ModProceedController extends Controller
             'message' => 'Xóa cây thuốc thành công'
         ]);
     }
+
+    public function deleteRemedy(Remedy $remedy)
+    {
+        $this->processor->deleteRemedy($remedy);
+        return response()->json([
+            'message' => 'Xóa bài thuốc thành công'
+        ]);
+
+    }
+
+    public function ignoreReportPlant()
+    {
+        $this->processor->ignoreReportPlant(\Request::input('reportId'));
+        return response()->json([
+            'message' => 'Đã bỏ qua báo cáo'
+        ]);
+    }
+
+    public function ignoreReportRemedy()
+    {
+        $this->processor->ignoreReportPlant(\Request::input('reportId'));
+        return response()->json([
+            'message' => 'Đã bỏ qua báo cáo'
+        ]);
+    }
 }

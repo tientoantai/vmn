@@ -305,7 +305,7 @@
                 $('.btn-footer').html(
                         "<button id='proceed' data-id='"+dataInfo.id+"' data-reported='"+dataInfo.reported+"' " +
                         "class='btn btn-success' onclick='remindPlantsAuthor($(this))'>Nhắc nhở</button>"
-                        +"<button id='ignore' data-id='"+dataInfo.id+"' class='btn btn-danger'>Bỏ qua</button>");
+                        +"<button id='ignore' onclick='ignoreReport($(this))' data-id='"+dataInfo.id+"' class='btn btn-danger'>Bỏ qua</button>");
                 $('.modal').modal('show');
             }
             $('.modal').modal('show');
@@ -366,7 +366,11 @@
             var data = {
                 reportId    : element.attr('data-id'),
             };
-            var $remind = $.post('/ignoreReport', data);
+            var $remind = $.ajax({
+                method: "PUT",
+                url: "/ignoreReportPlant",
+                data: data
+            });
             $remind.then(function(response){
                 alert (response.message);
                 location.reload();
