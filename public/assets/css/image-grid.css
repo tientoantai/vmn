@@ -4,6 +4,9 @@
     .home-image{
 
     }
+    .owl-wrapper-outer .owl-wrapper > .owl-item > .item > a > .img-responsive{
+        height: 157px !important;
+    }
 }
 
 /*sm*/
@@ -12,6 +15,9 @@
         height: 340px;
     }
     .plant-image{height: 330px}
+    .owl-wrapper-outer .owl-wrapper > .owl-item > .item > a > .img-responsive{
+        height: 157px !important;
+    }
 }
 
 /*md*/
@@ -20,6 +26,8 @@
         height: 215px;
     }
     .plant-image{height: 293px}
+
+
 }
 
 /*lg*/
@@ -29,6 +37,10 @@
     }
 
     .plant-image{height: 360px}
+
+    .owl-wrapper-outer .owl-wrapper > .owl-item > .item > a > .img-responsive{
+        height: 208px !important;
+    }
 }
 
 

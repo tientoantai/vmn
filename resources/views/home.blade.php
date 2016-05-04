@@ -144,7 +144,7 @@
                      data-endeasing="Power1.easeIn"
                      data-captionhidden="off"
                      style="z-index: 6">
-                    Tra cứu thông tin
+                    Có sự tham gia của các
                 </div>
 
                 <div class="tp-caption revolution-ch1 sft start"
@@ -171,7 +171,7 @@
                      data-endeasing="Power1.easeIn"
                      data-captionhidden="off"
                      style="z-index: 6">
-                    <a href="#" class="btn-u btn-brd btn-brd-hover btn-u-light">Xem ngay</a>
+                    {{--<a href="#" class="btn-u btn-brd btn-brd-hover btn-u-light">Xem ngay</a>--}}
                 </div>
             </li>
             <!-- END SLIDE -->
