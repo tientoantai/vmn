@@ -41,6 +41,11 @@
     .owl-wrapper-outer .owl-wrapper > .owl-item > .item > a > .img-responsive{
         height: 208px !important;
     }
+
+    .image-edit{
+        width: 550px;
+        height: 540px !important;
+    }
 }
 
 

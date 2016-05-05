@@ -22,7 +22,7 @@
             <div class="col-md-6 md-margin-bottom-50">
                 <div class="ms-showcase2-template">
                     <form action="/index.php/upload"
-                         class="dropzone"
+                         class="dropzone image-edit"
                           id="image-dropzone">
                     </form>
                 </div>
