@@ -1,6 +1,6 @@
 @extends('layout')
 @section('title')
-    Đóng góp bài thuốc
+    Chỉnh sửa bài thuốc
 @endsection
 @section('pageCss')
 
