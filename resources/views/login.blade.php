@@ -64,14 +64,14 @@
                     </section>
                     <div class="row margin-bottom-5">
                         <div class="col-xs-6">
-                            <label class="checkbox">
-                                <input type="checkbox" name="checkbox"/>
-                                <i></i>
-                                Ghi nhớ
-                            </label>
+                            {{--<label class="checkbox">--}}
+                                {{--<input type="checkbox" name="checkbox"/>--}}
+                                {{--<i></i>--}}
+                                {{--Ghi nhớ--}}
+                            {{--</label>--}}
                         </div>
                         <div class="col-xs-6 text-right">
-                            <a href="#">Quên mật khẩu?</a>
+                            <a onclick="return alert('Rất xin lỗi vì chức năng này chưa hoàn thiện \n Hãy liên hệ với chúng tôi qua mail mangcaythuocnam@gmail.com để được hỗ trợ')">Quên mật khẩu?</a>
                         </div>
                     </div>
                     <button class="btn-u btn-u-sea-shop btn-block margin-bottom-20" type="submit">Log in</button>
