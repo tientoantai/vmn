@@ -38,6 +38,7 @@ class ProfileFinder
     public function getMemberMedicinalPlantsArticle($account)
     {
         return \DB::table('medicinal_plants')
+            ->select(\DB::raw('*, ratingPoint/ratingTime as rating'))
             ->where('author','=',$account)
             ->whereNull('deleted_at')
             ->get()
@@ -48,6 +49,7 @@ class ProfileFinder
     public function getMemberRemediesArticle($account)
     {
         return \DB::table('remedies')
+            ->select(\DB::raw('*, ratingPoint/ratingTime as rating'))
             ->where('author','=',$account)
             ->whereNull('deleted_at')
             ->get()

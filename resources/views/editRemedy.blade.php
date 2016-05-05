@@ -178,7 +178,7 @@
                 $createPlant.then(function (response) {
                     alert (response.message);
                     if (response.status != 'error'){
-//                        window.location.href = '/remedies';
+                        window.location.href = '/remedies';
                     }
                 });
             });

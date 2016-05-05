@@ -133,8 +133,8 @@
                     @foreach($plant['comment'] as $comment)
                     <div class="product-comment margin-bottom-20">
                         <div class="product-comment-in">
-                            <img class="product-comment-img rounded-x" src="assets/img/team/01.jpg" alt="">
-                            <div class="product-comment-dtl">
+                            <img class="product-comment-img rounded-x" src="{{asset($comment->avatar)}}" alt="">
+                            <div class="product-comment-dtl margin-left-10">
                                 <h4><a>{{$comment->reviewer}}</a> <small>{{$comment->created_at}}</small></h4>
                                 <div>{!! nl2br($comment->comment) !!}</div>
                                 @if(\Session::get('credential')['attributes']['role'] == 'mod')

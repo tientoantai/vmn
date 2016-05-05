@@ -39,7 +39,7 @@
                     @if($listPlant->total() != 0)
                         @foreach($listPlant as $plant)
                         <div class="col-md-4 col-sm-6">
-                            <div class="product-img product-img-brd">
+                            <div class="product-img product-img-brd margin-top-20">
                                 <!--Thay = link thumbnail cây thuốc-->
                                 <a href="{{route('plant-detail',['id' => $plant->id])}}">
                                     <img class="full-width img-responsive plant-image" src="{{$plant->thumbnailUrl}}" alt="">
@@ -47,12 +47,10 @@
                             </div>
                             <div class="product-description product-description-brd ">
                                 <div class="overflow-h margin-bottom-5">
-                                    <div class="pull-left">
+                                    <div class="">
                                         <h4 class="title-price"><a href=""></a>{{$plant->commonName}}</h4>
                                     </div>
-                                    <div class="product-price">
-                                        {{--<span class="title-price"><small></small>{{$plant->scienceName}}</span>--}}
-                                    </div>
+                                    <h5>{{str_limit($plant->otherName, 40)}}</h5>
                                 </div>
                                 <ul class="list-inline product-ratings">
                                     @for ($i = 1; $i<=5; $i++)
