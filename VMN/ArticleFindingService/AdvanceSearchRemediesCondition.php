@@ -12,7 +12,7 @@ class   AdvanceSearchRemediesCondition extends RemediesKeywordCondition
 
     public function setUtility($utility)
     {
-        $this->utility = $utility;
+        $this->utility = trim($utility);
         return $this;
     }
 
@@ -24,7 +24,7 @@ class   AdvanceSearchRemediesCondition extends RemediesKeywordCondition
 
     public function setIngredient($ingredient)
     {
-        $this->ingredient = $ingredient;
+        $this->ingredient = trim($ingredient);
         return $this;
     }
 
@@ -37,7 +37,8 @@ class   AdvanceSearchRemediesCondition extends RemediesKeywordCondition
             ->whereNull('remedies.deleted_at')
             ->groupBy('remedies.id');
         ;
-        return $listRemedies->paginate(6)
+
+        return $listRemedies->paginate(config('app.perPageAdvance') ? config('app.perPageAdvance') : 6)
             ->appends('utility', $this->utility)
             ;
     }

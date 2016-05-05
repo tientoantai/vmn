@@ -21,7 +21,7 @@ class AdvanceSearchPlantsCondition extends MedicinalPlantNameCondition
      */
     public function setScienceName($scienceName)
     {
-        $this->scienceName = $scienceName;
+        $this->scienceName = trim($scienceName);
         return $this;
     }
 
@@ -39,7 +39,7 @@ class AdvanceSearchPlantsCondition extends MedicinalPlantNameCondition
      */
     public function setUtility($utility)
     {
-        $this->utility = $utility;
+        $this->utility = trim($utility);
         return $this;
     }
 
@@ -54,7 +54,7 @@ class AdvanceSearchPlantsCondition extends MedicinalPlantNameCondition
      */
     public function setCharacteristic($characteristic)
     {
-        $this->characteristic = $characteristic;
+        $this->characteristic = trim($characteristic);
         return $this;
     }
 
@@ -66,12 +66,24 @@ class AdvanceSearchPlantsCondition extends MedicinalPlantNameCondition
     {
         $listPlant = \DB::table('medicinal_plants')
             ->select(\DB::raw('*, ratingPoint/ratingTime as rating'))
-            ->where('scienceName','like','%'.$this->scienceName.'%')
-            ->where('characteristic', 'like', '%'.$this->characteristic.'%')
-            ->where('utility', 'like', '%'.$this->utility.'%')
-            ->whereNull('deleted_at')
-        ;
-        return $listPlant->paginate(4)
+            ->whereNull('deleted_at');
+        $listPlant->where(function ($query) {
+            foreach (preg_split('/\s+/', $this->scienceName()) as $name) {
+                $query->orwhere('scienceName','like','%'.$name.'%');
+            }
+        });
+        $listPlant->where(function ($query) {
+            foreach (preg_split('/\s+/', $this->characteristic()) as $characteristic) {
+                $query->orWhere('characteristic', 'like', '%'.$characteristic.'%');
+            }
+        });
+
+        $listPlant->where(function ($query) {
+            foreach (preg_split('/\s+/', $this->utility()) as $utility) {
+                $query->orWhere('utility', 'like', '%'.$utility.'%');
+            }
+        });
+        return $listPlant->paginate(config('app.perPageAdvance') ? config('app.perPageAdvance') : 4)
             ->appends('scienceName', $this->scienceName)
             ->appends('characteristic', $this->characteristic)
             ->appends('utility', $this->utility)

@@ -51,7 +51,7 @@ class   MedicinalPlantNameCondition implements ArticleFindingCondition, Paginata
             }
         });
         return $listPlant
-            ->paginate(6)
+            ->paginate(config('app.perPage') ? config('app.perPage') : 6)
             ->appends('keyword', $this->keyword)
             ;
     }

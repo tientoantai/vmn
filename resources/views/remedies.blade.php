@@ -30,11 +30,11 @@
                     @if(Session::get('credential'))
                     <div class="margin-bottom-20 margin-top-20">
                         <div class="col-sm-3 ">
-                            <a href="{{route('add-remedy')}}" type="button" class="btn btn-success "><i class="fa fa-plus"></i> Đóng góp bài thuốc</a>
+                            <a href="{{route('add-remedy')}}" type="button" class="full-width btn btn-success "><i class="fa fa-plus"></i> Đóng góp bài thuốc</a>
                         </div>
                         <div class="col-sm-6">&nbsp;</div>
                         <div class="col-sm-3">
-                            <a href="{{route('advanced-search-remedy')}}" type="button" class="btn btn-primary pull-right"><i class="fa fa-search-plus"></i> Hiển thị tìm kiếm nâng cao</a>
+                            <a href="{{route('advanced-search-remedy')}}" type="button" class="full-width btn btn-primary pull-right"><i class="fa fa-search-plus"></i> Hiển thị tìm kiếm nâng cao</a>
                         </div>
                     </div>
                     @endif

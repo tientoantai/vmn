@@ -15,7 +15,7 @@ class RemediesKeywordCondition implements ArticleFindingCondition
 
     public function setKeyword($keyword)
     {
-        $this->keyword = $keyword;
+        $this->keyword = trim($keyword);
 
         return $this;
     }
@@ -51,7 +51,7 @@ class RemediesKeywordCondition implements ArticleFindingCondition
                 $query->orwhere('title','like','%'.$keyword.'%');
             }
         });
-        return $listRemedy->paginate(6)
+        return $listRemedy->paginate(config('app.perPage') ? config('app.perPage') : 4)
             ->appends('keyword', $this->keyword);
     }
 }

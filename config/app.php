@@ -219,4 +219,8 @@ return [
 
     ],
 
+    'perPage' => 6,
+
+    'perPageAdvance' => 4,
+
 ];
