@@ -6,6 +6,7 @@
 
 @section('pageCss')
     <link rel="stylesheet" href="{{asset('assets/css/profile.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/plugins/dropzone/dist/dropzone.css')}}">
 @endsection
 @section('content')
     <!--=== Profile ===-->
@@ -13,8 +14,8 @@
     <div class="row">
         <!--Left Sidebar-->
         <div class="col-md-3 md-margin-bottom-40">
-            <img class="img-responsive profile-img margin-bottom-20 full-width" src="{{asset($info->avatar)}}" alt="">
-
+            <img id="avatar" class="img-responsive profile-img  full-width"
+                 data-toggle="modal" data-target=".bs-example-modal-sm" src="{{asset($info->avatar)}}" alt="">
             <ul class="list-group sidebar-nav-v1 margin-bottom-40 " id="sidebar-nav-1">
                 <li class="list-group-item active">
                     <a data-toggle="tab" href="#profile"><i class="fa fa-user"></i> Thông tin</a>
@@ -91,14 +92,16 @@
                                                 </div>
                                                 <div class="project-share">
                                                     <ul class="list-inline comment-list-v2 pull-left">
-                                                        <li><i class="fa fa-comments"></i> <a href="#">32</a></li>
+                                                        <i class="text-muted">{{$postedPlant->otherName}}</i>
                                                     </ul>
                                                     <ul class="list-inline star-vote pull-right">
-                                                        <li><i class="color-green fa fa-star"></i></li>
-                                                        <li><i class="color-green fa fa-star"></i></li>
-                                                        <li><i class="color-green fa fa-star"></i></li>
-                                                        <li><i class="color-green fa fa-star"></i></li>
-                                                        <li><i class="color-green fa fa-star-o"></i></li>
+                                                        @for($i=1; $i<=5; $i++)
+                                                            @if($i <= $postedPlant->rating)
+                                                            <li><i class="color-green fa fa-star"></i></li>
+                                                            @else
+                                                            <li><i class="color-green fa fa-star-o"></i></li>
+                                                            @endif
+                                                        @endfor
                                                     </ul>
                                                 </div>
                                             </div>
@@ -118,14 +121,16 @@
                                                 </div>
                                                 <div class="project-share">
                                                     <ul class="list-inline comment-list-v2 pull-left">
-                                                        <li><i class="fa fa-comments"></i> <a href="#">32</a></li>
+                                                        <i class="text-muted">{{$postedRemedy->utility}}</i>
                                                     </ul>
                                                     <ul class="list-inline star-vote pull-right">
-                                                        <li><i class="color-green fa fa-star"></i></li>
-                                                        <li><i class="color-green fa fa-star"></i></li>
-                                                        <li><i class="color-green fa fa-star"></i></li>
-                                                        <li><i class="color-green fa fa-star"></i></li>
-                                                        <li><i class="color-green fa fa-star-o"></i></li>
+                                                        @for($i=1; $i<=5; $i++)
+                                                            @if($i <= $postedRemedy->rating)
+                                                                <li><i class="color-green fa fa-star"></i></li>
+                                                            @else
+                                                                <li><i class="color-green fa fa-star-o"></i></li>
+                                                            @endif
+                                                        @endfor
                                                     </ul>
                                                 </div>
                                             </div>
@@ -267,6 +272,26 @@
         </div>
     </div>
     <!-- end Modal member-->
+
+    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    Thay đổi ảnh đại diện
+                </div>
+                <div class="modal-body">
+                <form action="{{asset('index.php/upload')}}"
+                      class="dropzone image-edit"
+                      id="image-dropzone">
+                </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                    <button type="button" id="changeAvatar" class="btn btn-primary" data-credential="{{$info->accountName}}">Lưu ảnh</button>
+                </div>
+            </div>
+        </div>
+    </div>
     @endif
     <!--=== End Profile ===-->
 @endsection
@@ -274,7 +299,28 @@
 @section('pageJS')
     <script src="{{asset('assets/plugins/bootstrap-datepicker-1.5.1-dist/js/bootstrap-datepicker.min.js')}}"></script>
     <script src="{{asset('assets/plugins/bootstrap-datepicker-1.5.1-dist/locales/bootstrap-datepicker.vi.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/dropzone/dist/dropzone.js')}}"></script>
     <script>
+
+        Dropzone.autoDiscover = false;
+        Dropzone.options.imageDropzone = {
+            maxFilesize: 1, //MB
+        };
+        Dropzone.prototype.defaultOptions.dictDefaultMessage = "Kéo thả file hoặc click để upload ảnh";
+        var uploadedImages = '';
+        var imageDropzone = new Dropzone("#image-dropzone");
+        imageDropzone.on("success", function(file, response) {
+            if (uploadedImages.length  =='')
+                uploadedImages = response.file;
+            else{
+                imageDropzone.removeFile(file);
+                alert ('Chỉ được đăng 1 ảnh');
+            }
+            file.previewElement.addEventListener("click", function() {
+                imageDropzone.removeFile(file);
+                uploadedImages = '';
+            });
+        });
         $('[name=DoB]').datepicker({
             autoclose: true,
             language: 'vi',
@@ -283,6 +329,17 @@
         });
         $('.showModal').on('click', function(){
            $('#gender').val($('#gender').attr('data-gender'));
+        });
+        $('#changeAvatar').on('click', function(){
+            var data = {
+                credential: $(this).attr('data-credential'),
+                avatar: uploadedImages
+            }
+            var $change = $.post('/changeAvatar', data);
+            $change.then(function(response){
+                alert (response.message);
+//                location.reload();
+            });
         });
         $('#password-change').on('submit', function(event){
             event.preventDefault();

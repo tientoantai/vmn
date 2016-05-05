@@ -6,6 +6,7 @@
 
 @section('pageCss')
     <link rel="stylesheet" href="{{asset('assets/css/profile.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/plugins/dropzone/dist/dropzone.css')}}">
     @endsection
     @section('content')
             <!--=== Profile ===-->
@@ -13,7 +14,8 @@
         <div class="row">
             <!--Left Sidebar-->
             <div class="col-md-3 md-margin-bottom-40">
-                <img class="img-responsive profile-img margin-bottom-20 full-width" src="{{asset('assets/img/team/01.jpg')}}" alt="">
+                <img class="img-responsive profile-img margin-bottom-20 full-width" src="{{asset($info->avatar)}}"
+                     data-toggle="modal" data-target=".bs-example-modal-sm"  alt="">
 
                 <ul class="list-group sidebar-nav-v1 margin-bottom-40 " id="sidebar-nav-1">
                     <li class="list-group-item active">
@@ -233,13 +235,54 @@
                 </div>
             </div>
             <!-- End Profile Content -->
+            @if($isMe)
+                <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                Thay đổi ảnh đại diện
+                            </div>
+                            <div class="modal-body">
+                                <form action="{{asset('index.php/upload')}}"
+                                      class="dropzone image-edit"
+                                      id="image-dropzone">
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                <button type="button" id="changeAvatar" class="btn btn-primary" data-credential="{{$info->accountName}}">Lưu ảnh</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
     <!--=== End Profile ===-->
 @endsection
 
 @section('pageJS')
+    <script src="{{asset('assets/plugins/dropzone/dist/dropzone.js')}}"></script>
     <script>
+
+        Dropzone.autoDiscover = false;
+        Dropzone.options.imageDropzone = {
+            maxFilesize: 1 //MB
+
+        };
+        Dropzone.prototype.defaultOptions.dictDefaultMessage = "Kéo thả file hoặc click để upload ảnh";
+        var uploadedImages = '';
+        var imageDropzone = new Dropzone("#image-dropzone");
+        imageDropzone.on("success", function(file, response) {
+            if (uploadedImages.length  =='')
+                uploadedImages = response.file;
+            else
+                alert ('Chỉ được đăng 1 ảnh');
+            file.previewElement.addEventListener("click", function() {
+                imageDropzone.removeFile(file);
+                uploadedImages = '';
+            });
+        });
         $('#password-change').on('submit', function(event){
             event.preventDefault();
             var credential = $(this).serializeJson();
@@ -256,6 +299,18 @@
                     alert ('Đổi mật khẩu thành công');
                 }
                 $('.btn-u-default').click();
+            });
+        });
+
+        $('#changeAvatar').on('click', function(){
+            var data = {
+                credential: $(this).attr('data-credential'),
+                avatar: uploadedImages
+            }
+            var $change = $.post('/changeAvatar', data);
+            $change.then(function(response){
+                alert (response.message);
+//                location.reload();
             });
         });
 

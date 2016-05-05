@@ -114,7 +114,7 @@ class ModProceedController extends Controller
 
     public function ignoreReportRemedy()
     {
-        $this->processor->ignoreReportPlant(\Request::input('reportId'));
+        $this->processor->ignoreReportRemedy(\Request::input('reportId'));
         return response()->json([
             'message' => 'Đã bỏ qua báo cáo'
         ]);

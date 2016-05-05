@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use VMN\Auth\Member;
 use VMN\Auth\ProfileFinder;
+use VMN\Contracts\Auth\Credential;
 
 
 class ProfileController extends Controller
@@ -58,6 +59,20 @@ class ProfileController extends Controller
     public function updateProfile(Member $member)
     {
         $member->save();
+        return response()->json([
+            'message' => 'Đã lưu thay đổi'
+        ]);
+    }
+
+    public function changeAvatar(Credential $credential)
+    {
+
+        $credential->save();
+        if($credential->role == 'store')
+        {
+            \DB::table('herbal_medicine_stores')->where('accountName',$credential->name)
+                ->update(['avatar'=>$credential->avatar]);
+        }
         return response()->json([
             'message' => 'Đã lưu thay đổi'
         ]);

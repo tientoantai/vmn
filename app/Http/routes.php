@@ -280,14 +280,19 @@ Route::group(['middleware' => ['web']], function () {
         ->name('postReport');
 
     Route::put('/deleteCommentRemedy', [
+        'middleware' => ModLoginRequired::class,
         'uses'=>'Article\ArticleReviewingController@deleteCommentRemedy'
     ])->name('deleteCommentRemedy');
 
     Route::put('/deleteCommentPlant', [
+        'middleware' => ModLoginRequired::class,
         'uses'=>'Article\ArticleReviewingController@deleteCommentPlant'
     ])->name('deleteCommentPlant');
 
-
+    Route::post('/changeAvatar', [
+        'middleware' => ProfileMiddleWare::class,
+        'uses' => 'Auth\ProfileController@changeAvatar'])
+    ->name('changeAvatar');
     Route::post('/upload', ['middleware' => [UploadingFile::class, LoginRequired::class], function (Uploader $uploader)
     {
         return response()->json([
