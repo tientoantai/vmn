@@ -34,6 +34,10 @@ class RemedyDetailCondition implements ArticleFindingCondition
         ;
 
         $comment = \DB::table('remedies_reviews')
+            ->join('credentials', 'remedies_reviews.reviewer', '=', 'credentials.name')
+            ->select('credentials.avatar', 'remedies_reviews.reviewer',
+                'remedies_reviews.reviewed', 'remedies_reviews.id',
+                'remedies_reviews.comment', 'remedies_reviews.created_at')
             ->where('reviewed', '=', $this->id())
             ->whereNull('deleted_at')
             ->get()

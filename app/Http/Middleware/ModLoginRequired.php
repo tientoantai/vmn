@@ -7,9 +7,19 @@ class ModLoginRequired
 {
     public function handle(Request $request, \Closure $next)
     {
-        if ( \Session::get('managementCredential')['attributes']['role'] != 'mod')
+        if($request->path() == 'deleteCommentPlant' || $request->path() == 'deleteCommentRemedy')
         {
-            return redirect('managementLogin');
+            if ( \Session::get('credential')['attributes']['role'] != 'mod')
+            {
+                return redirect('/');
+            }
+        }
+        else
+        {
+            if ( \Session::get('managementCredential')['attributes']['role'] != 'mod')
+            {
+                return redirect('managementLogin');
+            }
         }
         return $next($request);
     }

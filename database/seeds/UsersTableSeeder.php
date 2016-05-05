@@ -92,5 +92,41 @@ class UsersTableSeeder extends Seeder
         $user7->status      = 'active';
         $user7->avatar      = 'assets/img/default/avatar.jpg';
         $user7->save();
+
+        $user8 = new \VMN\Contracts\Auth\Credential();
+        $user8->name        = 'vanxuanduong';
+        $user8->email       = 'boymanu98@gmail.com';
+        $user8->password    = Hash::make('tiennm');
+        $user8->role        = 'store';
+        $user8->avatar      = 'assets/img/default/avatar.jpg';
+        $user8->status      = 'active';
+        $user8->save();
+
+        $user9 = new \VMN\Contracts\Auth\Credential();
+        $user9->name        = 'phuchungduong';
+        $user9->email       = 'boymanu99@gmail.com';
+        $user9->password    = Hash::make('tiennm');
+        $user9->role        = 'store';
+        $user9->avatar      = 'assets/img/default/avatar.jpg';
+        $user9->status      = 'active';
+        $user9->save();
+
+        $user10 = new \VMN\Contracts\Auth\Credential();
+        $user10->name        = 'hoabaoduong';
+        $user10->email       = 'boymanu96@gmail.com';
+        $user10->password    = Hash::make('tiennm');
+        $user10->role        = 'store';
+        $user10->avatar      = 'assets/img/default/avatar.jpg';
+        $user10->status      = 'active';
+        $user10->save();
+
+        $user11 = new \VMN\Contracts\Auth\Credential();
+        $user11->name        = 'danphuong';
+        $user11->email       = 'boymanu91@gmail.com';
+        $user11->password    = Hash::make('tiennm');
+        $user11->role        = 'store';
+        $user11->avatar      = 'assets/img/default/avatar.jpg';
+        $user11->status      = 'active';
+        $user11->save();
     }
 }

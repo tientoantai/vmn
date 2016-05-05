@@ -310,7 +310,7 @@
             var $change = $.post('/changeAvatar', data);
             $change.then(function(response){
                 alert (response.message);
-//                location.reload();
+                location.reload();
             });
         });
 

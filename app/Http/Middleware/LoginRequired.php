@@ -10,7 +10,7 @@ class LoginRequired
     {
         if ( ! \Session::get('credential'))
         {
-            return back();
+            return redirect('/');
         }
         return $next($request);
     }

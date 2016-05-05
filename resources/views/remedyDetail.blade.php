@@ -156,7 +156,7 @@
                         @foreach($comments as $comment)
                             <div class="product-comment margin-bottom-20">
                                 <div class="product-comment-in">
-                                    <img class="product-comment-img rounded-x" src="assets/img/team/01.jpg" alt="">
+                                    <img class="product-comment-img rounded-x" src="{{asset($comment->avatar)}}" alt="">
                                     <div class="product-comment-dtl">
                                         <h4><a href="{{route('profile',['account' => $comment->reviewer])}}">
                                                 {{$comment->reviewer}}</a> <small>{{$comment->created_at}}</small></h4>
@@ -296,7 +296,6 @@
                     data: {Id: $(this).attr('data-review')}
                 });
                 $approve.then(function(response){
-                    alert (response.message);
                     location.reload();
                 });
             });

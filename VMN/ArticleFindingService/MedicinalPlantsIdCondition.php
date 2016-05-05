@@ -28,6 +28,9 @@ class MedicinalPlantsIdCondition implements ArticleFindingCondition
         if (!$plant) return null;
         $comment = \DB::table('medicinal_plants_reviews')
             ->join('credentials', 'medicinal_plants_reviews.reviewer', '=', 'credentials.name')
+            ->select('credentials.avatar', 'medicinal_plants_reviews.reviewer',
+                'medicinal_plants_reviews.reviewed', 'medicinal_plants_reviews.id',
+                'medicinal_plants_reviews.comment', 'medicinal_plants_reviews.created_at')
             ->where('reviewed', '=', $this->id())
             ->whereNull('deleted_at')
             ->get()
