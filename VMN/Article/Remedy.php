@@ -24,6 +24,7 @@ use VMN\Contracts\Article\Article;
 class Remedy extends Model implements Article
 {
     use SoftDeletes;
+    
     public function id()
     {
         return $this->id;
