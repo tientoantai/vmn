@@ -30,10 +30,7 @@ class PrescriptionService
     private function isStore($credentialName)
     {
         $credential = Credential::where('name', $credentialName)->first();
-        if ($credential->role == 'store')
-            return true;
-        else
-            return false;
+        return $credential->role == 'store';
     }
 
     public function addPrescriptionByRegister(Remedy $remedy, HerbalMedicineStore $herbalMedicineStore)
