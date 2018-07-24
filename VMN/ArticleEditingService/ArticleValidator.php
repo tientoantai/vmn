@@ -49,17 +49,17 @@ class ArticleValidator extends Validator
     private function buildPlantErrorMessage()
     {
         return [
-            'commonName.required' => 'Hãy điền tên thường gọi của cây thuốc',
-            'characteristic.required' => 'Hãy điền đặc điểm của cây thuốc',
+            'commonName.required'                => 'Hãy điền tên thường gọi của cây thuốc',
+            'characteristic.required'            => 'Hãy điền đặc điểm của cây thuốc',
             'commonName.unique:medicinal_plants' => 'Cây thuốc đã tồn tại trong hệ thống',
-            'utility.required' => 'Hãy điền công dụng của cây thuốc'
+            'utility.required'                   => 'Hãy điền công dụng của cây thuốc'
         ];
     }
 
     private function buildRemedyErrorMessage()
     {
         return [
-        'title.required'                            => 'Hãy điền tiêu đề của bài thuốc',
+            'title.required'                        => 'Hãy điền tiêu đề của bài thuốc',
             'description.required'                  => 'Hãy điền mô tả của bài thuốc',
             'commonName.unique:medicinal_plants'    => 'Tiêu đề bài thuốc này đã tồn tại trong hệ thống',
             'utility.required'                      => 'Hãy điền công dụng của bài thuốc',
