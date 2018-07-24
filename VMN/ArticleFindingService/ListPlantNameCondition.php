@@ -10,7 +10,8 @@ class ListPlantNameCondition implements ArticleFindingCondition
     {
         $listPlant = \DB::table('medicinal_plants')->select('id','commonName')
             ->whereNull('deleted_at')
-            ->orderBy('id', 'asc')->get();
+            ->orderBy('id', 'asc')
+            ->get();
         foreach($listPlant as $k => $plant)
         {
             $listPlant[$k]->value = $plant->commonName .':' . $plant->id;
