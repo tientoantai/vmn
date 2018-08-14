@@ -1,8 +1,6 @@
 <?php
 
-
 namespace app\Http\Middleware;
-
 
 use Illuminate\Http\Request;
 use VMN\Article\ArticleFactory;
@@ -23,7 +21,6 @@ class EditingData
     {
         $this->articleValidator = $articleValidator;
     }
-
 
     /**
      * @param Request $request
